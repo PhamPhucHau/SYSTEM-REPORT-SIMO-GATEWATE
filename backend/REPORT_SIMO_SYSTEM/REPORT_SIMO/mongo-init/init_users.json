@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "67cfda4bb991f49c4acdce94"
+  },
+  "name": "Pham Phuc Hau",
+  "username": "BankerID",
+  "phone_no": "1234567890",
+  "email": "hau@example.com",
+  "createdAat": {
+    "$date": "2025-03-11T06:38:03.653Z"
+  },
+  "isActive": true,
+  "roleId": {
+    "$oid": "65f2c8a9e8a6e9b8f0a1b002"
+  },
+  "passwordHash": "$2a$10$v27UpLM9HFDuAOpNeRAGh.p3KlOl8lBj8STWZNptNVLlh1twuVlKi",
+  "role": "admin"
+},
+{
+  "_id": {
+    "$oid": "682bdf96b73bbf080b5a6f75"
+  },
+  "name": "Check",
+  "username": "Check",
+  "passwordHash": "$2a$10$bv5BMbEZwzsju5OfbNlDm.hv.TcfiTdT8/OLLddT781eVUBLl6Nuq",
+  "createdAt": {
+    "$date": "2025-05-20T01:49:10.334Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "Check@gmailcom",
+  "isActive": true,
+  "role": "ADMIN",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+},
+{
+  "_id": {
+    "$oid": "682be06fb73bbf080b5a6f76"
+  },
+  "name": "User1234",
+  "username": "User1234",
+  "passwordHash": "$2a$10$MgxiTymCn1W43fOTRt7xF.6i5qUnRrXPV451aEaSDudQAgPzD3VcC",
+  "createdAt": {
+    "$date": "2025-05-20T01:52:47.439Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "User1234@gmail.com",
+  "isActive": true,
+  "role": "USER",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+}]

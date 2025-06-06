@@ -1,0 +1,11 @@
+Improve get Application Properties Load Dynamic. 
+
+docker build -t simo_frontend_img .
+docker tag simo_frontend_img phamphuchau28/simo_frontend_img:latest
+docker build -t simo_backend_img .
+docker tag simo_backend_img phamphuchau28/simo_backend_img:latest
+
+docker push phamphuchau28/simo_backend_img:latest
+docker push phamphuchau28/simo_frontend_img:latest
+
+docker inspect --format='{{index .RepoDigests 0}}' push phamphuchau28/simo_backend_img:v0

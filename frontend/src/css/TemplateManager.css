@@ -1,0 +1,223 @@
+/* Container tổng */
+.template-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Button Thêm Template */
+.add-button {
+  background: #007bff;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.add-button:hover {
+  background: #0056b3;
+}
+
+/* Bảng hiển thị Template */
+.template-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 16px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.template-table th, .template-table td {
+  border: 1px solid #e0e0e0;
+  padding: 14px 12px;
+  text-align: left;
+}
+
+.template-table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Nút xóa */
+.delete-button {
+  background: #e53935;
+  color: white;
+  margin-left: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delete-button:hover {
+  background: #c62828;
+}
+
+/* Modal */
+.my-modal {
+  all: unset;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  z-index: 1001;
+  border-radius: 8px;
+  border: 2px solid #007bff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Overlay */
+.my-overlay {
+  all: unset;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Form trong modal */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Nút modal */
+.modal-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.modal-buttons button {
+  margin-left: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background: #6c757d;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background: #28a745;
+  color: white;
+}
+
+.modal-buttons button:hover {
+  opacity: 0.9;
+}
+
+/* Editor Schema */
+.schema-editor {
+  margin-top: 20px;
+}
+
+.schema-editor textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 12px;
+  font-family: monospace;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+/* Thêm field */
+.add-field {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.add-field input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.add-field select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Error box */
+.error {
+  color: #d32f2f;
+  background: #ffebee;
+  border: 1px solid #d32f2f;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+/* Responsive cho bảng và form */
+@media (max-width: 768px) {
+  .template-table th, .template-table td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .add-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-buttons button {
+    margin: 8px 0;
+  }
+}

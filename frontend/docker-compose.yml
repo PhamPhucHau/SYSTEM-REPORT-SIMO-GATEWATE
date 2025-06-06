@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    volumes:
+      - mongo-data:/data/db
+
+  SIMO_Backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: phamphuchau28/simo_backend_img
+    container_name: SIMO_BACKEND_IMG
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://admin:admin123@mongodb:27017/?authSource=admin
+    depends_on:
+      - mongodb
+
+  SIMO_FRONTEND:
+    image: phamphuchau28/simo_frontend_img
+    container_name: simo_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - SIMO_Backend
+
+volumes:
+  mongo-data:
