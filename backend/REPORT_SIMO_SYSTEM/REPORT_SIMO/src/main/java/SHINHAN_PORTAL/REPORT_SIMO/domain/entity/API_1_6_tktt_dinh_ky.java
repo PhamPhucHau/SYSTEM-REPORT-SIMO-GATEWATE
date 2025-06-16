@@ -27,7 +27,16 @@ public class API_1_6_tktt_dinh_ky {
     private String quocTich;
     private String templateID;
     private String monthYear;
+    private String username;
 
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     // Getters and Setters
     public String getId() {

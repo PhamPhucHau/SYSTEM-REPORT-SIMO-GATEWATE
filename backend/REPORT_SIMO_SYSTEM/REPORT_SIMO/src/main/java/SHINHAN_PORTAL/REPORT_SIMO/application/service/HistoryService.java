@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface HistoryService {
    LIST_FILE_UPLOAD saveUploadHistory(LIST_FILE_UPLOAD requestBody) ;
-   public Page<LIST_FILE_UPLOAD> getFiles(String templateID, String monthYear, int page, int size);
+   public Page<LIST_FILE_UPLOAD> getFiles(String templateID, String monthYear,String username, int page, int size);
+   LIST_FILE_UPLOAD updateById(String id, String data_ledg_s );
+   LIST_FILE_UPLOAD findById(String id, String data_ledg_s );
 }

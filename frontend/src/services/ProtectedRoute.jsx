@@ -1,42 +1,43 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../services/AuthContext";
-import { useEffect, useState } from "react";
+  import { Navigate, Outlet } from "react-router-dom";
+  import { useAuth } from "../services/AuthContext";
+  import { useEffect, useState } from "react";
 
-const ProtectedRoute = ({ element, requiredRole }) => {
-  const { user, refreshAccessToken, loading } = useAuth();
-  const [isAuthorized, setIsAuthorized] = useState(null);
+  const ProtectedRoute = ({ element, requiredRole }) => {
+    const { user, refreshAccessToken, loading } = useAuth();
+    const [isAuthorized, setIsAuthorized] = useState(null);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      if (!user) {
-        setIsAuthorized(false);
-        return;
-      }
+    useEffect(() => {
+      const checkAuth = async () => {
+        if (!user) {
+          setIsAuthorized(false);
+          return;
+        }
 
-      let accessToken = localStorage.getItem("accessToken");
-      if (!accessToken) {
-        accessToken = await refreshAccessToken();
-      }
+        let accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+          accessToken = await refreshAccessToken();
+        }
 
-      if (!accessToken) {
-        setIsAuthorized(false);
-        return;
-      }
+        if (!accessToken) {
+          setIsAuthorized(false);
+          return;
+        }
 
-      // Kiểm tra quyền truy cập
-      if (requiredRole && user.role !== requiredRole) {
-        setIsAuthorized(false);
-      } else {
-        setIsAuthorized(true);
-      }
-    };
+        // Kiểm tra quyền truy cập
+        const roles = Array.isArray(requiredRole)?  requiredRole : [requiredRole];
+        if (requiredRole && !roles.includes(user.role)) {
+          setIsAuthorized(false);
+        } else {
+          setIsAuthorized(true);
+        }
+      };
 
-    checkAuth();
-  }, [user, requiredRole]);
+      checkAuth();
+    }, [user, requiredRole]);
 
-  if (loading || isAuthorized === null) return <p>Đang kiểm tra quyền truy cập...</p>;
+    if (loading || isAuthorized === null) return <p>Đang kiểm tra quyền truy cập...</p>;
 
-  return isAuthorized ? element : <Navigate to="/" />;
-};
+    return isAuthorized ? element : <Navigate to="/" />;
+  };
 
-export default ProtectedRoute;
+  export default ProtectedRoute;

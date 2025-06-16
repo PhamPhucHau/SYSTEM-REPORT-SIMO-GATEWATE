@@ -6,6 +6,8 @@ import SHINHAN_PORTAL.REPORT_SIMO.application.service.UserService;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.repository.UserRepository;
 import SHINHAN_PORTAL.REPORT_SIMO.infrastructure.security.AuthService;
+
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,4 +73,37 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByUsername(String username) {
         return Optional.empty();
     }
+    @Override
+    public User updateUser(String id, UserDTO_REG userDTO) {
+         ObjectId objectId = new ObjectId(id); // convert String to ObjectId
+        User existingUser = userRepository.findById(objectId)
+        .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng với ID: " + id));
+
+
+    // Có thể bổ sung check nếu muốn tránh cập nhật trùng username/email với người dùng khác
+    // if (!existingUser.getUsername().equals(userDTO.getUsername()) &&
+    //         userRepository.existsByUsername(userDTO.getUsername())) {
+    //     throw new RuntimeException("Tên đăng nhập đã tồn tại!");
+    // }
+
+    if (!existingUser.getEmail().equals(userDTO.getEmail()) &&
+            userRepository.existsByEmail(userDTO.getEmail())) {
+        throw new RuntimeException("Email đã tồn tại!");
+    }
+
+    // Cập nhật thông tin
+    //existingUser.setName(userDTO.getName());
+    existingUser.setUsername(userDTO.getUsername());
+    existingUser.setPhoneNo(userDTO.getPhoneNo());
+    existingUser.setEmail(userDTO.getEmail());
+    existingUser.setRole(userDTO.getRole());
+
+    // Nếu có password mới, cập nhật
+    if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+        existingUser.setPasswordHash(authService.encode(userDTO.getPassword()));
+    }
+
+    return userRepository.save(existingUser);
+}
+
 }

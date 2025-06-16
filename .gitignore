@@ -1,0 +1,8 @@
+/tools
+/logs
+*.sh
+launch.json
+.dev_env
+.prod_env
+template.json
+raw.txt

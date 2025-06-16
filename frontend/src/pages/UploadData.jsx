@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../services/AuthContext";
 import { Spinner, Alert } from "react-bootstrap"; // Thêm Spinner và Alert để hiển thị trạng thái loading/error
-
+import Swal from 'sweetalert2';
 // Cài đặt chế độ: true: dùng mock data, false: dùng API thật
 const USE_MOCK_DATA = false; // Giữ nguyên hoặc thay đổi nếu cần
 
@@ -18,7 +18,10 @@ const UploadData = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [parsedData, setParsedData] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth() - 1, 1); // Lùi 1 tháng
+  });
   const [templates, setTemplates] = useState([]); // State để lưu templates từ API
   const [loadingTemplates, setLoadingTemplates] = useState(false); // State loading cho templates
   const [errorTemplates, setErrorTemplates] = useState(null); // State error cho templates
@@ -105,14 +108,43 @@ const UploadData = () => {
 
   // Hàm mapping dữ liệu từ file Excel sang cấu trúc của API 1.6
   // Giữ nguyên hàm này nếu cấu trúc mapping vẫn đúng 
-  const mapDataForAPI16 = (data) => { 
-      return data.map((row, rowIndex) => ({
+  // const mapDataForAPI16 = (data) => { 
+  //     console.log(data);
+  //     return data.map((row, rowIndex) => ({
+  //       Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
+  //       SoID: row["Số ID"] || row["SoID"] || "",
+  //       LoaiID: row["Loại ID"] || row["LoaiID"] || "",
+  //       TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
+  //       NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
+  //       GioiTinh: row["Giới tính"] || row["GioiTinh"] || "",
+  //       MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
+  //       SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
+  //       DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
+  //       SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
+  //       LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
+  //       TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
+  //       NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
+  //       PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
+  //       QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
+  //       DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
+  //     }));
+  //   };
+  const mapDataForAPI16 = (data) => {
+    return data.map((row, rowIndex) => {
+      if (rowIndex === 7) {
+        console.log("🔍 Debug row 7:", row);
+        var GioiTinh1 = row["Giới tính"] || row["GioiTinh"] || "" ; 
+        console.log(row["GioiTinh"]);
+        console.log(GioiTinh1);
+      }
+  
+      return {
         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
         SoID: row["Số ID"] || row["SoID"] || "",
         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-        GioiTinh: row["Giới tính"] || row["GioiTinh"] || "",
+        GioiTinh: row["Giới tính"] ?? row["GioiTinh"] ?? "",
         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
@@ -123,8 +155,9 @@ const UploadData = () => {
         PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
         QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
         DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-      }));
-    };
+      };
+    });
+  };
       const mapDataForAPI19 = (data) => { 
       return data.map((row, rowIndex) => ({
         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
@@ -132,7 +165,7 @@ const UploadData = () => {
         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-        GioiTinh: row["Giới tính"] || row["GioiTinh"] || "",
+        GioiTinh:  row["Giới tính"] ?? row["GioiTinh"] ?? "",
         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
@@ -193,185 +226,221 @@ const mapDataForAPI18 = (data) => {
       return null;
     }
   }
-  // Validate dữ liệu dựa trên schema của template
-  const validateData = (data, schemaJsonString) => { // Đổi tên tham số cho rõ ràng
+  const validateData = (data, schemaJsonString) => {
     let errors = [];
-
-    // --- CẬP NHẬT: Parse schemaJson theo định dạng mới ---
+  
     const schema = parseSchemaJson(schemaJsonString);
     if (!schema) {
-      errors.push("Lỗi cấu trúc Schema Template: Không thể đọc định nghĩa cột. Vui lòng kiểm tra lại cấu hình template.");
+      errors.push("Lỗi cấu trúc Schema Template: Không thể đọc định nghĩa cột.");
       return errors;
     }
-
-    // --- Phần validate dữ liệu dựa trên schema đã parse ---
+  
     data.forEach((row, rowIndex) => {
-      const excelRowNumber = rowIndex + 4; // Dòng 1-3 bỏ qua, dòng 4 là header, dữ liệu bắt đầu từ dòng 5 Excel = rowIndex 0 + 5
-
+      const excelRowNumber = rowIndex + 4;
+      const CIF = row["Cif"];
+  
       Object.entries(schema).forEach(([key, rules]) => {
-        // Bỏ qua key '_id' hoặc các key hệ thống khác nếu có trong schema
-        // mà không yêu cầu có trong file Excel
-                // --- THÊM ĐIỀU KIỆN ĐỂ BỎ QUA CỘT "Key" ---
-        if (key === 'Key') {
-          // console.log(`Validation skipped for field: ${key} at row ${excelRowNumber}`); // Ghi log nếu cần debug
-          return; // Bỏ qua lần lặp này nếu key là 'Key'
-        }
-        // ------------------------------------------
-
-        // Bỏ qua các key hệ thống khác nếu có
-        if (key === '_id' || key === '__v') return;
-
-        const value = row[key]; // Lấy giá trị từ dữ liệu đã map/parse
-
-        // 1. Kiểm tra trường bắt buộc (required)
+        if (["Key", "_id", "__v"].includes(key)) return;
+  
+        const value = row[key];
+  
         if (rules.required && (value === undefined || value === null || value === "")) {
-          errors.push(`Dòng ${excelRowNumber}: Trường "${key}" là bắt buộc, không được để trống.`);
+          errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" là bắt buộc, không được để trống.`);
+          return;
         }
-        // Chỉ thực hiện các kiểm tra khác nếu trường là bắt buộc HOẶC trường không bắt buộc nhưng CÓ giá trị
-        else if (rules.required || (value !== undefined && value !== null && value !== "")) {
-
-          // 2. Kiểm tra kiểu dữ liệu (type)
-          const valueAsString = String(value); // Chuyển sang string để kiểm tra length và number
-
-          if (rules.type === "integer") {
-            // Cho phép số nguyên âm, nhưng không cho phép chữ hoặc ký tự đặc biệt (trừ dấu - ở đầu)
-            if (!/^-?\d+$/.test(valueAsString) || isNaN(parseInt(valueAsString))) {
-              errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString}) phải là số nguyên.`);
-            }
-          } else if (rules.type === "number") { // Nếu có kiểu số thực
-             if (isNaN(Number(value))) {
-                errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString}) phải là kiểu số.`);
-             }
-          } else if (rules.type === "string") {
-            // Thường không cần kiểm tra type string vì dữ liệu từ excel thường là string
-            // Nhưng có thể thêm nếu cần ép kiểu chặt chẽ
-          } else if (rules.type === "boolean") {
-            // Có thể kiểm tra nếu giá trị là true/false hoặc 0/1 tùy quy ước
-          }
-          // Thêm các kiểu dữ liệu khác nếu cần (ví dụ: date)
-          // else if (rules.type === "date") {
-          //    // Kiểm tra định dạng ngày tháng YYYY-MM-DD hoặc DD/MM/YYYY...
-          //    const datePattern = /^\d{4}-\d{2}-\d{2}$/; // Ví dụ YYYY-MM-DD
-          //    if (!datePattern.test(valueAsString)) {
-          //        errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString}) phải đúng định dạng YYYY-MM-DD.`);
-          //    }
-          // }
-
-
-          // 3. Kiểm tra độ dài tối đa (maxLength) - áp dụng cho cả số và chuỗi
-          if (rules.maxLength && valueAsString.length > rules.maxLength) {
-            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString.length} ký tự) vượt quá độ dài tối đa cho phép (${rules.maxLength}).`);
-          }
-
-           // 4. Kiểm tra độ dài tối thiểu (minLength) - nếu có
-           if (rules.minLength && valueAsString.length < rules.minLength) {
-               errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString.length} ký tự) chưa đủ độ dài tối thiểu yêu cầu (${rules.minLength}).`);
-           }
-
-           // 5. Kiểm tra giá trị trong danh sách cho phép (enum) - nếu có
-           // if (rules.enum && Array.isArray(rules.enum) && !rules.enum.includes(value)) {
-           //     errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString}) phải là một trong các giá trị: ${rules.enum.join(', ')}.`);
-           // }
-
-            // 6. Kiểm tra định dạng (pattern/regex) - nếu có
-            // if (rules.pattern) {
-            //     try {
-            //         const regex = new RegExp(rules.pattern);
-            //         if (!regex.test(valueAsString)) {
-            //             errors.push(`Dòng ${excelRowNumber}: Trường "${key}" (${valueAsString}) không khớp với định dạng yêu cầu.`);
-            //         }
-            //     } catch (regexError) {
-            //         console.error("Invalid regex pattern in schema:", rules.pattern, regexError);
-            //         // Có thể thêm lỗi vào errors nếu regex trong schema bị sai
-            //         errors.push(`Lỗi cấu hình schema: Pattern không hợp lệ cho trường "${key}".`);
-            //     }
-            // }
-
-        }
-      });
-
-      // (Tùy chọn) Kiểm tra các cột thừa trong file Excel không có trong schema
-      Object.keys(row).forEach(excelKey => {
-          if (!schema.hasOwnProperty(excelKey)) {
-              // Bỏ qua nếu cột thừa không có giá trị
-              if (row[excelKey] !== undefined && row[excelKey] !== null && row[excelKey] !== "") {
-                   // Có thể ghi log cảnh báo hoặc thêm vào errors nếu muốn báo lỗi cột lạ
-                   console.warn(`Dòng ${excelRowNumber}: Cột "${excelKey}" có trong file nhưng không được định nghĩa trong schema template "${selectedTemplate?.name || ''}". Giá trị "${row[excelKey]}" sẽ bị bỏ qua.`);
-                   // errors.push(`Dòng ${excelRowNumber}: Cột "${excelKey}" không được định nghĩa trong schema.`);
+  
+        // Chỉ tiếp tục nếu có giá trị
+        if (value !== undefined && value !== null && value !== "") {
+          const valueAsString = String(value);
+  
+          // 1. Kiểm tra kiểu dữ liệu
+          switch (rules.type) {
+            case "integer":
+              if (!/^-?\d+$/.test(valueAsString) || isNaN(parseInt(valueAsString))) {
+                errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải là số nguyên.`);
               }
+              break;
+            case "number":
+              if (isNaN(Number(value))) {
+                errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải là số.`);
+              }
+              break;
+            case "boolean":
+              if (!(valueAsString === "true" || valueAsString === "false" || valueAsString === "1" || valueAsString === "0")) {
+                errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải là giá trị boolean (true/false hoặc 1/0).`);
+              }
+              break;
+            case "string":
+              // Không cần kiểm tra
+              break;
+            default:
+              errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có kiểu không xác định trong schema.`);
           }
+  
+          // 2. Kiểm tra độ dài
+          if (rules.maxLength && valueAsString.length > rules.maxLength) {
+            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}.`);
+          }
+  
+          if (rules.minLength && valueAsString.length < rules.minLength) {
+            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, ngắn hơn yêu cầu tối thiểu ${rules.minLength}.`);
+          }
+  
+          // 3. Kiểm tra pattern (nếu có)
+          if (rules.pattern) {
+            try {
+              const regex = new RegExp(rules.pattern);
+              if (!regex.test(valueAsString)) {
+                errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" không khớp định dạng yêu cầu.`);
+              }
+            } catch (e) {
+              errors.push(`Lỗi định dạng regex trong schema trường "${key}".`);
+            }
+          }
+  
+          // 4. Kiểm tra giá trị enum (nếu có)
+          if (rules.enum && Array.isArray(rules.enum)) {
+            const parsedValue = rules.type === "integer" || rules.type === "number" ? Number(value) : value;
+            if (!rules.enum.includes(parsedValue)) {
+              errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải là một trong các giá trị sau: ${rules.enum.join(", ")}.`);
+            }
+          }
+        }
       });
-
+  
+      // Kiểm tra các cột không định nghĩa trong schema
+      Object.keys(row).forEach(excelKey => {
+        if (!schema.hasOwnProperty(excelKey)) {
+          const extraValue = row[excelKey];
+          if (extraValue !== undefined && extraValue !== null && extraValue !== "") {
+            console.warn(`Dòng ${excelRowNumber}: Cột "${excelKey}" có CIF "${CIF}" không nằm trong schema, sẽ bị bỏ qua.`);
+            // errors.push(`Dòng ${excelRowNumber}: Cột "${excelKey}" không nằm trong định nghĩa schema.`);
+          }
+        }
+      });
     });
+  
     return errors;
   };
-
+  
   // Parse file Excel
+  // const handleFileParse = () => {
+  //   if (!file) return alert("Vui lòng chọn file Excel!");
+  //   if (!selectedTemplate) return alert("Vui lòng chọn template!");
+
+  //   setValidationErrors([]); // Reset lỗi trước khi parse
+  //   setParsedData([]);
+  //   setSubmitError(null);
+  //   setSubmitSuccess(null);
+
+  //   const reader = new FileReader();
+  //   reader.readAsBinaryString(file);
+  //   reader.onload = (e) => {
+  //     try {
+  //       const workbook = XLSX.read(e.target.result, { type: "binary", cellDates: true }); // Thêm cellDates: true để xử lý ngày tháng tốt hơn
+  //       const sheetName = workbook.SheetNames[0];
+  //       const sheet = workbook.Sheets[sheetName];
+
+  //       // Bỏ qua 0 dòng đầu, dùng dòng 1 làm header
+  //       const jsonData = XLSX.utils.sheet_to_json(sheet, { range: 0, defval: "" }); // defval: "" để ô trống thành chuỗi rỗng
+
+  //       console.log("Raw JSON data:", jsonData);
+
+  //       let mappedData = jsonData;
+  //       // --- THAY ĐỔI: Sử dụng templateID từ selectedTemplate ---
+  //       switch(selectedTemplate.templateID)
+  //       {
+  //         case "API_1_6_TTDS_TKTT_DK":
+  //           {
+  //             mappedData = mapDataForAPI16(jsonData);
+  //             break; 
+  //           }
+  //           case  "API_1_7_TTDS_TKTT_NNGL":
+  //           {
+  //             mappedData = mapDataForAPI17(jsonData); 
+  //             break;  
+  //           }
+  //            case "API_1_9_UPDATE_TTDS_TKTT_DK":
+  //           {
+  //             mappedData = mapDataForAPI19(jsonData);
+  //             break; 
+  //           }
+  //           case  "API_1_8_UPDATE_TTDS_TKTT_NNGL":
+  //           {
+  //             mappedData = mapDataForAPI18(jsonData); 
+  //             console.log(mappedData);
+  //             break;  
+  //           }
+          
+  //       };
+  //       // Thêm các điều kiện mapping khác nếu cần
+  //       // else if (selectedTemplate.templateID === "SOME_OTHER_ID") {
+  //       //    mappedData = mapDataForOtherAPI(jsonData);
+  //       // }
+
+  //       console.log("Mapped data:", mappedData);
+
+  //       // --- THAY ĐỔI: Validate dùng schemaJson từ selectedTemplate ---
+  //       // Đảm bảo schemaJson tồn tại trước khi gọi validate
+  //       if (!selectedTemplate.schemaJson) {
+  //           alert("Template được chọn không có thông tin schema để validate.");
+  //           return;
+  //       }
+  //       const errors = validateData(mappedData, selectedTemplate.schemaJson);
+  //       setValidationErrors(errors);
+
+  //       if (errors.length === 0) {
+  //         setParsedData(mappedData);
+  //         console.log("Parsed data (validated):", mappedData);
+  //       } else {
+  //         setParsedData([]);
+  //         console.log("Validation Errors:", errors);
+  //       }
+  //     } catch (error) {
+  //         console.error("Error parsing Excel file:", error);
+  //         alert(`Đã xảy ra lỗi khi đọc file Excel: ${error.message}`);
+  //         setValidationErrors([`Lỗi đọc file: ${error.message}`]);
+  //         setParsedData([]);
+  //     }
+  //   };
+  //   reader.onerror = (error) => {
+  //       console.error("FileReader error:", error);
+  //       alert("Không thể đọc file.");
+  //       setValidationErrors(["Lỗi đọc file."]);
+  //       setParsedData([]);
+  //   }
+  // };
   const handleFileParse = () => {
     if (!file) return alert("Vui lòng chọn file Excel!");
     if (!selectedTemplate) return alert("Vui lòng chọn template!");
-
-    setValidationErrors([]); // Reset lỗi trước khi parse
+  
+    setValidationErrors([]);
     setParsedData([]);
     setSubmitError(null);
     setSubmitSuccess(null);
-
+  
     const reader = new FileReader();
     reader.readAsBinaryString(file);
+  
     reader.onload = (e) => {
       try {
-        const workbook = XLSX.read(e.target.result, { type: "binary", cellDates: true }); // Thêm cellDates: true để xử lý ngày tháng tốt hơn
+        const workbook = XLSX.read(e.target.result, { type: "binary", cellDates: true });
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
-
-        // Bỏ qua 0 dòng đầu, dùng dòng 1 làm header
-        const jsonData = XLSX.utils.sheet_to_json(sheet, { range: 0, defval: "" }); // defval: "" để ô trống thành chuỗi rỗng
-
+  
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { range: 0, defval: "" }); // Dùng dòng 1 làm header
         console.log("Raw JSON data:", jsonData);
-
-        let mappedData = jsonData;
-        // --- THAY ĐỔI: Sử dụng templateID từ selectedTemplate ---
-        switch(selectedTemplate.templateID)
-        {
-          case "API_1_6_TTDS_TKTT_DK":
-            {
-              mappedData = mapDataForAPI16(jsonData);
-              break; 
-            }
-            case  "API_1_7_TTDS_TKTT_NNGL":
-            {
-              mappedData = mapDataForAPI17(jsonData); 
-              break;  
-            }
-             case "API_1_9_UPDATE_TTDS_TKTT_DK":
-            {
-              mappedData = mapDataForAPI19(jsonData);
-              break; 
-            }
-            case  "API_1_8_UPDATE_TTDS_TKTT_NNGL":
-            {
-              mappedData = mapDataForAPI18(jsonData); 
-              console.log(mappedData);
-              break;  
-            }
-          
-        };
-        // Thêm các điều kiện mapping khác nếu cần
-        // else if (selectedTemplate.templateID === "SOME_OTHER_ID") {
-        //    mappedData = mapDataForOtherAPI(jsonData);
-        // }
-
-        console.log("Mapped data:", mappedData);
-
-        // --- THAY ĐỔI: Validate dùng schemaJson từ selectedTemplate ---
-        // Đảm bảo schemaJson tồn tại trước khi gọi validate
+  
+        const mappedData = jsonData; // Không cần mapping nếu header khớp
+  
         if (!selectedTemplate.schemaJson) {
-            alert("Template được chọn không có thông tin schema để validate.");
-            return;
+          alert("Template được chọn không có thông tin schema để validate.");
+          return;
         }
+  
         const errors = validateData(mappedData, selectedTemplate.schemaJson);
         setValidationErrors(errors);
-
+  
         if (errors.length === 0) {
           setParsedData(mappedData);
           console.log("Parsed data (validated):", mappedData);
@@ -380,20 +449,21 @@ const mapDataForAPI18 = (data) => {
           console.log("Validation Errors:", errors);
         }
       } catch (error) {
-          console.error("Error parsing Excel file:", error);
-          alert(`Đã xảy ra lỗi khi đọc file Excel: ${error.message}`);
-          setValidationErrors([`Lỗi đọc file: ${error.message}`]);
-          setParsedData([]);
+        console.error("Error parsing Excel file:", error);
+        alert(`Đã xảy ra lỗi khi đọc file Excel: ${error.message}`);
+        setValidationErrors([`Lỗi đọc file: ${error.message}`]);
+        setParsedData([]);
       }
     };
+  
     reader.onerror = (error) => {
-        console.error("FileReader error:", error);
-        alert("Không thể đọc file.");
-        setValidationErrors(["Lỗi đọc file."]);
-        setParsedData([]);
-    }
+      console.error("FileReader error:", error);
+      alert("Không thể đọc file.");
+      setValidationErrors(["Lỗi đọc file."]);
+      setParsedData([]);
+    };
   };
-
+  
   // Hàm xử lý submit (không thay đổi nhiều, chỉ thêm loading/error state)
   const handleSubmit = async () => {
     if (validationErrors.length > 0) {
@@ -461,6 +531,12 @@ const mapDataForAPI18 = (data) => {
         );
         console.log("Phản hồi từ server:", response.data);
         setSubmitSuccess("Tải lên thành công!");
+        Swal.fire({
+          icon: 'success',
+          title: 'Thành công!',
+          text: 'Xác nhận tải lên thành công.',
+          confirmButtonText: 'OK'
+        });
          // Reset state sau khi thành công? (Tùy chọn)
          // setFile(null);
          // setSelectedTemplate(null);
@@ -470,6 +546,12 @@ const mapDataForAPI18 = (data) => {
         console.error("Lỗi khi tải lên:", error);
         const errorMsg = error.response?.data?.message || error.message || "Lỗi không xác định";
         setSubmitError(`Tải lên thất bại! ${errorMsg}`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi!',
+          text: "Lỗi khi tải lên:",
+          confirmButtonText: 'Đóng'
+        });
         // alert("Tải lên thất bại! Kiểm tra console để biết thêm chi tiết.");
       } finally {
         setLoadingSubmit(false); // Kết thúc loading
@@ -553,7 +635,8 @@ const mapDataForAPI18 = (data) => {
       {/* Hiển thị dữ liệu đã parse và nút Upload */}
       {parsedData.length > 0 && validationErrors.length === 0 && (
         <>
-          <h3 className="mt-4">Dữ Liệu Đã Phân Tích (Hợp lệ):</h3>
+          <h3 className="mt-4">Dữ Liệu Đã Phân Tích (Hợp lệ) </h3>
+          <h3 className="mt-4">Tổng cộng {parsedData.length } dòng </h3>
               {/* Di chuyển nút Submit lên đây */}
     <div className="d-flex justify-content-between align-items-center mb-3">
       <div>

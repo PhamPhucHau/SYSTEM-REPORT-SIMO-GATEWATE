@@ -1,25 +1,62 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TKTTRequestDTO {
+    @JsonProperty("Cif")
     private String cif;
-    private String soID;
-    private int loaiID;
-    private String tenKhachHang;
-    private String ngaySinh;
-    private int gioiTinh;
-    private String maSoThue;
-    private String soDienThoaiDangKyDichVu;
-    private String diaChi;
-    private String diaChiKiemSoatTruyCap;
-    private String maSoNhanDangThietBiDiDong;
-    private String soTaiKhoan;
-    private int loaiTaiKhoan;
-    private int trangThaiHoatDongTaiKhoan;
-    private String ngayMoTaiKhoan;
-    private int phuongThucMoTaiKhoan;
-    private String ngayXacThucTaiQuay;
-    private String quocTich;
 
+    @JsonProperty("SoID")
+    private String soID;
+
+    @JsonProperty("LoaiID")
+    private int loaiID;
+
+    @JsonProperty("TenKhachHang")
+    private String tenKhachHang;
+
+    @JsonProperty("NgaySinh")
+    private String ngaySinh;
+
+    @JsonProperty("GioiTinh")
+    private int gioiTinh;
+
+    @JsonProperty("MaSoThue")
+    private String maSoThue;
+
+    @JsonProperty("SoDienThoaiDangKyDichVu")
+    private String soDienThoaiDangKyDichVu;
+
+    @JsonProperty("DiaChi")
+    private String diaChi;
+
+    @JsonProperty("DiaChiKiemSoatTruyCap")
+    private String diaChiKiemSoatTruyCap;
+
+    @JsonProperty("MaSoNhanDangThietBiDiDong")
+    private String maSoNhanDangThietBiDiDong;
+
+    @JsonProperty("SoTaiKhoan")
+    private String soTaiKhoan;
+
+    @JsonProperty("LoaiTaiKhoan")
+    private int loaiTaiKhoan;
+
+    @JsonProperty("TrangThaiHoatDongTaiKhoan")
+    private int trangThaiHoatDongTaiKhoan;
+
+    @JsonProperty("NgayMoTaiKhoan")
+    private String ngayMoTaiKhoan;
+
+    @JsonProperty("PhuongThucMoTaiKhoan")
+    private int phuongThucMoTaiKhoan;
+
+    @JsonProperty("NgayXacThucTaiQuay")
+    private String ngayXacThucTaiQuay;
+
+    @JsonProperty("QuocTich")
+    private String quocTich;
     // Getters and Setters
     public String getCif() {
         return cif;

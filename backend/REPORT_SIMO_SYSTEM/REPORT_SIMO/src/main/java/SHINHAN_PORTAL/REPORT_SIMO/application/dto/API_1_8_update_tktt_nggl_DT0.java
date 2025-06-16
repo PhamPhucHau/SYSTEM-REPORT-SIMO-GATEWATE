@@ -1,12 +1,27 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class API_1_8_update_tktt_nggl_DT0 {
+    @JsonProperty("Cif")
     private String cif;
+
+    @JsonProperty("SoTaiKhoan")
     private String soTaiKhoan;
+
+    @JsonProperty("TenKhachHang")
     private String tenKhachHang;
+
+    @JsonProperty("TrangThaiHoatDongTaiKhoan")
     private Integer trangThaiHoatDongTaiKhoan;
+
+    @JsonProperty("NghiNgo")
     private Integer nghiNgo;
+
+    @JsonProperty("GhiChu")
     private String ghiChu;
+    @JsonProperty("LyDoCapNhat")
     private String lyDoCapNhat;
     private String templateID;
     private String monthYear;

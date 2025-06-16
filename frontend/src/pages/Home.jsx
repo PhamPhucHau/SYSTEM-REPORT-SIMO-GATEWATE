@@ -6,13 +6,18 @@ import axios from "axios";
 import { useAuth } from "../services/AuthContext";
 import {  useNavigate  } from "react-router-dom";
 import { formatMaYeuCau } from '../util/formatter'; // Import hàm formatMaYeuCau từ file formatter.js
+import Swal from 'sweetalert2';
 const DataDisplay = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth() - 1, 1); // Lùi 1 tháng
+  });
+  
   const [templates, setTemplates] = useState([]);
   const { user, logout } = useAuth();
   const [success, setSuccess] = useState(null);
@@ -21,11 +26,13 @@ const DataDisplay = () => {
    
   
     fetchTemplates();
+    console.log("Go here!");
     //fetchData(); // Gọi API lấy dữ liệu ngay khi trang tải
   }, []);
   useEffect(() => {
     if (selectedTemplate && selectedDate) {
-      const formattedDate = `${selectedDate.getMonth() + 1}`.padStart(2, "0") + "" + selectedDate.getFullYear();
+      const formattedDate = `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear()
+
       fetchData(selectedTemplate.templateID, formattedDate);
     }
   }, [selectedTemplate, selectedDate]);
@@ -47,8 +54,6 @@ const DataDisplay = () => {
       if (response.data.length > 0) {
         const defaultTemplate = response.data[0];
         setSelectedTemplate(defaultTemplate);
-        const formattedDate = `${selectedDate.getMonth() + 1}`.padStart(2, "0") + "/" + selectedDate.getFullYear();
-        fetchData(defaultTemplate.templateID, formattedDate);
       }
     } catch (err) {
       console.error("Error fetching templates", err);
@@ -87,8 +92,8 @@ const DataDisplay = () => {
     const template = templates.find(t => t.id === event.target.value);
     setSelectedTemplate(template);
     setSelectedRows([]);
-    setData(data.map(row => ({ ...row, selected: false })));
-
+    //setData(data.map(row => ({ ...row, selected: false })));
+    setData([]);
     if (template && selectedDate) {
       const formattedDate = `${selectedDate.getMonth() + 1}`.padStart(2, "0") + "" + selectedDate.getFullYear();
       await fetchData(template.templateID, formattedDate);
@@ -121,32 +126,35 @@ const DataDisplay = () => {
     }
 
     // Ánh xạ dữ liệu sang định dạng TKTTRequestDTO
-    const tkttData = selectedData.map((row) => ({
-      cif: row.cif,
-      soID: row.soID,
-      loaiID: row.loaiID,
-      tenKhachHang: row.tenKhachHang,
-      ngaySinh: row.ngaySinh,
-      gioiTinh: row.gioiTinh,
-      maSoThue: row.maSoThue,
-      soDienThoaiDangKyDichVu: row.soDienThoaiDangKyDichVu,
-      diaChi: row.diaChi,
-      diaChiKiemSoatTruyCap: row.diaChiKiemSoatTruyCap,
-      maSoNhanDangThietBiDiDong: row.maSoNhanDangThietBiDiDong,
-      soTaiKhoan: row.soTaiKhoan,
-      loaiTaiKhoan: row.loaiTaiKhoan,
-      trangThaiHoatDongTaiKhoan: row.trangThaiHoatDongTaiKhoan,
-      ngayMoTaiKhoan: row.ngayMoTaiKhoan,
-      phuongThucMoTaiKhoan: row.phuongThucMoTaiKhoan,
-      ngayXacThucTaiQuay: row.ngayXacThucTaiQuay,
-      quocTich: row.quocTich,
-    }));
-
+    // const tkttData = selectedData.map((row) => ({
+    //   cif: row.cif,
+    //   soID: row.soID,
+    //   loaiID: row.loaiID,
+    //   tenKhachHang: row.tenKhachHang,
+    //   ngaySinh: row.ngaySinh,
+    //   gioiTinh: row.gioiTinh,
+    //   maSoThue: row.maSoThue,
+    //   soDienThoaiDangKyDichVu: row.soDienThoaiDangKyDichVu,
+    //   diaChi: row.diaChi,
+    //   diaChiKiemSoatTruyCap: row.diaChiKiemSoatTruyCap,
+    //   maSoNhanDangThietBiDiDong: row.maSoNhanDangThietBiDiDong,
+    //   soTaiKhoan: row.soTaiKhoan,
+    //   loaiTaiKhoan: row.loaiTaiKhoan,
+    //   trangThaiHoatDongTaiKhoan: row.trangThaiHoatDongTaiKhoan,
+    //   ngayMoTaiKhoan: row.ngayMoTaiKhoan,
+    //   phuongThucMoTaiKhoan: row.phuongThucMoTaiKhoan,
+    //   ngayXacThucTaiQuay: row.ngayXacThucTaiQuay,
+    //   quocTich: row.quocTich,
+    // }));
+    const tkttData = selectedData ; 
     // Tạo maYeuCau (ví dụ: dùng timestamp)
     const maYeuCau = `REQ_${formatMaYeuCau()}`;
 
     // Tạo kyBaoCao từ selectedDate (mm/yyyy)
-    const kyBaoCao = `${selectedDate.getMonth() + 1}`.padStart(2, "0") + "" + selectedDate.getFullYear();
+    const kyBaoCao = `${(selectedDate.getMonth() + 1).toString().padStart(2, "0")}/${selectedDate.getFullYear()}`;
+    console.log(kyBaoCao);
+    //const kyBaoCao = `${(selectedDate.getMonth() + 1).toString().padStart(2, "0")}/${selectedDate.getFullYear()}`;
+
 
     try {
       const response = await axios.post(
@@ -163,14 +171,27 @@ const DataDisplay = () => {
       );
 
       if (response.data.success) {
-        setSuccess("Dữ liệu đã được gửi thành công!");
+        setSuccess(`Dữ liệu đã được gửi Code: ${response.data.code} message` );
         // Reset selected rows
         setData(data.map((row) => ({ ...row, selected: false })));
         setSelectedRows([]);
+        Swal.fire({
+          icon: 'success',
+          title: 'Thành công!',
+          text: `Dữ liệu đã được gửi Code: ${response.data.code} message`,
+          confirmButtonText: 'OK'
+        });
+        
       } else {
         setError(
           `Gửi dữ liệu thất bại: ${response.data.message || "Lỗi không xác định"}`
         );
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi!',
+          text: `Gửi dữ liệu thất bại: ${response.data.message || "Lỗi không xác định"}`,
+          confirmButtonText: 'Đóng'
+        });
       }
     } catch (err) {
       setError(
@@ -178,6 +199,12 @@ const DataDisplay = () => {
           err.response?.data?.message || err.message || "Lỗi không xác định"
         }`
       );
+    Swal.fire({
+      icon: 'error',
+      title: 'Lỗi!',
+      text: 'Xác nhận thất bại. Vui lòng kiểm tra lại.',
+      confirmButtonText: 'Đóng'
+    });
     } finally {
       setLoading(false);
     }
@@ -213,12 +240,12 @@ const DataDisplay = () => {
       {selectedTemplate && (
   <div className="d-flex justify-content-between align-items-center my-3">
     <div>Đã chọn: <strong>{selectedRows.length}</strong> dòng</div>
-    <Button onClick={handleSubmit} className="submit-btn">Gửi Dữ Liệu</Button>
+    <Button onClick={handleSubmit} className="submit-btn" disabled={user?.role !== "CHECKER"}> Gửi Dữ Liệu </Button>
   </div>
 )}     
       {loading && <Spinner animation="border" />} 
       {error && <Alert variant="danger">{error}</Alert>}
-
+      {success && <Alert variant="success">{success}</Alert>}
       {selectedTemplate && (
         <div className="table-container">
           <Table striped bordered hover>
@@ -255,7 +282,7 @@ const DataDisplay = () => {
           </Table>
           <div className="d-flex justify-content-between align-items-center my-2">
   <div>Đã chọn: <strong>{selectedRows.length}</strong> dòng</div>
-  <Button onClick={handleSubmit} className="submit-btn">Gửi Dữ Liệu</Button>
+  <Button onClick={handleSubmit} className= "submit-btn" disabled={user?.role !== "CHECKER"}> Gửi Dữ Liệu </Button>
   </div>
         </div>
       )}

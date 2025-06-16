@@ -1,84 +1,183 @@
 .upload-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin: 15px 0;
-  }
-  
-  .dropdown, .file-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .parse-btn, .upload-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .error-box {
-    background-color: #ffdddd;
-    padding: 10px;
-    border-left: 4px solid #d9534f;
-    margin: 10px 0;
-  }
-  
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .data-table th, .data-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .data-table th {
-    background-color: #f4f4f4;
-  }
-  .month-input {
-    max-width: 200px;
+  padding: 1.5rem; /* Giảm padding trên màn hình nhỏ */
+  font-family: Arial, sans-serif;
+  max-width: 90vw; /* Sử dụng % của viewport width */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdown,
+.file-input,
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.parse-btn,
+.upload-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.75rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.parse-btn:disabled,
+.upload-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.error-box {
+  background-color: #ffdddd;
+  padding: 0.75rem;
+  border-left: 4px solid #d9534f;
+  margin: 0.75rem 0;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+}
+
+.data-table th {
+  background-color: #f4f4f4;
+}
+
+.table-responsive {
+  overflow-x: auto; /* Cho phép cuộn ngang trên màn hình nhỏ */
+}
+
+/* Responsive cho DatePicker */
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+/* Media Queries cho màn hình nhỏ */
+@media screen and (max-width: 768px) {
+  .upload-container {
+    padding: 1rem;
+    max-width: 95vw;
   }
 
-  .overlay {
+  .title {
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+  }
+
+  .form-group {
+    margin: 0.75rem 0;
+  }
+
+  .dropdown,
+  .file-input,
+  .form-control {
+    padding: 0.4rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  }
+
+  .parse-btn,
+  .upload-btn {
+    padding: 0.6rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.4rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .upload-container {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .error-box {
+    padding: 0.5rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.3rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+  }
+
+  .parse-btn,
+  .upload-btn {
+    padding: 0.5rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  }
+}
+
+/* Modal styles */
+.overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
 .modal {
   position: fixed;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
-  padding: 2rem;
+  padding: 1.5rem;
   z-index: 1001;
   border-radius: 8px;
-  min-width: 300px;
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  display: block;
+  width: 90vw; /* Responsive width */
+  max-width: 500px; /* Giới hạn tối đa */
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 480px) {
+  .modal {
+    padding: 1rem;
+    width: 95vw;
+    max-height: 85vh;
+  }
 }

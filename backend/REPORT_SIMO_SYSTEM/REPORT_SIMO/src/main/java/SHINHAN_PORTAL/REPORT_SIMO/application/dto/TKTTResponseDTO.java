@@ -1,5 +1,4 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
-
 public class TKTTResponseDTO {
     private String code;
     private String message;

@@ -59,5 +59,5 @@ export const sbx_NghiNgo_VDT = [
 // Hàm lấy label từ danh sách
 export const getLabelFromValue = (value, list) => {
     const item = list.find((item) => item.value == value);
-    return item ? item.label : value;
+    return item ? `${value} - ${item.label}` : value;
 };

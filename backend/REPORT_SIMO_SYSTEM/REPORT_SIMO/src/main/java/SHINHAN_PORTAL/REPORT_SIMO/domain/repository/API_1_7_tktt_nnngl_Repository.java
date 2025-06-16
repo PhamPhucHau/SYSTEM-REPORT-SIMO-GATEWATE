@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface API_1_7_tktt_nnngl_Repository extends MongoRepository<API_1_7_tktt_nnngl, String> {
     List<API_1_7_tktt_nnngl> findByTemplateIDAndMonthYear(String templateID, String monthYear);
+    void deleteByTemplateIDAndMonthYearAndUsername(String templateID, String monthYear, String username);
 }
 

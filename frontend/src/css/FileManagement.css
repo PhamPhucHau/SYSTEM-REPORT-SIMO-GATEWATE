@@ -28,14 +28,39 @@
   
   .detail-btn {
     background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
+    color: #fff;
     border: none;
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.2s;
   }
   
   .detail-btn:hover {
     background-color: #0056b3;
   }
   
+  /* CSS gốc của nút */
+.btn-confirm {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Khi hover bình thường */
+.btn-confirm:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Khi disabled (hoặc có class "disabled") */
+.btn-confirm:disabled,
+.btn-confirm.disabled {
+  background-color: #ccc;    /* nền xám nhạt */
+  color: #666;               /* chữ xám đậm hơn một chút */
+  cursor: not-allowed;       /* con trỏ báo không được phép */
+  opacity: 0.8;              /* nhẹ hơn để rõ disabled */
+}

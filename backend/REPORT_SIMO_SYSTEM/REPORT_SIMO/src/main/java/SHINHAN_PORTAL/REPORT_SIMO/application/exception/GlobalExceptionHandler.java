@@ -62,7 +62,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler( {IllegalArgumentException.class})
     public ResponseEntity<ErrorResponse> handleBadFormat(Exception ex) {
-        return buildResponse("Format không hợp lệ", "400", HttpStatus.BAD_REQUEST);
+        return buildResponse("Format không hợp lệ ; " + ex.getMessage()  , "400", HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
     public ResponseEntity<ErrorResponse> handleAuthException(AuthenticationException ex) {

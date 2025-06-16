@@ -128,9 +128,9 @@ const UserManagement = () => {
                 <td>{user.phoneNo}</td>
                 <td>
                   <select value={user.role} onChange={(e) => handleEdit(user.id, e.target.value)}>
-                    <option value="ADMIN">Admin</option>
-                    <option value="USER">User</option>
-                    <option value="EDITOR">Editor</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="MAKER">MAKER</option>
+                    <option value="CHECKER">CHECKER</option>
                   </select>
                 </td>
                 <td>

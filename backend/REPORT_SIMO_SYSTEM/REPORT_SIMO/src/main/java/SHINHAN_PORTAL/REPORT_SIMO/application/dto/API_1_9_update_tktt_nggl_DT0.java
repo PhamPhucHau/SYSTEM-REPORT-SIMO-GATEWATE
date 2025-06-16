@@ -1,24 +1,63 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class API_1_9_update_tktt_nggl_DT0 {
+    @JsonProperty("Cif")
     private String cif;
+
+    @JsonProperty("SoID")
     private String soID;
+
+    @JsonProperty("LoaiID")
     private int loaiID;
+
+    @JsonProperty("TenKhachHang")
     private String tenKhachHang;
+
+    @JsonProperty("NgaySinh")
     private String ngaySinh;
+
+    @JsonProperty("GioiTinh")
     private int gioiTinh;
+
+    @JsonProperty("MaSoThue")
     private String maSoThue;
+
+    @JsonProperty("SoDienThoaiDangKyDichVu")
     private String soDienThoaiDangKyDichVu;
+
+    @JsonProperty("DiaChi")
     private String diaChi;
+
+    @JsonProperty("DiaChiKiemSoatTruyCap")
     private String diaChiKiemSoatTruyCap;
+
+    @JsonProperty("MaSoNhanDangThietBiDiDong")
     private String maSoNhanDangThietBiDiDong;
+
+    @JsonProperty("SoTaiKhoan")
     private String soTaiKhoan;
+
+    @JsonProperty("LoaiTaiKhoan")
     private int loaiTaiKhoan;
+
+    @JsonProperty("TrangThaiHoatDongTaiKhoan")
     private int trangThaiHoatDongTaiKhoan;
+
+    @JsonProperty("NgayMoTaiKhoan")
     private String ngayMoTaiKhoan;
+
+    @JsonProperty("PhuongThucMoTaiKhoan")
     private int phuongThucMoTaiKhoan;
+
+    @JsonProperty("NgayXacThucTaiQuay")
     private String ngayXacThucTaiQuay;
+
+    @JsonProperty("QuocTich")
     private String quocTich;
+    @JsonProperty("GhiChu")
     private String ghiChu;
     private String templateID;
     private String monthYear;

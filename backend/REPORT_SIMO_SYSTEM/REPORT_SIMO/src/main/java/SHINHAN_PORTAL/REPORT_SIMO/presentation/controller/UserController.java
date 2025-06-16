@@ -43,4 +43,14 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserDTO_GET> updateUser(
+            @PathVariable String id,    
+            @Valid @RequestBody UserDTO_REG userDTO) {
+
+        User updatedUser = userService.updateUser(id, userDTO);
+        return ResponseEntity.ok(UserMapper.toDTO(updatedUser));
+    }
+
 }

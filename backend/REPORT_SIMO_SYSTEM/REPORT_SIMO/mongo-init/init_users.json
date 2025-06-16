@@ -14,37 +14,53 @@
     "$oid": "65f2c8a9e8a6e9b8f0a1b002"
   },
   "passwordHash": "$2a$10$v27UpLM9HFDuAOpNeRAGh.p3KlOl8lBj8STWZNptNVLlh1twuVlKi",
-  "role": "admin"
+  "role": "ADMIN"
 },
 {
   "_id": {
-    "$oid": "682bdf96b73bbf080b5a6f75"
+    "$oid": "684a40f04454bb008b470fd8"
   },
-  "name": "Check",
-  "username": "Check",
-  "passwordHash": "$2a$10$bv5BMbEZwzsju5OfbNlDm.hv.TcfiTdT8/OLLddT781eVUBLl6Nuq",
+  "name": "checker",
+  "username": "checker",
+  "passwordHash": "$2a$10$ivbmoYf8mxzo/6SxmLeLg.0ENJtAz2FHfpQ660chCUyxlnmFvfiyO",
   "createdAt": {
-    "$date": "2025-05-20T01:49:10.334Z"
+    "$date": "2025-06-12T02:52:32.029Z"
   },
   "phoneNo": "0773541433",
-  "email": "Check@gmailcom",
+  "email": "checker@gmail.com",
   "isActive": true,
-  "role": "ADMIN",
+  "role": "CHECKER",
   "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
 },
 {
   "_id": {
-    "$oid": "682be06fb73bbf080b5a6f76"
+    "$oid": "684a41184454bb008b470fd9"
   },
-  "name": "User1234",
-  "username": "User1234",
-  "passwordHash": "$2a$10$MgxiTymCn1W43fOTRt7xF.6i5qUnRrXPV451aEaSDudQAgPzD3VcC",
+  "name": "maker",
+  "username": "maker",
+  "passwordHash": "$2a$10$wuyy5Gp4o4l6vL8kENVUDOWbkXoPrU8dylokqgJ8C89A15vjhBBu2",
   "createdAt": {
-    "$date": "2025-05-20T01:52:47.439Z"
+    "$date": "2025-06-12T02:53:12.327Z"
   },
   "phoneNo": "0773541433",
-  "email": "User1234@gmail.com",
+  "email": "maker@gmail.com",
   "isActive": true,
-  "role": "USER",
+  "role": "MAKER",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+},
+{
+  "_id": {
+    "$oid": "684a41314454bb008b470fda"
+  },
+  "name": "maker1",
+  "username": "maker1",
+  "passwordHash": "$2a$10$CTM4kegsHPUBlQTn/pIlK.eUsJNB6VP.NyZ57/Bo.VmVczB4al/pq",
+  "createdAt": {
+    "$date": "2025-06-12T02:53:37.499Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "maker1@gmail.com",
+  "isActive": true,
+  "role": "MAKER",
   "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
 }]

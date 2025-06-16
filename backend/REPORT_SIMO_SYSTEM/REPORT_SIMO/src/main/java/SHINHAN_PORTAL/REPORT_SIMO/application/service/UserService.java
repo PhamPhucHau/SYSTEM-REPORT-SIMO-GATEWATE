@@ -13,4 +13,5 @@ public interface  UserService {
     User getUserByUsername(String id);
     void deleteUser(String id);
     Optional<User> findByUsername(String username);
+    User updateUser(String id , UserDTO_REG userDTO);
 }

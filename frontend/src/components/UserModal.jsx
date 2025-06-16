@@ -28,9 +28,9 @@ const UserModal = ({ isOpen, onClose, form, handleChange, handleSubmit, isSubmit
           <input type="text" name="phoneNo" placeholder="Số điện thoại" value={form.phoneNo} onChange={handleChange} required />
           <select name="role" value={form.role} onChange={handleChange} required>
             <option value="">Chọn vai trò</option>
-            <option value="ADMIN">Admin</option>
-            <option value="USER">User</option>
-            <option value="EDITOR">Editor</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="MAKER">MAKER</option>
+            <option value="CHECKER">CHECKER</option>
           </select>
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Đang xử lý..." : editingUser ? "Cập nhật" : "Thêm mới"}

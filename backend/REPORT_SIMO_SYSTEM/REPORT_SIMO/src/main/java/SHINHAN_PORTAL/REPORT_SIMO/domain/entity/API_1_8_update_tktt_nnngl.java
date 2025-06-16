@@ -20,8 +20,17 @@ public class API_1_8_update_tktt_nnngl {
     private String lyDoCapNhat;
     private String templateID;
     private String monthYear;
+    private String username ;
 
     // Getters and Setters
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getId() {
         return id;

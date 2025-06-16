@@ -21,12 +21,22 @@ public class LIST_FILE_UPLOAD {
     private Long total_record;
     private String inf_regis_dt; // Ngày đăng ký (yyyyMMdd)
     private String inf_regis_time; // Giờ đăng ký (HHmmss)
+    private String inf_chg_dt; // Ngày đăng ký (yyyyMMdd)
+    private String inf_chg_time; // Giờ đăng ký (HHmmss) 
+
+    private String data_ledg_s;
     private List<Map<String, Object>> data;
 
     // Default Constructor
     public LIST_FILE_UPLOAD() {
     }
+    public String getInf_chg_dt() {
+        return inf_chg_dt;
+    }
 
+    public void setInf_chg_dt(String inf_chg_dt) {
+        this.inf_chg_dt = inf_chg_dt;
+    }
     // Getters and Setters
     public String getId() {
         return id;
@@ -115,6 +125,13 @@ public class LIST_FILE_UPLOAD {
     public void setInf_regis_time(String inf_regis_time) {
         this.inf_regis_time = inf_regis_time;
     }
+    public String getInf_chg_time() {
+        return inf_chg_time;
+    }
+
+    public void setInf_chg_time(String inf_chg_time) {
+        this.inf_chg_time = inf_chg_time;
+    }
 
     public List<Map<String, Object>> getData() {
         return data;
@@ -123,4 +140,11 @@ public class LIST_FILE_UPLOAD {
     public void setData(List<Map<String, Object>> data) {
         this.data = data;
     }
+    public String getData_ledg_s() {
+        return data_ledg_s;
+    }
+    public void setData_ledg_s(String data_ledg_s) {
+        this.data_ledg_s = data_ledg_s;
+    }
+
 }
