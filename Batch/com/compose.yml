@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: ankane/pgvector:latest  # Use an image with pgvector pre-installed
+    container_name: postgres-vector
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: shbown
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./01-init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./02-initData.sql:/docker-entrypoint-initdb.d/02-initData.sql
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+#  app:
+#    image: eclipse-temurin:17-jdk
+#    container_name: java-app
+#    working_dir: /app
+#    volumes:
+#      - ./BE/app/svbom:/app
+#      - ./scan_files:/app/scan_files
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#      - redis
+#    command: ./mvnw spring-boot:rSh
+
+
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/shbown
+#      - SPRING_DATASOURCE_USERNAME=admin
+#      - SPRING_DATASOURCE_PASSWORD=admin
+#      - SPRING_R2DBC_URL=r2dbc:postgresql://postgres:5432/shbown
+#      - SPRING_REDIS_HOST=redis
+#      - SIMO_BASE_FOLDER=/app/scan_files
+
+volumes:
+  pg_data:
+    driver: local
+  redis_data:
+    driver: local

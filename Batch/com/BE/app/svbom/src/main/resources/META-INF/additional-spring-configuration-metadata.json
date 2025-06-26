@@ -1,0 +1,87 @@
+{"properties": [
+  {
+    "name": "spring.datasource.database.simo.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.database.simo.url'"
+  },
+  {
+    "name": "datasource.database.simo.url",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.url'"
+  },
+  {
+    "name": "datasource.database.simo.username",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.username'"
+  },
+  {
+    "name": "datasource.database.simo.password",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.password'"
+  },
+  {
+    "name": "datasource.database.simo.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.driver-class-name'"
+  },
+  {
+    "name": "datasource.database.simo.hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.hibernate.dialect'"
+  },
+  {
+    "name": "datasource.database.simo.hibernate.hbm2ddl.method",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.hibernate.hbm2ddl.method'"
+  },
+  {
+    "name": "datasource.database.simo.hibernate.show_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.hibernate.show_sql'"
+  },
+  {
+    "name": "datasource.database.simo.hibernate.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.hibernate.format_sql'"
+  },
+  {
+    "name": "datasource.database.simo.maxPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.maxPoolSize'"
+  },
+  {
+    "name": "datasource.database.simo.minIdlePoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.minIdlePoolSize'"
+  },
+  {
+    "name": "datasource.database.simo.connection-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.connection-timeout'"
+  },
+  {
+    "name": "jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret'"
+  },
+  {
+    "name": "jwt.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.expiration'"
+  },
+  {
+    "name": "datasource.database.simo.maxPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.maxPoolSize'"
+  },
+  {
+    "name": "datasource.database.simo.maxPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.maxPoolSize'"
+  },
+  {
+    "name": "datasource.database.simo.maxPoolSize",
+    "type": "java.lang.String",
+    "description": "A description for 'datasource.database.simo.maxPoolSize'"
+  }
+]}

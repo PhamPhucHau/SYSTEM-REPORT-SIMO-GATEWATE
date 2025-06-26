@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="simoNamedQueries" class="com.org.shbvn.svbsimo.configure.SimoNamedQueries"
+		lazy-init="true">
+		<constructor-arg>
+			<map>
+				<!-- Metadata Model -->
+				<entry key="getAllMetadata">
+					<value>
+						<![CDATA[
+							Select tm.id, tm.lookupcode, tm.lookupcodeid, tm.language, tm.value, tm.orderby from SIMO_METADATA tm 
+							where tm.SERVICENAME = 'OMS'
+							group by tm.LOOKUPCODE, tm.ORDERBY, tm.ID, tm.LOOKUPCODEID, tm.LANGUAGE, tm.VALUE 
+							order by tm.LOOKUPCODE,tm.ORDERBY, tm.VALUE
+						]]>
+					</value>
+				</entry>
+				
+				<entry key="getMetadataByLookupCode">
+					<value>
+						<![CDATA[
+							Select tm.id, tm.lookupcode, tm.lookupcodeid, tm.language, tm.value, tm.orderby, tm.servicename, tm.show_yn from SIMO_METADATA tm  
+							where tm.LOOKUPCODE = :LOOKUPCODE and tm.SERVICENAME = 'OMS'
+							group by tm.LOOKUPCODE, tm.ORDERBY, tm.ID, tm.LOOKUPCODEID, tm.LANGUAGE, tm.VALUE, tm.SERVICENAME, tm.SHOW_YN 
+							order by tm.LOOKUPCODE,tm.ORDERBY, tm.VALUE
+						]]>
+					</value>
+				</entry>
+
+				<entry key="getMetadataByLookupCodeAndId">
+					<value>
+						<![CDATA[
+							Select tm.id, tm.lookupcode, tm.lookupcodeid, tm.language, tm.value, tm.orderby, tm.servicename, tm.show_yn from SIMO_METADATA tm 
+							where tm.LOOKUPCODE = :LOOKUPCODE and tm.LOOKUPCODEID = :LOOKUPCODEID and tm.SERVICENAME = 'OMS'
+						]]>
+					</value>
+				</entry>
+
+
+				<entry key="getRoleByParams">
+					<value>
+						<![CDATA[
+							Select r.id, r.role_id, r.status, r.configuration, r.regis_inf_dt, r.lchg_inf_dt from SIMO_ROLE r
+							where r.ROLE_ID = coalesce(:ROLE_ID, r.ROLE_ID) and r.STATUS = coalesce(:status, r.status)
+						]]>
+					</value>
+				</entry>
+
+				<entry key="getUserRoleByParams">
+					<value>
+						<![CDATA[
+							Select ur.id, ur.user_id, ur.role_id, ur.status, ur.regis_inf_dt, ur.lchg_inf_dt from SIMO_USER_ROLE ur
+							where ur.USER_ID = coalesce(:USER_ID, ur.USER_ID) and ur.ROLE_ID = coalesce(:ROLE_ID, ur.ROLE_ID) and ur.STATUS = coalesce(:status, ur.status)
+						]]>
+					</value>
+				</entry>
+				
+				<entry key="getMenuAuthByUserId">
+					<value>
+						<![CDATA[
+							Select distinct m.id, m.menu_id, m.menu_name, m.menu_url, m.role_id, 
+							m.mode, m.method , m.description, m.status, m.configuration, m.regis_inf_dt, m.lchg_inf_dt
+							from SIMO_AUTH_MENU m
+							inner join SIMO_USER_ROLE ur on m.role_id = ur.role_id
+							where ur.USER_ID = :USER_ID and m.STATUS = 'A' and ur.STATUS = 'A'
+						]]>
+					</value>
+				</entry>
+
+				<entry key="getSimoFileHisByParams">
+					<value>
+						<![CDATA[
+							Select fh.id, fh.file_name, fh.file_type, fh.file_upload_dt, 
+								fh.process_status, fh.total_count, fh.success_count, fh.file_valid_count, 
+								fh.remark, fh.file_status, fh.template_code, fh.regis_inf_dt, fh.lchg_inf_dt,
+								fh.regis_user, fh.lchg_user
+							from SIMO_FILE_HIS fh
+							where fh.FILE_NAME = coalesce(:fileName, fh.FILE_NAME) 
+								and fh.FILE_UPLOAD_DT = coalesce(:fileUploadDt, fh.FILE_UPLOAD_DT) 
+								and fh.FILE_STATUS = coalesce(:fileStatus, fh.FILE_STATUS)
+						]]>
+					</value>
+				</entry>
+
+				<entry key="fetchSimoFileDetailHisByParams">
+					<value>
+						<![CDATA[
+                            Select fd.id, fd.template_code, fd.file_name, fd.file_upload_dt, 
+							fd.process_status, fd.file_type, fd.file_data, fd.remark, fd.row_number, 
+							fd.cif, fd.acount_no, fd.account_name, fd.personal_id, fd.regis_user, 
+							fd.regis_inf_dt, fd.lchg_user, fd.lchg_inf_dt 
+                            from SIMO_FILE_DETAIL_HIS fd
+                            where fd.FILE_NAME = coalesce(:fileName, fd.FILE_NAME) 
+                            and fd.FILE_UPLOAD_DT = coalesce(:fileUploadDt, fd.FILE_UPLOAD_DT) 
+                            and fd.PROCESS_STATUS = coalesce(:processStatus, fd.PROCESS_STATUS)
+                            and fd.TEMPLATE_CODE = coalesce(:templateCode, fd.TEMPLATE_CODE)
+                            and (cast(:cif as varchar) is null or fd.CIF = cast(:cif as varchar))
+                            and (cast(:accountNo  as varchar) is null or fd.ACOUNT_NO = cast(:accountNo as varchar))  
+                            and (cast(:personalId as varchar) is null or fd.PERSONAL_ID = cast(:personalId as varchar))  
+                            order by fd.ID desc 
+                            OFFSET :offset ROWS FETCH NEXT :limit ROWS ONLY    
+                        ]]>    
+                    </value>    
+                </entry>    
+
+				<entry key="INST_API1_6_TKTT">
+                    <value>
+                        <![CDATA[
+                            {
+                                "sheetIndex" : 0,
+                                "fromRow" : 1,
+                                "headerRow" : 0,
+                                "fileCnt" : 1,
+                                "templateCode" : "INST_API1_6_TKTT",
+                                "templateColName" : "ROW_ID,Cif,SoID,LoaiID,TenKhachHang,NgaySinh,GioiTinh,MaSoThue,SoDienThoaiDangKyDichVu,DiaChi,DiaChiKiemSoatTruyCap,MaSoNhanDangThietBiDiDong,SoTaiKhoan,LoaiTaiKhoan,TrangThaiHoatDongTaiKhoan,NgayMoTaiKhoan,PhuongThucMoTaiKhoan,NgayXacThucTaiQuay,QuocTich",
+								"autoAppr":0,
+								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-danhsach-tktt-api"
+                            }
+                        ]]>
+                    </value>
+                </entry> 
+				<entry key="INST_API1_7_NGGL">
+                    <value>
+                        <![CDATA[
+                            {
+                                "sheetIndex" : 0,
+                                "fromRow" : 1,
+                                "headerRow" : 0,
+                                "fileCnt" : 1,
+                                "templateCode" : "INST_API1_7_NGGL",
+                                "templateColName" : "ROW_ID,Cif,TenKhachHang,SoTaiKhoan,TrangThaiHoatDongTaiKhoan,NghiNgo,GhiChu",
+								"autoAppr":0,
+								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-tktt-nnglapi"
+                            }
+                        ]]>
+                    </value>
+                </entry>
+				<entry key="INST_API1_8_NGGL">
+                    <value>
+                        <![CDATA[
+                            {
+                                "sheetIndex" : 0,
+                                "fromRow" : 1,
+                                "headerRow" : 0,
+                                "fileCnt" : 1,
+                                "templateCode" : "INST_API1_8_NGGL",
+                                "templateColName" : "ROW_ID,Cif,TenKhachHang,SoTaiKhoan,TrangThaiHoatDongTaiKhoan,NghiNgo,GhiChu,LyDoCapNhat",
+								"autoAppr":0,
+								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-cap-nhattktt-nngl-api"
+                            }
+                        ]]>
+                    </value>
+                </entry>        
+				<!-- API1_9_TKTT_INST        -->
+				<entry key="INST_API1_9_TKTT">
+					<value>
+						<![CDATA[
+							{
+								
+								"sheetIndex" : 0,
+								"fromRow" : 1,
+								"headerRow" : 0,
+								"fileCnt" : 1,
+								"templateCode" : "INST_API1_9_TKTT",
+								"templateColName" : "ROW_ID,Cif,SoID,LoaiID,TenKhachHang,NgaySinh,GioiTinh,MaSoThue,SoDienThoaiDangKyDichVu,DiaChi,DiaChiKiemSoatTruyCap,MaSoNhanDangThietBiDiDong,SoTaiKhoan,TrangThaiHoatDongTaiKhoan,NgayXacThucTaiQuay,LoaiTaiKhoan,NgayMoTaiKhoan,PhuongThucMoTaiKhoan,GhiChu,QuocTich",
+								"autoAppr":0,
+								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-cap-nhatdanh-sach-tktt-api"
+							}
+						]]>
+					</value>
+				</entry>
+				<!-- INST_API1_22_WDR        -->
+				<entry key="INST_API1_22_WDR">
+					<value>
+						<![CDATA[
+							{
+								
+								"sheetIndex" : 0,
+								"fromRow" : 1,
+								"headerRow" : 0,
+								"fileCnt" : 1,
+								"templateCode" : "INST_API1_22_WDR",
+								"templateColName" : "MaBaoCao,ThoiGianDuLieu,MaToChucTGTT,SoHieuTKDBTT,SoDuTKDBTT",
+								"autoAppr":0,
+								 "urlTemplate": "/simo/tin-dien-so-du-tkdbtt-chovdt/1.0/thu-thap-so-du-tkdbtt-tai-ngan-hang-api"
+							}
+						]]>
+					</value>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	
+</beans>
