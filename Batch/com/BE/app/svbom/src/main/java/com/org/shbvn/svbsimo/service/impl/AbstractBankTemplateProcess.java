@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.org.shbvn.svbsimo.api.DTO.TokenResponse;
 import com.org.shbvn.svbsimo.core.common.AbstractService;
 import com.org.shbvn.svbsimo.core.common.ExcelDTO;
 import com.org.shbvn.svbsimo.core.constant.APIConstant;
@@ -97,7 +98,7 @@ ReadFromExcel rw = new ReadFromExcel(file.getAbsolutePath());
     parentObject.setThoigiandulieu(jsonArrayDocument.get(0).getAsJsonObject().get("ThoiGianDuLieu").getAsString());
     // Format Date time 
     LocalDateTime currentDateTime = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
     String formattedDateTime = currentDateTime.format(formatter);
     parentObject.setThoigianguibaocao(formattedDateTime);
     // Ánh xạ dữ liệu từng dòng trong file vào danh sách con
@@ -142,23 +143,37 @@ ReadFromExcel rw = new ReadFromExcel(file.getAbsolutePath());
          */
         //TODO : correct external endpoint information (url, method, username, password, ttl, request/response object model)
         long ttl = Long.parseLong(env.getProperty(APIConstant.SVB_ACCESS_TOKEN_TTL));
+        Map<String, String> body = new HashMap<>();
+        body.put("grant_type", "password");
+        body.put("username", env.getProperty(APIConstant.SVB_ACCESS_TOKEN_USERNAME));
+        body.put("password", env.getProperty(APIConstant.SVB_ACCESS_TOKEN_PASSWORD));
+        String authString = env.getProperty(APIConstant.SVB_CONSUMER_KEY) + ":" + env.getProperty(APIConstant.SVB_CONSUMER_SECRET);
+        String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes());
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", "Basic " + encodedAuth);
+
+        
         SVBRespondOuput svbRespondOuput = getGenericCacheService().getOrCompute("svb_auth_token", () -> {
                 SVBRespondOuput output = null;
                 try {
-                    output = CommonUtils.invokeRestTemplateService(env.getProperty(APIConstant.SVB_BASE_URL) + env.getProperty(APIConstant.SVB_ACCESS_TOKEN_URL), APIConstant.SVB_ACCESS_TOKEN_METHOD, ""
-                    	, Collections.emptyMap(), new SVBUserPermission(env.getProperty(APIConstant.SVB_ACCESS_TOKEN_USERNAME),env.getProperty(APIConstant.SVB_ACCESS_TOKEN_PASSWORD)), SVBRespondOuput.class);
+                    TokenResponse tokenResponse = CommonUtils.invokeRestTemplateService(env.getProperty(APIConstant.SVB_BASE_URL) + env.getProperty(APIConstant.SVB_ACCESS_TOKEN_URL), env.getProperty(APIConstant.SVB_ACCESS_TOKEN_METHOD), ""
+                      	, headers ,body, TokenResponse.class, true);
+                    // Kiểm tra nếu output là null
+                    output = new SVBRespondOuput(tokenResponse, null, true, 200);
+
                     
                 } catch (ServiceRuntimeException e) {
                     logger.error("Error getting SVB access token", e);
                 }
                 return output;  
-            }, ttl + 60, SVBRespondOuput.class);
+            }, ttl - 60, SVBRespondOuput.class);
         
         if (svbRespondOuput == null || svbRespondOuput.getResult() == null) {
             return null;
         }
-        String accessToken = svbRespondOuput.getResult().toString();
-		return accessToken;
+        TokenResponse tokenResponse = (TokenResponse) svbRespondOuput.getResult();
+        String accessToken = tokenResponse.getAccess_token();
+        return accessToken;
 	}
 
     /**
@@ -171,7 +186,7 @@ ReadFromExcel rw = new ReadFromExcel(file.getAbsolutePath());
 	protected SVBRespondOuput callSVBApi(SVBUploadRequest svbUploadRequest, String accessToken, String apiMethod, String apiUrl,Map<String, String> customHeaders) {
         try {
             return CommonUtils.invokeRestTemplateService(apiUrl, apiMethod, accessToken
-                    ,customHeaders, svbUploadRequest, SVBRespondOuput.class);
+                    ,customHeaders, svbUploadRequest.getDatas(), SVBRespondOuput.class, false);
         } catch (ServiceRuntimeException e) {
             logger.error("Error calling SVB API", e);
         }
@@ -181,7 +196,7 @@ ReadFromExcel rw = new ReadFromExcel(file.getAbsolutePath());
 	protected SVBRespondOuput callSVBApi(SVBUploadRequestDaily svbUploadRequest, String accessToken, String apiMethod, String apiUrl,Map<String, String> customHeaders) {
         try {
             return CommonUtils.invokeRestTemplateService(apiUrl, apiMethod, accessToken
-                    ,customHeaders, svbUploadRequest, SVBRespondOuput.class);
+                    ,customHeaders, svbUploadRequest.getDatas(), SVBRespondOuput.class, false);
         } catch (ServiceRuntimeException e) {
             logger.error("Error calling SVB API", e);
         }

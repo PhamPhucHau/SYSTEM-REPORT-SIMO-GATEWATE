@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "SvbsimoApplication",
+            "request": "launch",
+            "mainClass": "com.org.shbvn.svbsimo.SvbsimoApplication",
+            "projectName": "svbsimo"
+        },
+        {
+            "type": "java",
+            "name": "DateUtils",
+            "request": "launch",
+            "mainClass": "com.org.shbvn.svbsimo.core.utils.DateUtils",
+            "projectName": "svbsimo"
+        },
+        {
+            "type": "java",
+            "name": "NFsUtils",
+            "request": "launch",
+            "mainClass": "com.org.shbvn.svbsimo.core.utils.NFsUtils",
+            "projectName": "svbsimo"
+        },
+        {
+            "type": "java",
+            "name": "SecurUtils",
+            "request": "launch",
+            "mainClass": "com.org.shbvn.svbsimo.core.utils.SecurUtils",
+            "projectName": "svbsimo"
+        }
+    ]
+}

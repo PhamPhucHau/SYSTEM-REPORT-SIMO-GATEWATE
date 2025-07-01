@@ -1,7 +1,6 @@
 package com.org.shbvn.svbsimo.core.model;
 
 public class API17TTDSTKTTNNGLTemplate extends BankCommonTemplate {
-    private String Cif;
     private String SoTaiKhoan;
     private String TenKhachHang;
     private String TrangThaiHoatDongTaiKhoan;
@@ -17,7 +16,6 @@ public class API17TTDSTKTTNNGLTemplate extends BankCommonTemplate {
     public API17TTDSTKTTNNGLTemplate(String rowNumber, String cif, String soTaiKhoan, String tenKhachHang,
                                       String trangThaiHoatDongTaiKhoan, String nghiNgo, String ghiChu) {
         super(rowNumber, cif);
-        this.Cif = cif;
         this.SoTaiKhoan = soTaiKhoan;
         this.TenKhachHang = tenKhachHang;
         this.TrangThaiHoatDongTaiKhoan = trangThaiHoatDongTaiKhoan;
@@ -25,13 +23,6 @@ public class API17TTDSTKTTNNGLTemplate extends BankCommonTemplate {
         this.GhiChu = ghiChu;
     }
 
-    public String getCif() {
-        return Cif;
-    }
-
-    public void setCif(String cif) {
-        Cif = cif;
-    }
 
     public String getSoTaiKhoan() {
         return SoTaiKhoan;

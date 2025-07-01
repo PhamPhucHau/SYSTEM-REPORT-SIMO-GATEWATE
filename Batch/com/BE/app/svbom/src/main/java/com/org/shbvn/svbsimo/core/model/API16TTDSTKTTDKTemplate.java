@@ -1,7 +1,6 @@
 package com.org.shbvn.svbsimo.core.model;
 
 public class API16TTDSTKTTDKTemplate extends BankCommonTemplate {
-    private String Cif;
     private String SoID;
     private String LoaiID;
     private String TenKhachHang;
@@ -23,14 +22,13 @@ public class API16TTDSTKTTDKTemplate extends BankCommonTemplate {
     public API16TTDSTKTTDKTemplate() {
         super();
     }
-    public API16TTDSTKTTDKTemplate(String rowNumber, String cif, String soID, String loaiID, String tenKhachHang,
+    public API16TTDSTKTTDKTemplate(String rowNumber, String Cif, String soID, String loaiID, String tenKhachHang,
                                     String ngaySinh, String gioiTinh, String maSoThue, String soDienThoaiDangKyDichVu,
                                     String diaChi, String diaChiKiemSoatTruyCap, String maSoNhanDangThietBiDiDong,
                                     String soTaiKhoan, String loaiTaiKhoan, String trangThaiHoatDongTaiKhoan,
                                     String ngayMoTaiKhoan, String phuongThucMoTaiKhoan, String ngayXacThucTaiQuay,
                                     String quocTich) {
-        super(rowNumber,cif);
-        this.Cif = cif;
+        super(rowNumber,Cif);
         this.SoID = soID;
         this.LoaiID = loaiID;
         this.TenKhachHang = tenKhachHang;
@@ -50,13 +48,6 @@ public class API16TTDSTKTTDKTemplate extends BankCommonTemplate {
         this.QuocTich = quocTich;
     }
 
-    public String getCif() {
-        return Cif;
-    }
-
-    public void setCif(String cif) {
-        Cif = cif;
-    }
 
     public String getSoID() {
         return SoID;

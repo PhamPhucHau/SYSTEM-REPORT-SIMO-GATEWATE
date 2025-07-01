@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.org.shbvn.svbsimo.core.common.AuditInfoDTO;
 import com.org.shbvn.svbsimo.core.constant.APIConstant;
 import com.org.shbvn.svbsimo.service.SVBApiService;
+import com.org.shbvn.svbsimo.core.utils.TraceNoGenerator;
 
 @Service("svbApiService")
 public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SVBApiService {
@@ -30,11 +31,11 @@ public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SV
     @Transactional(readOnly = false, propagation =  Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     @Override
     public void uploadFile(SimoFileHis fileHis) throws BaseException {
-        String accessToken = "1234";
-//        String accessToken = getSvbAccessToken();
-//        if (accessToken == null || accessToken.isEmpty()) {
-//            throw new ServiceRuntimeException("Access token is null or empty");
-//        }
+        //String accessToken = "1234";
+       String accessToken = getSvbAccessToken();
+       if (accessToken == null || accessToken.isEmpty()) {
+           throw new ServiceRuntimeException("Access token is null or empty");
+       }
         System.out.println("METHOD:" + APIConstant.SVB_UPLOAD_METHOD);
         AuditInfoDTO.updateLastChangeInfo(fileHis, APIConstant.SYSADM);
 
@@ -72,15 +73,20 @@ public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SV
 
                 if (fileDetailHisListToUpload.size() >= maxDataLimit) {
                     Map<String, String> customHeaders = new HashMap<>();
+                    customHeaders.put("maYeuCau", TraceNoGenerator.generateTraceNo());
+                    customHeaders.put("kyBaoCao", TraceNoGenerator.getKyBaoCao());
                     logger.info("Before send to SIMO API : " + env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate());
                     SVBRespondOuput svbRespondOuput =callSVBApi(svbUploadRequest, accessToken, env.getProperty(APIConstant.SVB_UPLOAD_METHOD), env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate(), customHeaders );
-                    if (svbRespondOuput == null || svbRespondOuput.getResult() == null) {
+                    if (svbRespondOuput == null) {
                         logger.error("Error uploading file: " + fileHis.getFileName());
                     }else{
                         logger.info("File uploaded successfully: " + fileHis.getFileName());
                         fileHis.setSuccessCount(fileHis.getSuccessCount() + fileDetailHisListToUpload.size());
+                        fileHis.setRemark(svbRespondOuput.toString());
+                        fileHis.setRemark(svbRespondOuput.toString());
                     }
                     fileHis.setTotalCount(fileHis.getTotalCount() + fileDetailHisListToUpload.size());
+                    fileHis.setFileStatus(APIConstant.FILE_STATEMENT_STATUS_COMPLETE);
                     batchFileHisUpdate(fileHis, fileDetailHisListToUpload);
                     fileDetailHisListToUpload.clear();
                     svbUploadRequest.getDatas().clear();
@@ -95,14 +101,18 @@ public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SV
                 svbUploadRequest.getDatas().add(e.getFileData());
             }
             Map<String, String> customHeaders = new HashMap<>();
+            customHeaders.put("maYeuCau", TraceNoGenerator.generateTraceNo());
+            customHeaders.put("kyBaoCao", TraceNoGenerator.getKyBaoCao());
              logger.info("Before send to SIMO API : " + env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate());
             logger.info("METHOD:" + env.getProperty(APIConstant.SVB_UPLOAD_METHOD));
             SVBRespondOuput svbRespondOuput = callSVBApi(svbUploadRequest, accessToken, env.getProperty(APIConstant.SVB_UPLOAD_METHOD), env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate(),customHeaders);
-            if (svbRespondOuput == null || svbRespondOuput.getResult() == null) {
+            if (svbRespondOuput == null) {
                 logger.error("Error uploading file: " + fileHis.getFileName());
             }else{
                 logger.info("File uploaded successfully: " + fileHis.getFileName());
                 fileHis.setSuccessCount(fileHis.getSuccessCount() + fileDetailHisListToUpload.size());
+                fileHis.setRemark(svbRespondOuput.toString());
+                fileHis.setRemark(svbRespondOuput.toString());
             }
             fileHis.setTotalCount(fileHis.getTotalCount() + fileDetailHisListToUpload.size());
             fileHis.setFileStatus(APIConstant.FILE_STATEMENT_STATUS_COMPLETE);
@@ -114,11 +124,11 @@ public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SV
         @Transactional(readOnly = false, propagation =  Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     @Override
     public void uploadFileDaily(SimoFileHis fileHis) throws BaseException {
-        String accessToken = "1234";
-//        String accessToken = getSvbAccessToken();
-//        if (accessToken == null || accessToken.isEmpty()) {
-//            throw new ServiceRuntimeException("Access token is null or empty");
-//        }
+     //   String accessToken = "1234";
+       String accessToken = getSvbAccessToken();
+       if (accessToken == null || accessToken.isEmpty()) {
+           throw new ServiceRuntimeException("Access token is null or empty");
+       }
         System.out.println("METHOD:" + APIConstant.SVB_UPLOAD_METHOD);
         AuditInfoDTO.updateLastChangeInfo(fileHis, APIConstant.SYSADM);
 
@@ -145,19 +155,23 @@ public class SVBApiServiceImpl extends AbstractBankTemplateProcess implements SV
                 logger.error("File detail not found: " + fileHis.getFileName());
             }      
             for (SimoFileDetailHis e : fileDetailHisList) {
-                e.setProcessStatus(APIConstant.FILE_STATEMENT_STATUS_COMPLETE);
+                e.setProcessStatus(APIConstant.FILE_STATEMENT_HIS_PROCESS_STATUS);
                 fileDetailHisListToUpload.add(e);
                 svbUploadRequestDaily.setDatas(e.getFileData());
                 Map<String, String> customHeaders = new HashMap<>();
+                customHeaders.put("maYeuCau", TraceNoGenerator.generateTraceNo());
             logger.info("Before send to SIMO API : " + env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate());
             logger.info("METHOD:" + env.getProperty(APIConstant.SVB_UPLOAD_METHOD));
             SVBRespondOuput svbRespondOuput = callSVBApi(svbUploadRequestDaily, accessToken, env.getProperty(APIConstant.SVB_UPLOAD_METHOD), env.getProperty(APIConstant.SVB_BASE_URL) +templateInfo.getUrlTemplate(),customHeaders);
-            if (svbRespondOuput == null || svbRespondOuput.getResult() == null) {
+            if (svbRespondOuput == null) {
                 logger.error("Error uploading file: " + fileHis.getFileName());
             }else{
                 logger.info("File uploaded successfully: " + fileHis.getFileName());
                 fileHis.setSuccessCount(fileHis.getSuccessCount() + fileDetailHisListToUpload.size());
+                fileHis.setRemark(svbRespondOuput.toString());
+                fileHis.setRemark(svbRespondOuput.toString());
             }
+            
             fileHis.setTotalCount(fileHis.getTotalCount() + fileDetailHisListToUpload.size());
             fileHis.setFileStatus(APIConstant.FILE_STATEMENT_STATUS_COMPLETE);
             batchFileHisUpdate(fileHis, fileDetailHisListToUpload);

@@ -169,7 +169,7 @@ public class BankTemplateAccountInfo16ProcessImpl extends AbstractBankTemplatePr
         fileDetailHis.setCif(file.getName());
         AuditInfoDTO.setCreationInfo(fileDetailHis, APIConstant.SYSADM);
         try {
-            fileDetailHis.setFileData(CommonUtils.toJson(bankStatement)); // serialize cả object cha
+            fileDetailHis.setFileData(CommonUtils.getJsonPropertyMappings(bankStatement)); // serialize cả object cha
         } catch (ServiceRuntimeException ex) {
             logger.error("Error converting to JSON", ex);
             fileDetailHis.setFileData("{}");
@@ -196,10 +196,14 @@ public class BankTemplateAccountInfo16ProcessImpl extends AbstractBankTemplatePr
     // }).toList();
     List<SimoFileDetailHis> fileDetailHisList = List.of(fileDetailHis);
         fileHis.setSuccessCount(fileDetailHisList.size());
+        // Check Auto Approve. 
         if(templateInfo.getAutoAppr() == 1)
         {
             fileHis.setFileStatus(APIConstant.FILE_STATEMENT_STATUS_APPROVE);
         }
+        // Check File Type if send Daily 
+
+        fileHis.setFileType(templateInfo.getFileType());
         AuditInfoDTO.updateLastChangeInfo(fileHis, APIConstant.SYSADM);
         logger.info("File detail history list found {}" , CommonUtils.toJson(fileDetailHisList));
         getRepositoryManageService().getSimoFileDetailHisRepositoryService().createAll(fileDetailHisList);

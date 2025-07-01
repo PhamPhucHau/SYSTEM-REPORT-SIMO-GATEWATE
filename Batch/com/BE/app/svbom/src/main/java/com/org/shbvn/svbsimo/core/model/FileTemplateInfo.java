@@ -10,11 +10,14 @@ public class FileTemplateInfo {
     private String templateCode;
     private String urlTemplate;
     private int autoAppr;
+    private String fileType;
+
+
     public FileTemplateInfo() {
         super();
     }
 
-    public FileTemplateInfo(int sheetIndex, int fromRow, int headerRow, int fileCnt, String templateColName, String urlTemplate, int autoAppr) {
+    public FileTemplateInfo(int sheetIndex, int fromRow, int headerRow, int fileCnt, String templateColName, String urlTemplate, int autoAppr, String fileType) {
         super();
         this.sheetIndex = sheetIndex;
         this.fromRow = fromRow;
@@ -23,6 +26,7 @@ public class FileTemplateInfo {
         this.templateColName = templateColName;
         this.urlTemplate = urlTemplate;
         this.autoAppr = autoAppr;
+        this.fileType = fileType;
     }
 
     public int getSheetIndex() {
@@ -86,6 +90,13 @@ public class FileTemplateInfo {
 
     public void setAutoAppr(int autoAppr) {
         this.autoAppr = autoAppr;
+    }
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
 }

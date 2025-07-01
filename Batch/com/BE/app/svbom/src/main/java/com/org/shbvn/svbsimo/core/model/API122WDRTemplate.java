@@ -47,9 +47,9 @@ public class API122WDRTemplate extends DailyCommonTemplate {
 public void setTkdbttTaiNHHT(List<TkdbtttainhhtItem> tkdbtttainhht) {
     this.tkdbtttainhht = tkdbtttainhht;
 }
-@Override
-public Collection<TkdbtttainhhtItem> getTkdbttTaiNHHT() {
-    // TODO Auto-generated method stub
-    return tkdbtttainhht;
-}
+// @Override
+// public Collection<TkdbtttainhhtItem> getTkdbttTaiNHHT() {
+//     // TODO Auto-generated method stub
+//     return tkdbtttainhht;
+// }
 }

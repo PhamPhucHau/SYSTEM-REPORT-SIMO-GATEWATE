@@ -14,7 +14,10 @@ public class SVBRespondOuput implements Serializable{
 	private	String exceptionCode;
 	private boolean status;
 	private int statusCode;
-	
+	private String code;
+	private String message;
+	private boolean success;
+
 	public SVBRespondOuput() {
 		super();
 	}
@@ -47,7 +50,13 @@ public class SVBRespondOuput implements Serializable{
 		this.statusCode = statusCode;
 		this.exceptionCode = exceptionCode;
 	}
-
+	public SVBRespondOuput(String code, String message, boolean success, Object result) {
+		this.serverDate = DateUtils.getSystemDateStr(DateUtils.yyyy_MM_dd_HH_mm_ss);
+		this.code = code;
+		this.message = message;
+		this.success = success;
+		this.result = result;
+	}
 	/**
 	 * @return the result
 	 */
@@ -120,5 +129,61 @@ public class SVBRespondOuput implements Serializable{
 	public void setExceptionCode(String exceptionCode) {
 		this.exceptionCode = exceptionCode;
 	}
+	/**
+ * @return the code
+ */
+public String getCode() {
+    return code;
+}
 
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return this.message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	/**
+	 * @return the success
+	 */
+	public Boolean getSuccess() {
+		return this.success;
+	}
+
+	/**
+	 * @param success the success to set
+	 */
+	public void setSuccess(Boolean success) {
+		this.success = success;
+	}
+	
+	@Override
+	public String toString() {
+		return "SVBRespondOuput{" +
+				"result=" + result +
+				", serverDate='" + serverDate + '\'' +
+				", exceptionMessage='" + exceptionMessage + '\'' +
+				", exceptionCode='" + exceptionCode + '\'' +
+				", status=" + status +
+				", statusCode=" + statusCode +
+				", code='" + code + '\'' +
+				", message='" + message + '\'' +
+				", success=" + success +
+				'}';
+	}
+	
 }

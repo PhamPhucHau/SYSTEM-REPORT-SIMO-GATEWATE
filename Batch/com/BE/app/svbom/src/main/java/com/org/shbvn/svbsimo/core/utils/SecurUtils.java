@@ -59,7 +59,7 @@ public class SecurUtils {
 			if (jwsClaims == null) {
 				return null;
 			}
-			String[] listStr = access_token.split(".");
+			String[] listStr = access_token.split("\\.");	
 			bodyPayload = base64UrlDecode(listStr[1]);
 			String signature = listStr[2];
 			String compactJws = Jwts.builder().content(bodyPayload).signWith(Keys.hmacShaKeyFor(keyStr.getBytes()))

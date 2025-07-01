@@ -40,7 +40,8 @@ public class SimoBatchJobGetFile extends AbstractBasicCommonClass{
         env.getProperty(APIConstant.ftp_username),
         env.getProperty(APIConstant.ftp_password),
         env.getProperty(APIConstant.ftp_remote_directory),
-        env.getProperty(APIConstant.ftp_local_download_directory)
+        env.getProperty(APIConstant.ftp_local_download_directory),
+        env.getProperty(APIConstant.ftp_local_log_directory)
     );
 } catch (Exception e) {
     logger.error("Error downloading file from FTP", e);

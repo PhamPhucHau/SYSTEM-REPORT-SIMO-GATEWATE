@@ -15,7 +15,7 @@ public abstract class DailyCommonTemplate implements Serializable{
     // Declare it as abstract to force subclasses to implement it
     public abstract void setTkdbttTaiNHHT(List<TkdbtttainhhtItem> list);
 
-    public abstract Collection<TkdbtttainhhtItem> getTkdbttTaiNHHT();
+    //public abstract Collection<TkdbtttainhhtItem> getTkdbttTaiNHHT();
     public abstract void setThoigiandulieu(String thoigiandulieu);
     public abstract String getThoigiandulieu();
     public abstract void setThoigianguibaocao(String thoigianguibaocao);

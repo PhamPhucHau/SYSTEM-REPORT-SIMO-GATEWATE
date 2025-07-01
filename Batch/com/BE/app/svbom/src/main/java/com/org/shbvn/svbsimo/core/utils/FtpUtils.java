@@ -89,7 +89,7 @@ public class FtpUtils {
     }
 }
 public static void downloadAllFilesAndArchive(String server, int port, String username, String password,
-                                                  String remoteDir, String localBaseDir) throws IOException {
+                                                  String remoteDir, String localBaseDir, String logFolder) throws IOException {
         FTPClient ftpClient = new FTPClient();
 
         try {
@@ -102,12 +102,13 @@ public static void downloadAllFilesAndArchive(String server, int port, String us
                 return;
             }
 
-            Path archiveDir = createArchiveDirectory(localBaseDir);
+            Path archiveDir = createArchiveDirectory(logFolder);
             Path logFile = archiveDir.resolve("log.txt");
-
+            String dateFolder = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            String ftpArchiveDir = remoteDir + "/" + dateFolder;
             try (BufferedWriter logWriter = Files.newBufferedWriter(logFile, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
                 for (FTPFile file : files) {
-                    processFileDownload(ftpClient, remoteDir, archiveDir, file, logWriter, localBaseDir);
+                    processFileDownload(ftpClient, remoteDir, archiveDir, file, logWriter, localBaseDir,logFolder, ftpArchiveDir);
                 }
             }
 
@@ -146,22 +147,43 @@ public static void downloadAllFilesAndArchive(String server, int port, String us
     }
 
     private static void processFileDownload(FTPClient ftpClient, String remoteDir, Path archiveDir,
-                                            FTPFile file, BufferedWriter logWriter, String tempDownloadDir) {
+                                            FTPFile file, BufferedWriter logWriter, String tempDownloadDir, String logFolder, String ftpArchiveDir) {
 
         if (!file.isFile()) return;
 
-        String fileName = file.getName();
-        String remotePath = remoteDir + "/" + fileName;
+        String originalFileName = file.getName();
+        String fileName = originalFileName;
+
+        if (fileName.startsWith("SIMO122")) {
+            fileName = "INST_API1_22_WDR" + fileName.substring("SIMO122".length());
+        }
+        String remotePath = remoteDir + "/" + originalFileName;
+        logger.info("remotePath: {}", remotePath);
         Path tempPath = Paths.get(tempDownloadDir, fileName);
+        logger.info("tempPath: {}", tempPath);
         Path finalPath = archiveDir.resolve(fileName);
+        logger.info("Processing file: {}", fileName);
 
         try (OutputStream os = Files.newOutputStream(tempPath)) {
             boolean success = ftpClient.retrieveFile(remotePath, os);
 
             if (success) {
-                Files.move(tempPath, finalPath, StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(tempPath, finalPath, StandardCopyOption.REPLACE_EXISTING);
                 writeLog(logWriter, "SUCCESS", fileName, null);
                 logger.info("Downloaded and archived: {}", fileName);
+                // Ensure the remote archive directory exists
+                ensureRemoteDirectoryExists(ftpClient, ftpArchiveDir);
+  
+                // Move file on FTP to archive folder (remote move)
+                String ftpArchivePath = ftpArchiveDir + "/" + originalFileName;
+                boolean moved = ftpClient.rename(remotePath, ftpArchivePath);
+                if (moved) {
+                    logger.info("Moved file to FTP archive folder: {}", ftpArchivePath);
+                    writeLog(logWriter, "SUCCESS", fileName, null);
+                } else {   
+                    logger.warn("Downloaded but FAILED to move file on FTP: {}", fileName);
+                    writeLog(logWriter, "PARTIAL_SUCCESS", fileName, "Downloaded but FTP move failed");
+                }
             } else {
                 writeLog(logWriter, "FAILED", fileName, null);
                 logger.warn("Failed to download: {}", fileName);
@@ -175,12 +197,24 @@ public static void downloadAllFilesAndArchive(String server, int port, String us
 
     private static void writeLog(BufferedWriter writer, String status, String fileName, String errorMessage) {
         try {
-            String logEntry = String.format("%s | %s | %s", status, fileName, LocalDate.now());
-            if (errorMessage != null) {
-                logEntry += " | " + errorMessage;
+            String timestamp = java.time.LocalDateTime.now()
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    
+            String operation = "FTP_DOWNLOAD_AND_ARCHIVE";
+            String jobId = "SIMO_BATCH_JOB"; // you can make this dynamic if needed
+            String hostname = java.net.InetAddress.getLocalHost().getHostName();
+    
+            StringBuilder logEntry = new StringBuilder();
+            logEntry.append(String.format("%s | %s | %s | %s | %s", 
+                timestamp, status, fileName, operation, hostname));
+    
+            if (errorMessage != null && !errorMessage.isBlank()) {
+                logEntry.append(" | ").append(errorMessage.replaceAll("[\\r\\n]+", " "));
             }
-            writer.write(logEntry);
+    
+            writer.write(logEntry.toString());
             writer.newLine();
+            writer.flush(); // optional but safe
         } catch (IOException e) {
             logger.warn("Failed to write to log file for file: {}", fileName, e);
         }
@@ -196,5 +230,22 @@ public static void downloadAllFilesAndArchive(String server, int port, String us
             }
         }
     }
+    private static void ensureRemoteDirectoryExists(FTPClient ftpClient, String remoteDirPath) throws IOException {
+        String[] pathParts = remoteDirPath.split("/");
+        String currentPath = "";
+        for (String part : pathParts) {
+            if (part.isEmpty()) continue;
+            currentPath += "/" + part;
+            if (!ftpClient.changeWorkingDirectory(currentPath)) {
+                boolean created = ftpClient.makeDirectory(currentPath);
+                if (created) {
+                    logger.info("Created remote directory: {}", currentPath);
+                } else {
+                    logger.warn("Failed to create remote directory: {}", currentPath);
+                }
+            }
+        }
+    }
+    
     
 }

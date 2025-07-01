@@ -19,8 +19,7 @@ public class SimoBatchJobUploadSVBProcessing extends AbstractBasicCommonClass{
         logger.info("Start Upload SVB");
 
         List<SimoFileHis> fileHisList = null;
-        try {
-            fileHisList = getRepositoryManageService().getSimoFileHisRepositoryService().getByFileStatusAndUploadDt(APIConstant.FILE_STATEMENT_STATUS_APPROVE, DateUtils.getSystemDateStr(DateUtils.yyyyMMdd));
+        try {                fileHisList = getRepositoryManageService().getSimoFileHisRepositoryService().getByFileStatusAndUploadDt(APIConstant.FILE_STATEMENT_STATUS_APPROVE, DateUtils.getSystemDateStr(DateUtils.yyyyMMdd));
         } catch (BaseException e) {
             logger.error("Error getting file history", e);
         }

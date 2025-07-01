@@ -107,7 +107,7 @@ public class APIConstant {
 	
 	/** SECURE Constant **/
 	public static final String SYSADMIN_STR = "SYSADMIN";
-	public static final String ACCESS_TOKEN_KEY = "access-token";
+	public static final String ACCESS_TOKEN_KEY = "Authorization";
 	//public static final String ACCESS_TOKEN_KEY = "Authorization";
 	
 	public static final String PUBLIC_KEY = "public_key";
@@ -168,11 +168,13 @@ public class APIConstant {
 	public static final String ftp_password = "ftp.password";
 	public static final String ftp_remote_directory = "ftp.remote.directory";
 	public static final String ftp_local_download_directory = "ftp.local.download.directory";
+	public static final String ftp_local_log_directory = "ftp.local.log.directory";
 
 
 	public static final String FILE_STATEMENT_STATUS_UPLOAD = "UPLD";
 	public static final String FILE_STATEMENT_STATUS_PROCESS = "PROS";
 	public static final String FILE_STATEMENT_STATUS_COMPLETE = "COMP";
+	public static final String FILE_STATEMENT_HIS_PROCESS_STATUS = "C";
 	public static final String FILE_HIS_DETAIL_STATUS_COMPLETE = "C";
 	public static final String FILE_STATEMENT_STATUS_ERROR = "ERRO";
 	public static final String FILE_STATEMENT_STATUS_DELETE = "DELE";
@@ -196,6 +198,8 @@ public class APIConstant {
 	public static final String SVB_ACCESS_TOKEN_URL = "svb.access.token.url";
 	public static final String SVB_ACCESS_TOKEN_USERNAME = "svb.access.token.username";
 	public static final String SVB_ACCESS_TOKEN_PASSWORD = "svb.access.token.password";
+	public static final String SVB_CONSUMER_KEY = "svb.access.consumer.key";
+	public static final String SVB_CONSUMER_SECRET = "svb.access.consumer.secret";
 	public static final String SVB_ACCESS_TOKEN_METHOD = "svb.access.token.method";
 	public static final String SVB_MAX_DATA_LIMIT = "svb.data.limit";
     public static final String SVB_UPLOAD_URL = "svb.upload.url";

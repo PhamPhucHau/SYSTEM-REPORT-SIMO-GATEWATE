@@ -99,12 +99,12 @@
 			<version>${jsonwebtoken.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
 			<version>${jsonwebtoken.version}</version>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 
 		<!-- Poi framework Excel -->
 		<dependency>
@@ -256,8 +256,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -294,15 +294,15 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.10.1</version> <!-- Update to newer version -->
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>17</source>
+						<target>17</target>
 						<annotationProcessorPaths>
 							<path>
 								<groupId>com.org.shbvn</groupId>
 								<artifactId>svbom-processor</artifactId>
 								<version>${project.version}</version>
 							</path>
-						</annotationProcessorPaths>
+						</annotationProcessorPaths>	
 						<!-- <compilerArgs>
 							<arg>-proc:only</arg>
 						</compilerArgs> -->

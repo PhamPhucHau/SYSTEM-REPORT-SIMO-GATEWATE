@@ -6,23 +6,23 @@ public abstract class BankCommonTemplate implements Serializable{
 
     private String RowNumber;
 
-    private String cif;
+    private String Cif;
 
     public BankCommonTemplate() {
         super();
     }
-    public BankCommonTemplate(String rowNumber, String cif) {
+    public BankCommonTemplate(String rowNumber, String Cif) {
         super();
         this.RowNumber = rowNumber;
-        this.cif = cif;
+        this.Cif = Cif;
     }
 
     public String getCif() {
-        return cif;
+        return Cif;
     }
 
-    public void setCif(String cif) {
-        this.cif = cif;
+    public void setCif(String Cif) {
+        this.Cif = Cif;
     }
 
 

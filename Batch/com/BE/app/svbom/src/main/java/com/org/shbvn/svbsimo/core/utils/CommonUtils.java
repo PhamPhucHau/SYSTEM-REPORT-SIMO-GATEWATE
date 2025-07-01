@@ -7,6 +7,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,20 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.org.shbvn.svbsimo.core.constant.APIConstant;
 import com.org.shbvn.svbsimo.core.exception.ServiceRuntimeException;
+import com.org.shbvn.svbsimo.core.model.DailyCommonTemplate;
 
 public class CommonUtils {
 
@@ -329,15 +335,22 @@ public class CommonUtils {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T invokeRestTemplateService(String contextUrl, String httpMethodStr
-			, String token, Map<String, String> customHeaders, Object body, Class<T> responseType) throws ServiceRuntimeException{
+			, String token, Map<String, String> customHeaders, Object body, Class<T> responseType, boolean isFormEncoded) throws ServiceRuntimeException{
 		
 		logger.info("***********Start invokeRestTemplateService Raw**********");
 		HttpHeaders httpHeaders = new HttpHeaders();
 		//Set user profile for HTTPHeader
 		if(!isBlank(token)) {
-			httpHeaders.set(APIConstant.ACCESS_TOKEN_KEY, token);
+			httpHeaders.set(APIConstant.ACCESS_TOKEN_KEY, "Bearer "+ token);
 		}
-		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		if(isFormEncoded == true)
+		{
+		httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		}
+		else
+		{
+			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		}
 // Set dynamic custom headers
 		if (customHeaders != null) {
 			for (Map.Entry<String, String> entry : customHeaders.entrySet()) {
@@ -364,8 +377,16 @@ public class CommonUtils {
 			if(restTemplate == null){
 				restTemplate = new RestTemplate(new org.springframework.http.client.SimpleClientHttpRequestFactory());
 			}
-			
-			response = restTemplate.exchange(contextUrl, httpMethod, new HttpEntity<Object>(null, httpHeaders), responseType);
+			        HttpEntity<?> request;
+        if (isFormEncoded && body instanceof Map) {
+            LinkedMultiValueMap <String, String> form = new LinkedMultiValueMap<>();
+            ((Map<String, String>) body).forEach(form::add);
+            request = new HttpEntity<>(form, httpHeaders);
+        } else {
+            request = new HttpEntity<>(body, httpHeaders);
+        }
+			response = restTemplate.exchange(contextUrl, httpMethod, request, responseType);
+
 			rs = response.getBody();
 			statusCode = response.getStatusCode();
 		}
@@ -397,6 +418,74 @@ public class CommonUtils {
 		}
 		return rs;
 	}
+	/**
+	 * Invokes a RESTful API endpoint using Spring's RestTemplate.
+	 * This utility method supports dynamic HTTP methods (GET, POST, etc.), optional token-based
+	 * authentication, custom headers, and automatic JSON (de)serialization of request/response bodies.
+	 *
+	 * <p>Usage scenarios:
+	 * <ul>
+	 *   <li>Calling REST APIs that accept JSON payloads</li>
+	 *   <li>Injecting Bearer tokens or custom headers for secured endpoints</li>
+	 *   <li>Receiving strongly typed response objects</li>
+	 * </ul>
+	 *
+	 * @param <T>           The type of the response body expected from the API
+	 * @param contextUrl    The full URL of the target REST API
+	 * @param httpMethodStr The HTTP method to use (e.g., "GET", "POST", "PUT", "DELETE")
+	 * @param token         Optional bearer token for authentication; if provided, it will be added as an "Authorization" header
+	 * @param customHeaders Optional map of custom headers to include in the request
+	 * @param body          The request payload to be sent (serialized as JSON), can be null for GET/DELETE
+	 * @param responseType  The class of the expected response type
+	 * @return              The response body converted into the specified type {@code T}; or {@code null} if the request fails
+	 * @throws ServiceRuntimeException if a serialization or HTTP error occurs during the process
+	 */
+
+	@SuppressWarnings("unchecked")
+	public static <T> T invokeTokenRequestService(
+        String tokenUrl,
+        String consumerKey,
+        String consumerSecret,
+        String username,
+        String password,
+        Class<T> responseType
+
+
+		
+) throws ServiceRuntimeException {
+    try {
+        logger.info("=== Start Token Request ===");
+
+        // 1. Tạo RestTemplate nếu cần
+        if (restTemplate == null) {
+            restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        }
+
+        // 2. Header: Basic Authorization
+        String authString = consumerKey + ":" + consumerSecret;
+        String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.set("Authorization", "Basic " + encodedAuth);
+
+        // 3. Body dạng form
+        String bodyString = "grant_type=password&username=" + username + "&password=" + password;
+        HttpEntity<String> request = new HttpEntity<>(bodyString, headers);
+
+        // 4. Gọi API
+        ResponseEntity<T> response = restTemplate.exchange(tokenUrl, HttpMethod.POST, request, responseType);
+
+        logger.info("=== Token Response: " + response.getBody());
+        return response.getBody();
+    } catch (HttpClientErrorException | HttpServerErrorException e) {
+        logger.error("Token request failed: " + e.getResponseBodyAsString());
+        throw new ServiceRuntimeException("Token API Error", e);
+    } catch (Exception ex) {
+        logger.error("Token request exception", ex);
+        throw new ServiceRuntimeException("Unknown error while getting token", ex);
+    }
+}
 
 	/**
 	 * Gets all fields declared in the class hierarchy of the given object
@@ -454,4 +543,20 @@ public class CommonUtils {
 
 		return fields;
 	}
+	/**
+ * This method maps Java field names to their corresponding @JsonProperty values if present.
+ * If no @JsonProperty is defined, the field name is returned.
+ *
+ * @param clazz The class to inspect
+ * @return A map of Java field name to JSON property name
+ */
+public static <T extends DailyCommonTemplate> String getJsonPropertyMappings(T bankStatement) throws ServiceRuntimeException {
+    try {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT); // Optional: format đẹp
+        return objectMapper.writeValueAsString(bankStatement);
+    } catch (Exception e) {
+        throw new ServiceRuntimeException("Failed to serialize with JsonProperty", e);
+    }
+}
 }
