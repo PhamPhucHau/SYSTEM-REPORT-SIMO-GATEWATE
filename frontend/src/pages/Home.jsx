@@ -240,7 +240,7 @@ const DataDisplay = () => {
       {selectedTemplate && (
   <div className="d-flex justify-content-between align-items-center my-3">
     <div>Đã chọn: <strong>{selectedRows.length}</strong> dòng</div>
-    <Button onClick={handleSubmit} className="submit-btn" disabled={user?.role !== "CHECKER"}> Gửi Dữ Liệu </Button>
+    <Button onClick={handleSubmit} className="submit-btn" disabled={user?.role !== "CHECKER"}> Duyệt gửi BC </Button>
   </div>
 )}     
       {loading && <Spinner animation="border" />} 
@@ -282,7 +282,7 @@ const DataDisplay = () => {
           </Table>
           <div className="d-flex justify-content-between align-items-center my-2">
   <div>Đã chọn: <strong>{selectedRows.length}</strong> dòng</div>
-  <Button onClick={handleSubmit} className= "submit-btn" disabled={user?.role !== "CHECKER"}> Gửi Dữ Liệu </Button>
+  <Button onClick={handleSubmit} className= "submit-btn" disabled={user?.role !== "CHECKER"}> Duyệt gửi BC </Button>
   </div>
         </div>
       )}

@@ -20,3 +20,9 @@
   text-decoration: none !important;
   color: inherit !important;
   }
+  .username {
+    margin: 0 15px;
+    font-weight: bold;
+    color: #ffd700; /* Gold for visibility */
+  }
+  

@@ -1,8 +1,11 @@
 import { Link, useNavigate  } from "react-router-dom";
 import "../css/Header.css"; // Add some styling
 import { useAuth } from "../services/AuthContext"; // Import AuthContext
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 const Header = () => {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,7 +23,11 @@ const Header = () => {
         <Link to="/upload">Upload Data</Link>
         <Link to="/users">User Management</Link>
         <Link to="/history">History</Link>
-        <Link to="/file_upload">File UploadUpload</Link>
+        <Link to="/file_upload">File Upload History</Link>
+        <span className="username">
+        <FontAwesomeIcon icon={faUser} style={{ color: '#FFD700', marginRight: 5 }} />
+        {user.name}
+      </span>
         <button onClick={handleLogout} className="logout-btn">Logout</button>
       </nav>
     </header>

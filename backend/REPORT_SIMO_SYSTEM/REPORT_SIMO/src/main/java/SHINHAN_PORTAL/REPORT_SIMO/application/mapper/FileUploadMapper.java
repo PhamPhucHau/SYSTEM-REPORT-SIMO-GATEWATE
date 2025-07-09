@@ -31,6 +31,7 @@ public class FileUploadMapper {
             entity.setQuocTich(DataMapperUtils.safeString(dataMap.get("QuocTich")));
             entity.setDiaChiKiemSoatTruyCap(DataMapperUtils.safeString(dataMap.get("DiaChiKiemSoatTruyCap")));
             entity.setMaSoNhanDangThietBiDiDong(DataMapperUtils.safeString(dataMap.get("MaSoNhanDangThietBiDiDong")));
+            entity.setNgayXacThucTaiQuay(DataMapperUtils.safeString(dataMap.get("NgayXacThucTaiQuay"), null, true));
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
@@ -94,8 +95,15 @@ public class FileUploadMapper {
             entity.setNgayMoTaiKhoan(DataMapperUtils.safeString(dataMap.get("NgayMoTaiKhoan"), null, true));
             entity.setPhuongThucMoTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("PhuongThucMoTaiKhoan"), null));
             entity.setQuocTich(DataMapperUtils.safeString(dataMap.get("QuocTich")));
+            entity.setDiaChiKiemSoatTruyCap(DataMapperUtils.safeString(dataMap.get("DiaChiKiemSoatTruyCap")));
+            entity.setMaSoNhanDangThietBiDiDong(DataMapperUtils.safeString(dataMap.get("MaSoNhanDangThietBiDiDong")));
+            entity.setNgayXacThucTaiQuay(DataMapperUtils.safeString(dataMap.get("NgayXacThucTaiQuay"), null, true));
             entity.setGhiChu(DataMapperUtils.safeString(dataMap.getOrDefault("Ghi chú", dataMap.get("GhiChu"))));
             entity.setTemplateID(templateID);
+
+
+
+            
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
         } catch (Exception e) {
