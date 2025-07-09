@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "68007d741bb8984db902d305"
+  },
+  "templateID": "API_1_6_TTDS_TKTT_DK",
+  "name": "API 1.6 - TKTT Định Kỳ",
+  "schemaJson": "{\n  \"Key\": {\n    \"type\": \"string\",\n    \"required\": false\n  },\n  \"Cif\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": true\n  },\n  \"SoID\": {\n    \"type\": \"string\",\n    \"maxLength\": 15,\n    \"required\": true\n  },\n  \"LoaiID\": {\n    \"type\": \"integer\",\n    \"enum\": [1, 2, 3, 4, 5, 6, 7],\n    \"required\": true\n  },\n  \"TenKhachHang\": {\n    \"type\": \"string\",\n    \"maxLength\": 150,\n    \"required\": true\n  },\n  \"NgaySinh\": {\n    \"type\": \"string\",\n    \"pattern\": \"^\\\\d{2}/\\\\d{2}/\\\\d{4}$\",\n    \"maxLength\": 10,\n    \"required\": true\n  },\n  \"GioiTinh\": {\n    \"type\": \"integer\",\n    \"enum\": [0, 1, 2],\n    \"required\": true\n  },\n  \"MaSoThue\": {\n    \"type\": \"string\",\n    \"minLength\": 10,\n    \"maxLength\": 13,\n    \"required\": false\n  },\n  \"SoDienThoaiDangKyDichVu\": {\n    \"type\": \"string\",\n    \"maxLength\": 15,\n    \"required\": true\n  },\n  \"DiaChi\": {\n    \"type\": \"string\",\n    \"maxLength\": 300,\n    \"required\": false\n  },\n  \"DiaChiKiemSoatTruyCap\": {\n    \"type\": \"string\",\n    \"maxLength\": 60,\n    \"required\": true\n  },\n  \"MaSoNhanDangThietBiDiDong\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": false\n  },\n  \"SoTaiKhoan\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": true\n  },\n  \"LoaiTaiKhoan\": {\n    \"type\": \"integer\",\n    \"enum\": [1, 2],\n    \"required\": false\n  },\n  \"TrangThaiHoatDongTaiKhoan\": {\n    \"type\": \"integer\",\n    \"enum\": [1, 2, 3, 4, 5],\n    \"required\": true\n  },\n  \"NgayMoTaiKhoan\": {\n    \"type\": \"string\",\n    \"pattern\": \"^\\\\d{2}/\\\\d{2}/\\\\d{4}$\",\n    \"maxLength\": 10,\n    \"required\": true\n  },\n  \"PhuongThucMoTaiKhoan\": {\n    \"type\": \"integer\",\n    \"enum\": [1, 2],\n    \"required\": false\n  },\n  \"NgayXacThucTaiQuay\": {\n    \"type\": \"string\",\n    \"pattern\": \"^\\\\d{2}/\\\\d{2}/\\\\d{4}$\",\n    \"maxLength\": 10,\n    \"required\": false\n  },\n  \"QuocTich\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": true\n  }\n}\n",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template"
+},
+{
+  "_id": {
+    "$oid": "68182bb2ed79e56becefa044"
+  },
+  "templateID": "API_1_7_TTDS_TKTT_NNGL",
+  "name": "API 1.7 Dịch vụ thu thập danh sách TKTT nghi ngờ gian lận",
+  "schemaJson": "{\n  \"Key\": {\n    \"type\": \"string\",\n    \"required\": false\n  },\n  \"Cif\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": true\n  },\n  \"SoTaiKhoan\": {\n    \"type\": \"string\",\n    \"maxLength\": 36,\n    \"required\": true\n  },\n  \"TenKhachHang\": {\n    \"type\": \"string\",\n    \"maxLength\": 150,\n    \"required\": true\n  },\n  \"TrangThaiHoatDongTaiKhoan\": {\n    \"type\": \"integer\",\n    \"required\": true,\n    \"enum\": [1, 2, 3, 4, 5]\n  },\n  \"NghiNgo\": {\n    \"type\": \"integer\",\n    \"required\": true,\n    \"enum\": [0, 1, 2, 3, 4, 5, 6, 7, 8]\n  },\n  \"GhiChu\": {\n    \"type\": \"string\",\n    \"maxLength\": 500,\n    \"required\": false\n  }\n}\n",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template"
+},
+{
+  "_id": {
+    "$oid": "682bf67902badf663a6167d9"
+  },
+  "templateID": "API_1_8_UPDATE_TTDS_TKTT_NNGL",
+  "name": "API 1.8 Dịch vụ cập nhật lại thông tin TKTT nghi ngờ gian lận",
+  "schemaJson": "{\"Key\":{\"type\":\"string\",\"required\":false},\"Cif\":{\"type\":\"string\",\"maxLength\":36,\"required\":true},\"SoTaiKhoan\":{\"type\":\"string\",\"maxLength\":36,\"required\":true},\"TenKhachHang\":{\"type\":\"string\",\"maxLength\":150,\"required\":true},\"TrangThaiHoatDongTaiKhoan\":{\"type\":\"integer\",\"required\":true},\"NghiNgo\":{\"type\":\"integer\",\"required\":true},\"GhiChu\":{\"type\":\"string\",\"maxLength\":500,\"required\":false},\"LyDoCapNhat\":{\"type\":\"string\",\"required\":true}}",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template"
+},
+{
+  "_id": {
+    "$oid": "682bf63502badf663a6167d8"
+  },
+  "templateID": "API_1_9_UPDATE_TTDS_TKTT_DK",
+  "name": "API 1.9 Dịch vụ cập nhật thông tin khách hàng mở TKTT",
+  "schemaJson": "{\"Key\":{\"type\":\"string\",\"required\":false},\"Cif\":{\"type\":\"string\",\"maxLength\":36,\"required\":true},\"SoID\":{\"type\":\"string\",\"maxLength\":15,\"required\":true},\"LoaiID\":{\"type\":\"integer\",\"required\":true},\"TenKhachHang\":{\"type\":\"string\",\"maxLength\":150,\"required\":true},\"NgaySinh\":{\"type\":\"string\",\"maxLength\":10,\"required\":true},\"GioiTinh\":{\"type\":\"integer\",\"required\":true},\"MaSoThue\":{\"type\":\"string\",\"maxLength\":13,\"required\":false},\"SoDienThoaiDangKyDichVu\":{\"type\":\"string\",\"maxLength\":15,\"required\":true},\"DiaChi\":{\"type\":\"string\",\"maxLength\":300,\"required\":false},\"DiaChiKiemSoatTruyCap\":{\"type\":\"string\",\"maxLength\":60,\"required\":true},\"MaSoNhanDangThietBiDiDong\":{\"type\":\"string\",\"maxLength\":36,\"required\":false},\"SoTaiKhoan\":{\"type\":\"string\",\"maxLength\":36,\"required\":true},\"LoaiTaiKhoan\":{\"type\":\"integer\",\"required\":false},\"TrangThaiHoatDongTaiKhoan\":{\"type\":\"integer\",\"required\":true},\"NgayMoTaiKhoan\":{\"type\":\"string\",\"maxLength\":10,\"required\":true},\"PhuongThucMoTaiKhoan\":{\"type\":\"integer\",\"required\":false},\"NgayXacThucTaiQuay\":{\"type\":\"string\",\"maxLength\":10,\"required\":false},\"QuocTich\":{\"type\":\"string\",\"maxLength\":36,\"required\":true},\"GhiChu\":{\"type\":\"string\",\"maxLength\":500,\"required\":false}}",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template"
+}
+]

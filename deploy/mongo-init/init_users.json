@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "67cfda4bb991f49c4acdce94"
+  },
+  "name": "Pham Phuc Hau",
+  "username": "BankerID",
+  "phone_no": "1234567890",
+  "email": "hau@example.com",
+  "createdAat": {
+    "$date": "2025-03-11T06:38:03.653Z"
+  },
+  "isActive": true,
+  "roleId": {
+    "$oid": "65f2c8a9e8a6e9b8f0a1b002"
+  },
+  "passwordHash": "$2a$10$v27UpLM9HFDuAOpNeRAGh.p3KlOl8lBj8STWZNptNVLlh1twuVlKi",
+  "role": "ADMIN"
+},
+{
+  "_id": {
+    "$oid": "684a40f04454bb008b470fd8"
+  },
+  "name": "checker",
+  "username": "checker",
+  "passwordHash": "$2a$10$ivbmoYf8mxzo/6SxmLeLg.0ENJtAz2FHfpQ660chCUyxlnmFvfiyO",
+  "createdAt": {
+    "$date": "2025-06-12T02:52:32.029Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "checker@gmail.com",
+  "isActive": true,
+  "role": "CHECKER",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+},
+{
+  "_id": {
+    "$oid": "684a41184454bb008b470fd9"
+  },
+  "name": "maker",
+  "username": "maker",
+  "passwordHash": "$2a$10$wuyy5Gp4o4l6vL8kENVUDOWbkXoPrU8dylokqgJ8C89A15vjhBBu2",
+  "createdAt": {
+    "$date": "2025-06-12T02:53:12.327Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "maker@gmail.com",
+  "isActive": true,
+  "role": "MAKER",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+},
+{
+  "_id": {
+    "$oid": "684a41314454bb008b470fda"
+  },
+  "name": "maker1",
+  "username": "maker1",
+  "passwordHash": "$2a$10$CTM4kegsHPUBlQTn/pIlK.eUsJNB6VP.NyZ57/Bo.VmVczB4al/pq",
+  "createdAt": {
+    "$date": "2025-06-12T02:53:37.499Z"
+  },
+  "phoneNo": "0773541433",
+  "email": "maker1@gmail.com",
+  "isActive": true,
+  "role": "MAKER",
+  "_class": "SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User"
+}]
