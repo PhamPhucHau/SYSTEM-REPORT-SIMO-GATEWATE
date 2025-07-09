@@ -80,8 +80,23 @@ public class SimoFileMasManagerRepositoryServiceImpl extends AbstractService
 	}
 	
 
-	@Override
+	@Override 
 	public List<SimoFileMas> getListUploadByDateAndTemplateId(Map<String, Object> inputParams) throws ServiceRuntimeException {
+
+		String sql = simoNamedQueries.get("getSimoFileHisByFileUploadAndTemplate");
+		Query query = entityManager.createNativeQuery(sql, ServiceRuntimeException.class);
+		
+		query.setParameter("fileName", inputParams.getOrDefault("fileName", null));
+        query.setParameter("fileUploadDt_", inputParams.getOrDefault("fileUploadDt_", null));
+        query.setParameter("fileUploadDtEnd", inputParams.getOrDefault("fileUploadDtEnd", null));
+        query.setParameter("templateCode", inputParams.getOrDefault("templateCode", null));
+        query.setParameter("fileStatus", inputParams.getOrDefault("fileStatus", null));
+		@SuppressWarnings("unchecked")
+		List<SimoFileMas> lStatementFiles = query.getResultList();
+		return lStatementFiles;
+	}
+	@Override 
+	public List<SimoFileMas> getListUploadByMonthyearAndTemplateId(Map<String, Object> inputParams) throws ServiceRuntimeException {
 		String uploadDT = inputParams.get(APIConstant.UPLOAD_DATE_KEY).toString();
 		String bankCode = inputParams.get(APIConstant.UPLOAD_BANKCODE_KEY).toString();
 		long trxType = inputParams.get(APIConstant.UPLOAD_TRXTYPE_KEY) == null

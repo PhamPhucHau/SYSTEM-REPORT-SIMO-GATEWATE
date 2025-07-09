@@ -6,5 +6,5 @@ import com.org.shbvn.svbsimo.repository.entities.SimoFileMas;
 
 public interface FileMasService {
 
-    public List<SimoFileMas> getListUploadByDateAndTemplateId(String dateUpload, String templateId); 
+    public List<SimoFileMas> getListUploadByDateAndTemplateId(String uploadDateStart,String uploadDateEnd, String templateCode,String fileName, String fileStatus); 
 }

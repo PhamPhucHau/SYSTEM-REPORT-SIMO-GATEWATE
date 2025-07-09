@@ -221,6 +221,12 @@ public class SimoAuthMenuRepositoryServiceImpl extends AbstractService implement
                 () -> {
                     // Cache miss - fetch from database
                     try {
+                        UserInfo  userInfo = EntityModelConverter.toModel(
+                            getRepositoryManageService().getSimoUserRepositoryService().getUserByUsername(username), UserInfo.class);
+
+                            if (userInfo == null) {
+                            return null;
+                        }
                         List<UserFeatureInfo> list = EntityModelConverter.toModelList(
                                                         getListAuthMenuByUserId(username), UserFeatureInfo.class);
                         if (list == null || list.isEmpty()) {
@@ -233,12 +239,6 @@ public class SimoAuthMenuRepositoryServiceImpl extends AbstractService implement
                             return null;
                         }
 
-                        UserInfo  userInfo = EntityModelConverter.toModel(
-                                                        getRepositoryManageService().getSimoUserRepositoryService().getUserByUsername(username), UserInfo.class);
-                        
-                        if (userInfo == null) {
-                            return null;
-                        }
                         
                         userInfo.setFeatures(list);
                         userInfo.setRoles(listRole);

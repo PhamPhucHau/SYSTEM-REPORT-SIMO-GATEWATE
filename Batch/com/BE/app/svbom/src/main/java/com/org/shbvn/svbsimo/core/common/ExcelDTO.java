@@ -127,6 +127,11 @@ public class ExcelDTO {
 			//get property of BankStatement
 			String field = mapper.getKey();
 			System.out.println("field: " + field);
+			if(valueToAdd == null || valueToAdd.isEmpty()) {
+				//statement.setError("Configuration error"); TODO
+				System.out.println("Error: valueToAdd is null for field: " + field);
+				continue; // Skip this entry if valueToAdd is null
+			}
 			if(valueToAdd != null && !CommonUtils.setPropertyIntoObject(statement, valueToAdd, field)) {
 				//statement.setError("Configuration error"); TODO
 				System.out.println("Error setting property: " + field + " with value: " + valueToAdd);

@@ -26,4 +26,5 @@ public interface SimoAuthMenuRepositoryService {
     public List<SimoAuthMenu> getListAuthMenuByUserId(String userId) throws ServiceRuntimeException;
 
     public UserInfo getUserProfileByUserName(String username) throws ServiceRuntimeException;
+
 }

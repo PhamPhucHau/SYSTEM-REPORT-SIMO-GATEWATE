@@ -176,6 +176,16 @@ public static void downloadAllFilesAndArchive(String server, int port, String us
   
                 // Move file on FTP to archive folder (remote move)
                 String ftpArchivePath = ftpArchiveDir + "/" + originalFileName;
+                // Xóa file đích nếu đã tồn tại
+                FTPFile[] existing = ftpClient.listFiles(ftpArchivePath);
+                if (existing != null && existing.length > 0) {
+                    boolean deleted = ftpClient.deleteFile(ftpArchivePath);
+                    if (deleted) {
+                        logger.info("Existing archive file deleted: {}", ftpArchivePath);
+                    } else {
+                        logger.warn("Failed to delete existing archive file: {}", ftpArchivePath);
+                    }
+                }
                 boolean moved = ftpClient.rename(remotePath, ftpArchivePath);
                 if (moved) {
                     logger.info("Moved file to FTP archive folder: {}", ftpArchivePath);

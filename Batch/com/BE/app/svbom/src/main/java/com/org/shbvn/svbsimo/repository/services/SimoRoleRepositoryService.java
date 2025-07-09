@@ -24,4 +24,6 @@ public interface SimoRoleRepositoryService {
 
     public List<SimoRole> getRoleByParams(Map<String, Object> inputParams) throws ServiceRuntimeException;
     
+    public SimoRole getRoleByName(String roleId) throws ServiceRuntimeException;
+    
 }

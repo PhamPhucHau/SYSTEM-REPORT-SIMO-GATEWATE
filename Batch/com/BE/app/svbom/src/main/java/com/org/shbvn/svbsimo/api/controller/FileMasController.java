@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/file")
+@RequestMapping("/file")
 public class FileMasController {
 
     @Autowired
@@ -21,13 +21,19 @@ public class FileMasController {
 
     @GetMapping("/list")
     public List<SimoFileMas> getListUploadByDateAndTemplateId(
-            @RequestParam String uploadDate,
-            @RequestParam String bankCode,
-            @RequestParam(required = false) Long trxType) {
-        Map<String, Object> params = new HashMap<>();
-        params.put(APIConstant.UPLOAD_DATE_KEY, uploadDate);
-        params.put(APIConstant.UPLOAD_BANKCODE_KEY, bankCode);
-        params.put(APIConstant.UPLOAD_TRXTYPE_KEY, trxType);
-        return fileMasService.getListUploadByDateAndTemplateId(uploadDate,bankCode);
+            @RequestParam(name = "uploadDateStart") String uploadDateStart,
+            @RequestParam(name = "uploadDateEnd") String uploadDateEnd,
+            @RequestParam(name = "templateCode") String templateCode,
+            @RequestParam(name = "fileName", required = false) String fileName,
+            @RequestParam(name = "fileStatus", required = false) String fileStatus) {
+    
+        return fileMasService.getListUploadByDateAndTemplateId(
+                uploadDateStart,
+                uploadDateEnd,
+                templateCode,
+                fileName,
+                fileStatus
+        );
     }
+    
 }

@@ -13,7 +13,7 @@ public class API122WDRTemplate extends DailyCommonTemplate {
   @JsonProperty("ThoiGianGuiBaoCao")
   private String thoigianguibaocao;
 
-  @JsonProperty("tkdbttTaiNHHT")
+  @JsonProperty("TKDBTTTaiNHHT")
   private List<TkdbtttainhhtItem> tkdbtttainhht;
 
   public API122WDRTemplate() {

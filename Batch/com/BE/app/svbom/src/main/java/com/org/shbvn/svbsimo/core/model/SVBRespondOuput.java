@@ -174,7 +174,6 @@ public String getCode() {
 	@Override
 	public String toString() {
 		return "SVBRespondOuput{" +
-				"result=" + result +
 				", serverDate='" + serverDate + '\'' +
 				", exceptionMessage='" + exceptionMessage + '\'' +
 				", exceptionCode='" + exceptionCode + '\'' +
@@ -185,5 +184,6 @@ public String getCode() {
 				", success=" + success +
 				'}';
 	}
+	
 	
 }

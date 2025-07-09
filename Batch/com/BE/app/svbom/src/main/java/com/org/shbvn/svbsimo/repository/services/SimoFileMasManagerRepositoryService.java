@@ -19,6 +19,7 @@ public interface SimoFileMasManagerRepositoryService {
 	public List<SimoFileMas> getListUploadByDate(Map<String, Object> inputParams) throws BaseException;
 	
 	public List<SimoFileMas> getListUploadByDateAndTemplateId(Map<String, Object> inputParams) throws BaseException;
+	public List<SimoFileMas> getListUploadByMonthyearAndTemplateId(Map<String, Object> inputParams) throws BaseException;
 	
 	public boolean create(Map<String, Object> inputParams) throws BaseException;
 	

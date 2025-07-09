@@ -106,6 +106,21 @@ public class SimoInterceptor implements HandlerInterceptor {
 		boolean flag = URI.contains(APIConstant.CONTEXT_FILTER_PATH);
 		UserInfo userInfo = null;
 		logger.info(" ***** userName : " + userName + " ***** ");
+		String whitelist = env.getProperty(APIConstant.SVB_SECURITY_WHITELIST);		
+		String[] whitelistArray = whitelist != null ? whitelist.split(",") : new String[0];
+		// Check whitelist 
+
+		// ✅ Bypass các URL nằm trong whitelist cấu hình
+		for (String path : whitelistArray) {
+			if (URI.equals(path) || URI.startsWith(path + "/")) {
+				
+			request.setAttribute(APIConstant.REQUEST_URI_STR, request.getRequestURI());
+			writeLogHttpSerlvetRequest(request);
+			request.setAttribute(APIConstant.EXECUTION_TIME_KEY, startTime);
+				return true;
+			}
+		}
+		
 		if (flag) {
 			
 			

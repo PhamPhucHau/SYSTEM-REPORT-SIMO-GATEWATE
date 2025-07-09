@@ -69,7 +69,6 @@
 						]]>
 					</value>
 				</entry>
-
 				<entry key="getSimoFileHisByParams">
 					<value>
 						<![CDATA[
@@ -84,7 +83,23 @@
 						]]>
 					</value>
 				</entry>
-
+				<entry key="getSimoFileHisByFileUploadAndTemplate">
+					<value>
+						<![CDATA[
+							Select fh.id, fh.file_name, fh.file_type, fh.file_upload_dt, 
+								fh.process_status, fh.total_count, fh.success_count, fh.file_valid_count, 
+								fh.remark, fh.file_status, fh.template_code, fh.regis_inf_dt, fh.lchg_inf_dt,
+								fh.regis_user, fh.lchg_user
+							from SIMO_FILE_HIS fh
+							where 1 =1 
+								and fh.FILE_NAME = coalesce(:fileName, fh.FILE_NAME) 
+								and fh.FILE_UPLOAD_DT >=  coalesce(:fileUploadDt_, fh.FILE_UPLOAD_DT) 
+								and fh.FILE_UPLOAD_DT <=  coalesce(:fileUploadDtEnd, fh.FILE_UPLOAD_DT)
+								and fh.TEMPLATE_CODE = coalesce(:templateCode, fh.TEMPLATE_CODE)
+								and fh.FILE_STATUS = coalesce(:fileStatus, fh.FILE_STATUS)
+						]]>
+					</value>
+				</entry>
 				<entry key="fetchSimoFileDetailHisByParams">
 					<value>
 						<![CDATA[
@@ -134,7 +149,7 @@
                                 "templateCode" : "INST_API1_7_NGGL",
                                 "templateColName" : "ROW_ID,Cif,TenKhachHang,SoTaiKhoan,TrangThaiHoatDongTaiKhoan,NghiNgo,GhiChu",
 								"autoAppr":0,
-								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-tktt-nnglapi",
+								"urlTemplate": "/simo/tktt/1.0/upload-bao-cao-tktt-nngl-api",
 								 "fileType":"1"
                             }
                         ]]>

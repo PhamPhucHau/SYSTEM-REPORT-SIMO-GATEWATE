@@ -210,5 +210,6 @@ public class APIConstant {
 	public static final String SVB_UPLOAD_URL_INST_API1_9_TKTT = "svb.upload.url.INST_API1_9_TKTT" ; 
 	public static final String SVB_UPLOAD_URL_INST_API1_22_WDR = "svb.upload.url.INST_API1_22_WDR" ;
     public static final String SVB_UPLOAD_METHOD = "svb.upload.method";
+	public static final String SVB_SECURITY_WHITELIST = "security.auth.whitelist" ;
 
 }

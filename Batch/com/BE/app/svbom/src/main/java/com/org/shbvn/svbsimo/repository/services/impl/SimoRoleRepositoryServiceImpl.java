@@ -83,6 +83,15 @@ public class SimoRoleRepositoryServiceImpl extends AbstractService implements Si
             throw new ServiceRuntimeException(env.getProperty("MSG_002"));
         }
     }
+    @Override
+    public SimoRole getRoleByName(String roleId) throws ServiceRuntimeException {
+        try {
+            return roleDAO.findByRoleId(roleId).orElse(null);
+        } catch (Exception ex) {
+            logger.error("Error getting role by ID", ex);
+            throw new ServiceRuntimeException(env.getProperty("MSG_002"));
+        }
+    }
 
     @Override
     public SimoRole getRoleByRoleId(String roleId) throws ServiceRuntimeException {
@@ -93,6 +102,7 @@ public class SimoRoleRepositoryServiceImpl extends AbstractService implements Si
             throw new ServiceRuntimeException(env.getProperty("MSG_002"));
         }
     }
+    
 
     @Override
     public List<SimoRole> getAllRoles() throws ServiceRuntimeException {

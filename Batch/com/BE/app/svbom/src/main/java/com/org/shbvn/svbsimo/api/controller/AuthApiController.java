@@ -41,9 +41,25 @@ public class AuthApiController extends BaseController{
     @RequestMapping(value="/v1/auth/generateHashingValue", 
         produces = {"application/json;charset=utf-8", "application/xml;charset=utf-8"}, 
         method=RequestMethod.GET)
-    public ResponseEntity<Object>  generateHashingValue(@RequestParam(required = true) String sourceStr) throws BaseException {
+    public ResponseEntity<Object>  generateHashingValue(@RequestParam(name = "sourceStr", required = true) String sourceStr) throws BaseException {
         String result = getProcessManagerService().getAuthService().generateHashingValue(sourceStr);
         return triggerSuccessOutPut(result, String.class, "MSG_006");
     }
+// Register new User 
+@RequestMapping(
+    value = "/v1/auth/registerUser",
+    produces = {"application/json;charset=utf-8", "application/xml;charset=utf-8"},
+    method = RequestMethod.POST
+)
+public ResponseEntity<Object> registerUser(@RequestBody String document) throws BaseException {
+        // Parse JSON body thành Map
+        @SuppressWarnings("unchecked")
+        Map<String, Object> inputParams = (Map<String, Object>) CommonUtils.toPojo(document, Map.class);
 
+        // Gọi service tạo user mới
+        UserInfo user = getProcessManagerService().getAuthService().createUserProfile(inputParams);
+
+        // Trả về kết quả thành công (thường chứa token, id, v.v.)
+        return triggerSuccessOutPut(user, UserInfo.class, "MSG_006"); 
+}
 }

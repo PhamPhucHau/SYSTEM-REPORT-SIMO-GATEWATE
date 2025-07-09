@@ -23,19 +23,20 @@ public class FileMasServiceImpl implements FileMasService  {
     SimoFileMasManagerRepositoryService simoFileMasManagerRepositoryService;
 
     @Override
-    public List<SimoFileMas> getListUploadByDateAndTemplateId(String uploadDate, String templateId) {
+    public List<SimoFileMas> getListUploadByDateAndTemplateId(String uploadDateStart,String uploadDateEnd, String templateCode,String fileName, String fileStatus) {
         // Implementation logic to retrieve the list of uploaded files by date and template ID
         Map<String, Object> params = new HashMap<>();
-        params.put(APIConstant.UPLOAD_DATE_KEY, uploadDate);
-        params.put(APIConstant.UPLOAD_BANKCODE_KEY, ""); // Ensure bankCode is defined
-        params.put(APIConstant.UPLOAD_TRXTYPE_KEY, "");   // Ensure trxType is defined
+        params.put("fileName", fileName);                         // Optional
+        params.put("fileUploadDt_", uploadDateStart);              // Từ ngày
+        params.put("fileUploadDtEnd", uploadDateEnd);            // Đến ngày (nếu muốn same day)
+        params.put("templateCode", templateCode);             // Mã template
+        params.put("fileStatus", fileStatus);                       // Optional
+    
         try {
-            // Call the static method directly using the interface name
             return simoFileMasManagerRepositoryService.getListUploadByDateAndTemplateId(params);
         } catch (BaseException e) {
-            // Log the exception and handle it appropriately
             logger.error("Error occurred while fetching upload list: ", e);
-            return Collections.emptyList(); // Return an empty list or handle as needed
+            return Collections.emptyList();
         }
     }
     

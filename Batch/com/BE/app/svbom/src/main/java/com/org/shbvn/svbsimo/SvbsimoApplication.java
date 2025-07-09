@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class SvbsimoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SvbsimoApplication.class, args);
+		
 	}
 
 }
