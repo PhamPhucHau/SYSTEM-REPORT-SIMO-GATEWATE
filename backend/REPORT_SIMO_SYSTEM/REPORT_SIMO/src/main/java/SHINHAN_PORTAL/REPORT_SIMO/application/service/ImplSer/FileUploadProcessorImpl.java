@@ -36,14 +36,29 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
     // Thêm các processor khác
     private final Map<TemplateID, TemplateProcessor> templateProcessors;
     
-    public FileUploadProcessorImpl(API_1_6_Processor api_1_6_processor,API_1_7_Processor api_1_7_processor,
-    API_1_8_Processor api_1_8_processor,
-    API_1_9_Processor api_1_9_processor /* Thêm các processor khác */) {
+    public FileUploadProcessorImpl(
+        API_1_6_Processor api_1_6_processor,
+        API_1_7_Processor api_1_7_processor,
+        API_1_8_Processor api_1_8_processor,
+        API_1_9_Processor api_1_9_processor,
+        API_1_27_Processor api_1_27_processor,
+        API_1_28_Processor api_1_28_processor,
+        API_1_29_Processor api_1_29_processor,
+        API_1_30_Processor api_1_30_processor
+    ) {
         this.templateProcessors = new HashMap<>();
+    
+        // Existing mappings
         this.templateProcessors.put(TemplateID.API_1_6_TTDS_TKTT_DK, api_1_6_processor);
         this.templateProcessors.put(TemplateID.API_1_7_TTDS_TKTT_NNGL, api_1_7_processor);
-        this.templateProcessors.put(TemplateID.API_1_8_UPDATE_TTDS_TKTT_NNGL, api_1_8_processor);   
+        this.templateProcessors.put(TemplateID.API_1_8_UPDATE_TTDS_TKTT_NNGL, api_1_8_processor);
         this.templateProcessors.put(TemplateID.API_1_9_UPDATE_TTDS_TKTT_DK, api_1_9_processor);
+    
+        // New mappings
+        this.templateProcessors.put(TemplateID.API_1_27_TT_DVCNTT, api_1_27_processor);
+        this.templateProcessors.put(TemplateID.API_1_28_TT_DVCNTT_NGGL, api_1_28_processor);
+        this.templateProcessors.put(TemplateID.API_1_29_UPDATE_DVCNTT_NGGL, api_1_29_processor);
+        this.templateProcessors.put(TemplateID.API_1_30_UPDATE_DVCNTT, api_1_30_processor);
     }
     @Override
     public LIST_FILE_UPLOAD processUpload(FileUploadRequestDTO request) {
@@ -68,7 +83,7 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
             throw new IllegalArgumentException("Unsupported templateID: " + fileUpload.getTemplateID());
         });
         processor.process(fileUpload, fileUpload.getData());
-        return historyService.updateById(id, "10");
+            return historyService.updateById(id, "10");
     }
     @Override
     public Page<LIST_FILE_UPLOAD> getFiles(String templateID, String monthYear, String username, int page, int size) {

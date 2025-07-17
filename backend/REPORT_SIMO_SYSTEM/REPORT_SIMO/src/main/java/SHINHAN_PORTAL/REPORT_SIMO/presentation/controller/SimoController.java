@@ -61,6 +61,30 @@ public class SimoController {
                         .collect(Collectors.toList());
                 return simoService.api_1_8_update_uploadNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
+            case "API_1_27_TT_DVCNTT" -> {
+                List<API_1_27_TT_DVCNTT_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_27_TT_DVCNTT)
+                        .collect(Collectors.toList());
+                return simoService.api_1_27_uploadDVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_28_TT_DVCNTT_NGGL" -> {
+                List<API_1_28_TT_DVCNTT_NGGL_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_28_TT_DVCNTT_NGGL)
+                        .collect(Collectors.toList());
+                return simoService.api_1_28_uploadNGGL_DVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_29_UPDATE_DVCNTT_NGGL" -> {
+                List<API_1_29_UPDATE_DVCNTT_NGGL_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_29_UPDATE_DVCNTT_NGGL)
+                        .collect(Collectors.toList());
+                return simoService.api_1_29_updateNGGL_DVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_30_UPDATE_DVCNTT" -> {
+                List<API_1_30_UPDATE_DVCNTT_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_30_UPDATE_DVCNTT)
+                        .collect(Collectors.toList());
+                return simoService.api_1_30_updateDVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
             default -> {
                 TKTTResponseDTO response = new TKTTResponseDTO();
                 response.setCode("400");
@@ -147,9 +171,13 @@ public class SimoController {
     }
     enum TemplateID {
         API_1_6_TTDS_TKTT_DK,
-    API_1_7_TTDS_TKTT_NNGL,
-    API_1_9_UPDATE_TTDS_TKTT_DK,
-    API_1_8_UPDATE_TTDS_TKTT_NNGL;
+        API_1_7_TTDS_TKTT_NNGL,
+        API_1_9_UPDATE_TTDS_TKTT_DK,
+        API_1_8_UPDATE_TTDS_TKTT_NNGL,
+        API_1_27_TT_DVCNTT,
+        API_1_28_TT_DVCNTT_NGGL,
+        API_1_29_UPDATE_DVCNTT_NGGL,
+        API_1_30_UPDATE_DVCNTT;
     public static TemplateID fromString(String templateId)
     {
         try{

@@ -40,7 +40,17 @@ public class SimoServiceImpl implements SimoService {
     private String api_1_8_update_nggl_Url;
     @Value("${simo.api_1_9_update_tktt.url}")
     private String api_1_9_update_tktt_Url;
-
+    @Value("${simo.api_1_27_upload_dvcntt.url}")
+    private String api_1_27_upload_dvcntt_Url;
+    
+    @Value("${simo.api_1_28_upload_nggl_dvcntt.url}")
+    private String api_1_28_upload_nggl_dvcntt_Url;
+    
+    @Value("${simo.api_1_29_update_nggl_dvcntt.url}")
+    private String api_1_29_update_nggl_dvcntt_Url;
+    
+    @Value("${simo.api_1_30_update_dvcntt.url}")
+    private String api_1_30_update_dvcntt_Url;
     @Value("${simo.username}")
     private String username;
 
@@ -365,4 +375,85 @@ public class SimoServiceImpl implements SimoService {
         String token = getValidToken();
         return api_1_9_update_uploadTKTT(token, maYeuCau, kyBaoCao, tkttList);
     }
+    // Phần mở rộng cho 4 API mới (1.27 đến 1.30)
+
+@Override
+public TKTTResponseDTO api_1_27_uploadDVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_27_TT_DVCNTT_DTO> dvcnttList) {
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_27_upload_dvcntt_Url, "API1_27_");
+}
+
+@Override
+public TKTTResponseDTO api_1_28_uploadNGGL_DVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_28_TT_DVCNTT_NGGL_DTO> dvcnttList) {
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_28_upload_nggl_dvcntt_Url, "API1_28_");
+}
+
+@Override
+public TKTTResponseDTO api_1_29_updateNGGL_DVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_29_UPDATE_DVCNTT_NGGL_DTO> dvcnttList) {
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_29_update_nggl_dvcntt_Url, "API1_29_");
+}
+
+@Override
+public TKTTResponseDTO api_1_30_updateDVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_30_UPDATE_DVCNTT_DTO> dvcnttList) {
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_30_update_dvcntt_Url, "API1_30_");
+}
+
+@Override
+public TKTTResponseDTO api_1_27_uploadDVCNTT_autoToken(String maYeuCau, String kyBaoCao, List<API_1_27_TT_DVCNTT_DTO> dvcnttList) {
+    return api_1_27_uploadDVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
+}
+
+@Override
+public TKTTResponseDTO api_1_28_uploadNGGL_DVCNTT_autoToken(String maYeuCau, String kyBaoCao, List<API_1_28_TT_DVCNTT_NGGL_DTO> dvcnttList) {
+    return api_1_28_uploadNGGL_DVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
+}
+
+@Override
+public TKTTResponseDTO api_1_29_updateNGGL_DVCNTT_autoToken(String maYeuCau, String kyBaoCao, List<API_1_29_UPDATE_DVCNTT_NGGL_DTO> dvcnttList) {
+    return api_1_29_updateNGGL_DVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
+}
+
+@Override
+public TKTTResponseDTO api_1_30_updateDVCNTT_autoToken(String maYeuCau, String kyBaoCao, List<API_1_30_UPDATE_DVCNTT_DTO> dvcnttList) {
+    return api_1_30_updateDVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
+}
+
+// --- Đoạn này bạn nên đặt trong private method chung ---
+
+private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String kyBaoCao, List<T> listData, String url, String prefixFileName) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("Authorization", "Bearer " + token);
+    headers.set("maYeuCau", maYeuCau);
+    headers.set("kyBaoCao", kyBaoCao);
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+        Files.createDirectories(Paths.get(uploadDir));
+        String fileName = prefixFileName + kyBaoCao.replace("/", "_") + "_" + maYeuCau + ".json";
+        Path filePath = Paths.get(uploadDir, fileName);
+
+        String jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(listData);
+        Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
+        logger.info(">>> JSON saved to file: " + filePath);
+
+        HttpEntity<List<T>> request = new HttpEntity<>(listData, headers);
+        ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(url, request, TKTTResponseDTO.class);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else {
+            throw new RuntimeException("Failed to upload report: " + response.getStatusCode());
+        }
+    } catch (IOException e) {
+        throw new FileStorageException("Không thể ghi file JSON", e);
+    } catch (HttpClientErrorException e) {
+        if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+            cachedToken = null;
+            String newToken = getValidToken();
+            return postToSimoApi(newToken, maYeuCau, kyBaoCao, listData, url, prefixFileName);
+        }
+        throw new RuntimeException("Lỗi khi goi SIMO API: " + e.getMessage());
+    }
+}
+
 }

@@ -1,10 +1,18 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.mapper;
 
+import SHINHAN_PORTAL.REPORT_SIMO.application.dto.API_1_27_TT_DVCNTT_DTO;
+import SHINHAN_PORTAL.REPORT_SIMO.application.dto.API_1_28_TT_DVCNTT_NGGL_DTO;
+import SHINHAN_PORTAL.REPORT_SIMO.application.dto.API_1_29_UPDATE_DVCNTT_NGGL_DTO;
+import SHINHAN_PORTAL.REPORT_SIMO.application.dto.API_1_30_UPDATE_DVCNTT_DTO;
 import SHINHAN_PORTAL.REPORT_SIMO.common.DataMapperUtils;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_27_TT_DVCNTT;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_7_tktt_nnngl;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_8_update_tktt_nnngl;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_9_update_tktt_dinh_ky;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_28_TT_DVCNTT_NGGL;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_29_UPDATE_DVCNTT_NGGL;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_30_UPDATE_DVCNTT;
 
 import java.util.Map;
 
@@ -100,14 +108,118 @@ public class FileUploadMapper {
             entity.setNgayXacThucTaiQuay(DataMapperUtils.safeString(dataMap.get("NgayXacThucTaiQuay"), null, true));
             entity.setGhiChu(DataMapperUtils.safeString(dataMap.getOrDefault("Ghi chú", dataMap.get("GhiChu"))));
             entity.setTemplateID(templateID);
-
-
-
-            
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_9_update_tktt_dinh_ky: CIF: [" + DataMapperUtils.safeString(dataMap.get("Cif")) + "]", e);
+        }
+        return entity;
+    }
+
+    public API_1_27_TT_DVCNTT mapToAPI_1_27_TT_DVCNTT(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
+        API_1_27_TT_DVCNTT entity = new API_1_27_TT_DVCNTT();
+        try {
+            
+            entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
+            entity.setMaSoDoanhNghiep(DataMapperUtils.safeString(dataMap.get("MaSoDoanhNghiep")));
+            entity.setSoId(DataMapperUtils.safeString(dataMap.get("SoId")));
+            entity.setLoaiId(DataMapperUtils.safeInteger(dataMap.get("LoaiId"), null));
+            entity.setHoTenNguoiDaiDien(DataMapperUtils.safeString(dataMap.get("HoTenNguoiDaiDien")));
+            entity.setNgaySinh(DataMapperUtils.safeString(dataMap.get("NgaySinh")));
+            entity.setQuocTich(DataMapperUtils.safeString(dataMap.get("QuocTich")));
+            entity.setTenDvcntt(DataMapperUtils.safeString(dataMap.get("TenDvcntt")));
+            entity.setLoaiHinhKinhDoanh(DataMapperUtils.safeString(dataMap.get("loaiHinhKinhDoanh")));
+            entity.setMaSoThue(DataMapperUtils.safeString(dataMap.get("MaSoThue")));
+            entity.setDienThoai(DataMapperUtils.safeString(dataMap.get("DienThoai")));
+            entity.setDiaChi(DataMapperUtils.safeString(dataMap.get("DiaChi")));
+            entity.setDiaChiMac(DataMapperUtils.safeString(dataMap.get("DiaChiMac")));
+            entity.setSoImei(DataMapperUtils.safeString(dataMap.get("SoImei")));
+            entity.setSoTaiKhoan(DataMapperUtils.safeString(dataMap.get("SoTaiKhoan")));
+            entity.setTenChuTaiKhoan(DataMapperUtils.safeString(dataMap.get("TenChuTaiKhoan")));
+            entity.setNganHangMoTk(DataMapperUtils.safeString(dataMap.get("NganHangMoTk")));
+            entity.setLoaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("LoaiTaiKhoan"), null));
+            entity.setTrangThaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
+            entity.setNgayMoTaiKhoan(DataMapperUtils.safeString(dataMap.get("NgayMoTaiKhoan")));
+            entity.setTemplateID(templateID);
+            entity.setMonthYear(monthYear);
+            entity.setUsername(username);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error mapping to API_1_27_TT_DVCNTT: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
+        }
+        return entity;
+    }
+
+    public API_1_28_TT_DVCNTT_NGGL mapToAPI_1_28_TT_DVCNTT_NGGL(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
+        API_1_28_TT_DVCNTT_NGGL entity = new API_1_28_TT_DVCNTT_NGGL();
+        try {
+            
+            entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
+            entity.setTenDvcntt(DataMapperUtils.safeString(dataMap.get("TenDvcntt")));
+            entity.setMaSoDoanhNghiep(DataMapperUtils.safeString(dataMap.get("MaSoDoanhNghiep")));
+            entity.setSoTaiKhoan(DataMapperUtils.safeString(dataMap.get("SoTaiKhoan")));
+            entity.setTrangThaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
+            entity.setNghiNgo(DataMapperUtils.safeInteger(dataMap.get("NghiNgo"), null));
+            entity.setGhiChu(DataMapperUtils.safeString(dataMap.get("GhiChu")));
+            entity.setTemplateID(templateID);
+            entity.setMonthYear(monthYear);
+            entity.setUsername(username);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error mapping to API_1_28_TT_DVCNTT_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
+        }
+        return entity;
+    }
+
+    public API_1_29_UPDATE_DVCNTT_NGGL mapToAPI_1_29_UPDATE_DVCNTT_NGGL(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
+        API_1_29_UPDATE_DVCNTT_NGGL entity = new API_1_29_UPDATE_DVCNTT_NGGL();
+        try {
+            
+            entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
+            entity.setTenDvcntt(DataMapperUtils.safeString(dataMap.get("TenDvcntt")));
+            entity.setMaSoDoanhNghiep(DataMapperUtils.safeString(dataMap.get("MaSoDoanhNghiep")));
+            entity.setSoTaiKhoan(DataMapperUtils.safeString(dataMap.get("SoTaiKhoan")));
+            entity.setTrangThaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
+            entity.setNghiNgo(DataMapperUtils.safeInteger(dataMap.get("NghiNgo"), null));
+            entity.setLyDoCapNhat(DataMapperUtils.safeString(dataMap.get("LyDoCapNhat")));
+            entity.setGhiChu(DataMapperUtils.safeString(dataMap.get("GhiChu")));
+            entity.setTemplateID(templateID);
+            entity.setMonthYear(monthYear);
+            entity.setUsername(username);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error mapping to API_1_29_UPDATE_DVCNTT_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
+        }
+        return entity;
+    }
+
+    public API_1_30_UPDATE_DVCNTT mapToAPI_1_30_UPDATE_DVCNTT(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
+        API_1_30_UPDATE_DVCNTT entity = new API_1_30_UPDATE_DVCNTT();
+        try {
+            
+            entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
+            entity.setMaSoDoanhNghiep(DataMapperUtils.safeString(dataMap.get("MaSoDoanhNghiep")));
+            entity.setSoId(DataMapperUtils.safeString(dataMap.get("SoId")));
+            entity.setLoaiId(DataMapperUtils.safeInteger(dataMap.get("LoaiId"), null));
+            entity.setHoTenNguoiDaiDien(DataMapperUtils.safeString(dataMap.get("HoTenNguoiDaiDien")));
+            entity.setNgaySinh(DataMapperUtils.safeString(dataMap.get("NgaySinh")));
+            entity.setQuocTich(DataMapperUtils.safeString(dataMap.get("QuocTich")));
+            entity.setTenDvcntt(DataMapperUtils.safeString(dataMap.get("TenDvcntt")));
+            entity.setLoaiHinhKinhDoanh(DataMapperUtils.safeString(dataMap.get("loaiHinhKinhDoanh")));
+            entity.setMaSoThue(DataMapperUtils.safeString(dataMap.get("MaSoThue")));
+            entity.setDienThoai(DataMapperUtils.safeString(dataMap.get("DienThoai")));
+            entity.setDiaChi(DataMapperUtils.safeString(dataMap.get("DiaChi")));
+            entity.setDiaChiMac(DataMapperUtils.safeString(dataMap.get("DiaChiMac")));
+            entity.setSoImei(DataMapperUtils.safeString(dataMap.get("SoImei")));
+            entity.setSoTaiKhoan(DataMapperUtils.safeString(dataMap.get("SoTaiKhoan")));
+            entity.setTenChuTaiKhoan(DataMapperUtils.safeString(dataMap.get("TenChuTaiKhoan")));
+            entity.setNganHangMoTk(DataMapperUtils.safeString(dataMap.get("NganHangMoTk")));
+            entity.setLoaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("LoaiTaiKhoan"), null));
+            entity.setTrangThaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
+            entity.setNgayMoTaiKhoan(DataMapperUtils.safeString(dataMap.get("NgayMoTaiKhoan")));
+            entity.setGhiChu(DataMapperUtils.safeString(dataMap.get("GhiChu")));
+            entity.setTemplateID(templateID);
+            entity.setMonthYear(monthYear);
+            entity.setUsername(username);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error mapping to API_1_30_UPDATE_DVCNTT: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
         return entity;
     }
