@@ -29,10 +29,10 @@
 
 **Source Code**: [GitHub Repo](https://github.com/PhamPhucHau/SYSTEM-REPORT-SIMO-GATEWATE.git)
 
-> You must build the frontend image with the backend API URL:
+> You must build the frontend image with the backend API URL <IP Server>: <port>
 
 ```bash
-docker build   --build-arg VITE_SIMO_APP_API_URL=http://localhost:8081   -t phamphuchau28/simo_frontend_img:latest .
+docker build   --build-arg VITE_SIMO_APP_API_URL=http://<IP server>:<port>   -t simo_frontend_img:latest .
 ```
 
 ![Docker Hub Images](images/Docker Images Hub.png)
@@ -51,10 +51,12 @@ docker build   --build-arg VITE_SIMO_APP_API_URL=http://localhost:8081   -t pham
 
 **Note**: Grant full permission with:
 
-```bash
-icacls "D:\Deploy" /grant Administrator:F /t
+```bash 
+Windows : icacls "<Folder Upload>" /grant Administrator:F /t
 ```
-
+````
+Linux : chmod -R 777 <Path Folder Unzip>
+``` 
 ---
 
 ## Environment Config
@@ -88,7 +90,7 @@ Defined in `.prod_env` file:
 
 Upload `Deploy_Production.zip` to the server  
 
-![Upload](images/File Deploy Production.png)
+![Upload](images/File_Deploy_Production.png)
 
 ---
 
@@ -106,7 +108,7 @@ Upload `Deploy_Production.zip` to the server
 
 #### Import Docker Images
 
-![Import Docker Images](images/Image SIMO.png)
+![Import Docker Images](images/Image_SIMO.png)
 
 ```bash
 docker load -i simo_all.tar
@@ -136,7 +138,7 @@ Or double-click `run_prod.bat`.
 
 - **MongoDB Access (MongoDB Compass)**:  
   `mongodb://admin:admin123@<IP>:27017`  
-  ![MongoDB Compass](images/Mogo DB Compass.png)
+  ![MongoDB Compass](images/Mogo_DB_Compass.png)
 
 ---
 
@@ -150,7 +152,7 @@ Or double-click `run_prod.bat`.
 netstat -ano | findstr ":5173"
 ```
 
-![Check Port](images/Check process port.png)
+![Check Port](images/Check_process port.png)
 
 2. Find the process name:
 
@@ -158,7 +160,7 @@ netstat -ano | findstr ":5173"
 tasklist /FI "PID eq <PID>"
 ```
 
-![Find Process Name](images/CMD Find process name.png)
+![Find Process Name](images/CMD_Find_process name.png)
 
 3. Kill the process:
 
@@ -166,6 +168,6 @@ tasklist /FI "PID eq <PID>"
 taskkill /PID <PID> -F
 ```
 
-![Kill Process](images/Kill Process.png)
+![Kill Process](images/Kill_Process.png)
 
 ---
