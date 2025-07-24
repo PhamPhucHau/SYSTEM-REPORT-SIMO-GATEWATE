@@ -29,7 +29,7 @@ public class FileUploadController {
 
             return "Upload thành công: " + filePath;
         } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file: " + file.getOriginalFilename(), e);
+            throw new FileStorageException("Không thể lưu file: " + file.getOriginalFilename() + "Path:" + uploadDir, e);
         }
     }
 }
