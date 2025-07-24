@@ -33,6 +33,7 @@
 
 ```bash
 docker build   --build-arg VITE_SIMO_APP_API_URL=http://<IP server>:<port>   -t simo_frontend_img:latest .
+docker build   --build-arg VITE_SIMO_APP_API_URL=http://10.95.16.52:8081   -t simo_frontend_img:latest .
 ```
 
 ![Docker Hub Images](images/Docker Images Hub.png)
@@ -117,7 +118,7 @@ Upload `Deploy_Production.zip` to the server
 cd <path-to-deploy-folder>
 docker load -i simo_all.tar
 ```
-
+Set up Environment variable "FRONTEND_DOMAIN" with domain for website Ex:http://localhost:5173 
 Change directory to Deploy folder:
 
 ```bash
