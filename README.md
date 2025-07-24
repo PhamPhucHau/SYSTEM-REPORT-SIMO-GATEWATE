@@ -118,7 +118,7 @@ Upload `Deploy_Production.zip` to the server
 cd <path-to-deploy-folder>
 docker load -i simo_all.tar
 ```
-Set up Environment variable "FRONTEND_DOMAIN" with domain for website Ex:http://localhost:5173 
+Set up Environment variable "FRONTEND_DOMAIN" in file .prod_env with domain for website Ex:http://localhost:5173 
 Change directory to Deploy folder:
 
 ```bash
