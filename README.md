@@ -35,7 +35,7 @@
 docker build   --build-arg VITE_SIMO_APP_API_URL=http://localhost:8081   -t phamphuchau28/simo_frontend_img:latest .
 ```
 
-![Docker Hub Images](images/Docker_Images_Hub.png)
+![Docker Hub Images](images/Docker Images Hub.png)
 
 ---
 
@@ -88,7 +88,7 @@ Defined in `.prod_env` file:
 
 Upload `Deploy_Production.zip` to the server  
 
-![Upload](images/File_Deploy_Production.png)
+![Upload](images/File Deploy Production.png)
 
 ---
 
@@ -106,7 +106,7 @@ Upload `Deploy_Production.zip` to the server
 
 #### Import Docker Images
 
-![Import Docker Images](images/Image_SIMO.png)
+![Import Docker Images](images/Image SIMO.png)
 
 ```bash
 docker load -i simo_all.tar
@@ -136,7 +136,7 @@ Or double-click `run_prod.bat`.
 
 - **MongoDB Access (MongoDB Compass)**:  
   `mongodb://admin:admin123@<IP>:27017`  
-  ![MongoDB Compass](images/Mogo_DB_Compass.png)
+  ![MongoDB Compass](images/Mogo DB Compass.png)
 
 ---
 
@@ -150,7 +150,7 @@ Or double-click `run_prod.bat`.
 netstat -ano | findstr ":5173"
 ```
 
-![Check Port](images/Check_process_port.png)
+![Check Port](images/Check process port.png)
 
 2. Find the process name:
 
@@ -158,7 +158,7 @@ netstat -ano | findstr ":5173"
 tasklist /FI "PID eq <PID>"
 ```
 
-![Find Process Name](images/CMD_Find_process_name.png)
+![Find Process Name](images/CMD Find process name.png)
 
 3. Kill the process:
 
@@ -166,6 +166,6 @@ tasklist /FI "PID eq <PID>"
 taskkill /PID <PID> -F
 ```
 
-![Kill Process](images/Kill_Process.png)
+![Kill Process](images/Kill Process.png)
 
 ---
