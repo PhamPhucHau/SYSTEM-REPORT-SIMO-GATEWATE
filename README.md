@@ -114,13 +114,13 @@ Upload `Deploy_Production.zip` to the server
 ![Import Docker Images](images/Image_SIMO.png)
 
 ```bash
+cd <path-to-deploy-folder>
 docker load -i simo_all.tar
 ```
 
 Change directory to Deploy folder:
 
 ```bash
-cd <path-to-deploy-folder>
 bash ./run_prod.sh
 ```
 
