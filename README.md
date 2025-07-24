@@ -51,12 +51,15 @@ docker build   --build-arg VITE_SIMO_APP_API_URL=http://<IP server>:<port>   -t 
 
 **Note**: Grant full permission with:
 
-```bash 
-Windows : icacls "<Folder Upload>" /grant Administrator:F /t
+
+```bash
+# Windows
+icacls "<Folder Upload>" /grant Administrator:F /t
+
+# Linux
+chmod -R 777 <Path Folder Unzip>
 ```
-````
-Linux : chmod -R 777 <Path Folder Unzip>
-``` 
+```
 ---
 
 ## Environment Config
