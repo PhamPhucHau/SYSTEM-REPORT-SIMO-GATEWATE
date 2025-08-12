@@ -40,6 +40,14 @@ public class SimoServiceImpl implements SimoService {
     private String api_1_8_update_nggl_Url;
     @Value("${simo.api_1_9_update_tktt.url}")
     private String api_1_9_update_tktt_Url;
+    @Value("${simo.api_1_23_upload_tochuc.url}")
+    private String api_1_23_upload_tochuc_Url;
+    @Value("${simo.api_1_24_upload_tochuc_nggl.url}")
+    private String api_1_24_upload_tochuc_nggl_Url;
+    @Value("${simo.api_1_25_update_upload_tochuc_nggl.url}")
+    private String api_1_25_update_upload_tochuc_nggl_Url;
+    @Value("${simo.api_1_26_update_upload_tochuc.url}")
+    private String api_1_26_update_upload_tochuc_Url;
     @Value("${simo.api_1_27_upload_dvcntt.url}")
     private String api_1_27_upload_dvcntt_Url;
     
@@ -417,6 +425,23 @@ public TKTTResponseDTO api_1_30_updateDVCNTT_autoToken(String maYeuCau, String k
     return api_1_30_updateDVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
 }
 
+@Override
+public TKTTResponseDTO api_1_23_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_23_TOCHUC_DTO> dataList) {
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_23_upload_tochuc_Url, "API1_23_");
+}
+@Override
+public TKTTResponseDTO api_1_24_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_24_TOCHUC_NGGL_DTO> dataList) {
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_24_upload_tochuc_nggl_Url, "API1_24_");
+}
+@Override
+public TKTTResponseDTO api_1_25_update_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_25_UPDATE_TOCHUC_NGGL_DTO> dataList) {
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_25_update_upload_tochuc_nggl_Url, "API1_25_");
+}
+@Override
+public TKTTResponseDTO api_1_26_update_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_26_UPDATE_TOCHUC_DTO> dataList) {
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_26_update_upload_tochuc_Url, "API1_26_");
+}
+
 // --- Đoạn này bạn nên đặt trong private method chung ---
 
 private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String kyBaoCao, List<T> listData, String url, String prefixFileName) {
@@ -455,5 +480,7 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
         throw new RuntimeException("Lỗi khi goi SIMO API: " + e.getMessage());
     }
 }
+
+
 
 }

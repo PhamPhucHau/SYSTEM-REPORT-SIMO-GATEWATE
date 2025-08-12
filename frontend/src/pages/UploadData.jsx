@@ -279,7 +279,7 @@ const mapDataForAPI18 = (data) => {
   
           // 2. Kiểm tra độ dài
           if (rules.maxLength && valueAsString.length > rules.maxLength) {
-            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}.`);
+            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}. `);
           }
   
           if (rules.minLength && valueAsString.length < rules.minLength) {

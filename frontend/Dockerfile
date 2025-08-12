@@ -13,7 +13,9 @@ RUN npm ci
 COPY . .
 # Thiết lập biến môi trường cho quá trình build
 ARG VITE_SIMO_APP_API_URL=http://localhost:8081
+ARG VITE_ENVIRONMENT_VERSION=Test
 ENV VITE_SIMO_APP_API_URL=${VITE_SIMO_APP_API_URL}
+ENV VITE_ENVIRONMENT_VERSION=${VITE_ENVIRONMENT_VERSION}
 # Build the application
 RUN npm run build
 

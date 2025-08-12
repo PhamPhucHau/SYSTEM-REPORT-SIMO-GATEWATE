@@ -1,0 +1,795 @@
+2025-08-12 08:29:00.413 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:00.526 [http-nio-8081-exec-8] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:00.572 [http-nio-8081-exec-8] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:00.584 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:00.603 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:00.609 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:00.611 [http-nio-8081-exec-8] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:00.612 [http-nio-8081-exec-8] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:00.639 [http-nio-8081-exec-8] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:00.644 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:00.657 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:00.658 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@22f3c99b, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:00.662 [http-nio-8081-exec-8] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:00.665 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:02.033 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:02.034 [http-nio-8081-exec-9] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:02.038 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:02.039 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:02.048 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:02.052 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:02.053 [http-nio-8081-exec-9] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:02.053 [http-nio-8081-exec-9] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:02.056 [http-nio-8081-exec-9] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:02.058 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:02.067 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:02.068 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@342b8636, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:02.069 [http-nio-8081-exec-9] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:02.070 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:02.749 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:02.750 [http-nio-8081-exec-10] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:02.753 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:02.753 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:02.759 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:02.763 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:02.764 [http-nio-8081-exec-10] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:02.764 [http-nio-8081-exec-10] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:02.767 [http-nio-8081-exec-10] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:02.768 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:02.782 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:02.784 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@67bbce78, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:02.786 [http-nio-8081-exec-10] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:02.787 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:03.348 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.348 [http-nio-8081-exec-1] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:03.351 [http-nio-8081-exec-1] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:03.352 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:03.360 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:03.364 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.365 [http-nio-8081-exec-1] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:03.365 [http-nio-8081-exec-1] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:03.369 [http-nio-8081-exec-1] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:03.370 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:03.377 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:03.377 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@f69cd45, SHINHAN_PORTAL.REPORT_SIMO.domain.entity (truncated)...]
+2025-08-12 08:29:03.382 [http-nio-8081-exec-1] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:03.383 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:03.588 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.589 [http-nio-8081-exec-2] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:03.593 [http-nio-8081-exec-2] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:03.594 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:03.598 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:03.601 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.602 [http-nio-8081-exec-2] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:03.602 [http-nio-8081-exec-2] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:03.605 [http-nio-8081-exec-2] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:03.606 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:03.616 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:03.617 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@3fd04274, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:03.620 [http-nio-8081-exec-2] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:03.621 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:03.812 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.813 [http-nio-8081-exec-3] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:03.817 [http-nio-8081-exec-3] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:03.818 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:03.823 [http-nio-8081-exec-3] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:03.826 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:03.827 [http-nio-8081-exec-3] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:03.828 [http-nio-8081-exec-3] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:03.832 [http-nio-8081-exec-3] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:03.835 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:03.845 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:03.846 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@a27eb55, SHINHAN_PORTAL.REPORT_SIMO.domain.entity (truncated)...]
+2025-08-12 08:29:03.848 [http-nio-8081-exec-3] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:03.849 [http-nio-8081-exec-3] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:04.027 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:04.028 [http-nio-8081-exec-4] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:04.032 [http-nio-8081-exec-4] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:04.032 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:04.038 [http-nio-8081-exec-4] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:04.040 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z
+2025-08-12 08:29:04.042 [http-nio-8081-exec-4] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T10:08:11.227Z", parameters={masked}
+2025-08-12 08:29:04.043 [http-nio-8081-exec-4] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:04.046 [http-nio-8081-exec-4] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Mon Aug 11 17:08:11 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:04.047 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-11T10:08:11.227Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:04.055 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:04.056 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@26986938, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:04.057 [http-nio-8081-exec-4] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:04.060 [http-nio-8081-exec-4] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:06.268 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:29:06.269 [http-nio-8081-exec-5] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:29:06.273 [http-nio-8081-exec-5] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.274 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:06.281 [http-nio-8081-exec-5] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:06.286 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:29:06.287 [http-nio-8081-exec-5] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:29:06.287 [http-nio-8081-exec-5] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:29:06.294 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:29:06.329 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5da5a2aa
+2025-08-12 08:29:06.354 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@191191ee
+2025-08-12 08:29:06.355 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@39c643c9
+2025-08-12 08:29:06.356 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@490616a9
+2025-08-12 08:29:06.356 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@7f6e1fd9
+2025-08-12 08:29:06.356 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6a656f3b
+2025-08-12 08:29:06.357 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6136a1b5
+2025-08-12 08:29:06.358 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@187c4064
+2025-08-12 08:29:06.359 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@17e31465
+2025-08-12 08:29:06.359 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@563ead15
+2025-08-12 08:29:06.360 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2d1956e
+2025-08-12 08:29:06.360 [http-nio-8081-exec-5] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@78d49a30
+2025-08-12 08:29:06.362 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:06.362 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@771bf973, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:29:06.368 [http-nio-8081-exec-5] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:06.374 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:29:06.374 [http-nio-8081-exec-6] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:29:06.379 [http-nio-8081-exec-6] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.382 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:06.384 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:06.387 [http-nio-8081-exec-7] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:29:06.388 [http-nio-8081-exec-6] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:06.390 [http-nio-8081-exec-7] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.392 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:29:06.392 [http-nio-8081-exec-7] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:06.393 [http-nio-8081-exec-6] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:29:06.394 [http-nio-8081-exec-6] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:29:06.396 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:29:06.401 [http-nio-8081-exec-7] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:06.407 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:06.408 [http-nio-8081-exec-7] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:29:06.411 [http-nio-8081-exec-7] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:29:06.418 [http-nio-8081-exec-7] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.420 [http-nio-8081-exec-7] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:29:06.448 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:06.449 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@36702f8, SHINHAN_PORTAL.REPORT_SIMO.d (truncated)...]
+2025-08-12 08:29:06.462 [http-nio-8081-exec-7] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:06.463 [http-nio-8081-exec-7] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:06.481 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@20c4abc5
+2025-08-12 08:29:06.481 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@7e5ab3ac
+2025-08-12 08:29:06.482 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@166f34ef
+2025-08-12 08:29:06.482 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2561fea7
+2025-08-12 08:29:06.482 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@20fef34d
+2025-08-12 08:29:06.482 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@b12f32d
+2025-08-12 08:29:06.482 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@643566ec
+2025-08-12 08:29:06.483 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4e0b380b
+2025-08-12 08:29:06.483 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@1938de1c
+2025-08-12 08:29:06.484 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5afdd8d
+2025-08-12 08:29:06.484 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4a62c9d2
+2025-08-12 08:29:06.484 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5d3e6bf5
+2025-08-12 08:29:06.485 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:06.485 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@2a98670, SHINHAN_PORTAL.REPORT_SIMO.applicat (truncated)...]
+2025-08-12 08:29:06.488 [http-nio-8081-exec-6] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:06.617 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:06.617 [http-nio-8081-exec-8] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:29:06.620 [http-nio-8081-exec-8] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.622 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:06.626 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:06.629 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:06.630 [http-nio-8081-exec-8] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:29:06.630 [http-nio-8081-exec-8] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:29:06.631 [http-nio-8081-exec-8] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:29:06.632 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:29:06.642 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:06.643 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@2ffcee8b, SHINHAN_PORTAL.REPORT_SIMO. (truncated)...]
+2025-08-12 08:29:06.646 [http-nio-8081-exec-8] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:06.647 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:09.011 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:09.012 [http-nio-8081-exec-9] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:09.017 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:09.018 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:09.026 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:09.032 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:09.033 [http-nio-8081-exec-9] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z", parameters={masked}
+2025-08-12 08:29:09.033 [http-nio-8081-exec-9] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:09.037 [http-nio-8081-exec-9] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:08 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:09.038 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:09.048 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:09.048 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@5a608851, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:09.050 [http-nio-8081-exec-9] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:09.051 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:09.054 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:09.055 [http-nio-8081-exec-10] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:09.061 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:09.062 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:09.067 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:09.070 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:09.071 [http-nio-8081-exec-10] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z", parameters={masked}
+2025-08-12 08:29:09.072 [http-nio-8081-exec-10] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:09.077 [http-nio-8081-exec-10] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:08 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:09.078 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:09.090 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:09.090 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@52c7ebd2, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:09.093 [http-nio-8081-exec-10] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:09.094 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:25.796 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:25.797 [http-nio-8081-exec-1] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:25.800 [http-nio-8081-exec-1] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:25.801 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:25.805 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:25.809 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z
+2025-08-12 08:29:25.810 [http-nio-8081-exec-1] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:08.991Z", parameters={masked}
+2025-08-12 08:29:25.811 [http-nio-8081-exec-1] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:25.814 [http-nio-8081-exec-1] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:08 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:25.817 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:08.991Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:25.829 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:25.829 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@23e97408, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:25.832 [http-nio-8081-exec-1] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:25.832 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:27.636 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:27.636 [http-nio-8081-exec-2] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:27.639 [http-nio-8081-exec-2] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:27.640 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:27.646 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:27.651 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:27.653 [http-nio-8081-exec-2] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z", parameters={masked}
+2025-08-12 08:29:27.654 [http-nio-8081-exec-2] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:27.661 [http-nio-8081-exec-2] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:25 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:27.662 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:27.672 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:27.673 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@556b6caa, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:27.675 [http-nio-8081-exec-2] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:27.677 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:28.430 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:28.430 [http-nio-8081-exec-3] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:28.434 [http-nio-8081-exec-3] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:28.435 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:28.441 [http-nio-8081-exec-3] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:28.446 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:28.446 [http-nio-8081-exec-3] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z", parameters={masked}
+2025-08-12 08:29:28.447 [http-nio-8081-exec-3] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:28.451 [http-nio-8081-exec-3] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:25 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:28.452 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:28.462 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:28.463 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@16197c8a, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:28.465 [http-nio-8081-exec-3] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:28.466 [http-nio-8081-exec-3] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:29.044 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:29.045 [http-nio-8081-exec-4] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:29.047 [http-nio-8081-exec-4] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:29.048 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:29.053 [http-nio-8081-exec-4] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:29.058 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:29.059 [http-nio-8081-exec-4] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z", parameters={masked}
+2025-08-12 08:29:29.060 [http-nio-8081-exec-4] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:29.064 [http-nio-8081-exec-4] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:25 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:29.066 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:29.073 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:29.073 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@2411312b, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:29.075 [http-nio-8081-exec-4] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:29.078 [http-nio-8081-exec-4] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:29.587 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:29.588 [http-nio-8081-exec-5] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:29.591 [http-nio-8081-exec-5] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:29.594 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:29.597 [http-nio-8081-exec-5] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:29.601 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z
+2025-08-12 08:29:29.602 [http-nio-8081-exec-5] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:25.791Z", parameters={masked}
+2025-08-12 08:29:29.602 [http-nio-8081-exec-5] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:29.605 [http-nio-8081-exec-5] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:25 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:29.605 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:25.791Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:29.613 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:29.614 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@79ccc217, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:29.616 [http-nio-8081-exec-5] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:29.617 [http-nio-8081-exec-5] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:35.958 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Securing POST /login
+2025-08-12 08:29:35.992 [http-nio-8081-exec-7] INFO  ReportSimoApplication - JWT Filter - Request: POST /login
+2025-08-12 08:29:35.996 [http-nio-8081-exec-7] DEBUG AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-12 08:29:35.997 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Secured POST /login
+2025-08-12 08:29:35.998 [http-nio-8081-exec-7] DEBUG DispatcherServlet - POST "/login", parameters={}
+2025-08-12 08:29:35.999 [http-nio-8081-exec-7] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.login#Login(UserDto)
+2025-08-12 08:29:36.049 [http-nio-8081-exec-7] DEBUG RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [SHINHAN_PORTAL.REPORT_SIMO.application.dto.UserDto@99f022e]
+2025-08-12 08:29:36.172 [http-nio-8081-exec-7] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.172 [http-nio-8081-exec-7] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:36.306 [http-nio-8081-exec-7] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:36.314 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-12 08:29:36.315 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Writing [SHINHAN_PORTAL.REPORT_SIMO.application.dto.AuthResponse@1dd06cd9]
+2025-08-12 08:29:36.317 [http-nio-8081-exec-7] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:36.356 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:29:36.356 [http-nio-8081-exec-6] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:29:36.361 [http-nio-8081-exec-6] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.362 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:36.368 [http-nio-8081-exec-6] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:36.372 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:29:36.372 [http-nio-8081-exec-6] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:29:36.373 [http-nio-8081-exec-6] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:29:36.375 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:29:36.380 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6e2c12d5
+2025-08-12 08:29:36.381 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@608f2ad5
+2025-08-12 08:29:36.381 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3a9c3f39
+2025-08-12 08:29:36.382 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@30abf2d4
+2025-08-12 08:29:36.382 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3e9ff4ae
+2025-08-12 08:29:36.382 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@27dfb82a
+2025-08-12 08:29:36.382 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@7c612e1f
+2025-08-12 08:29:36.383 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@13335e15
+2025-08-12 08:29:36.383 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5248f259
+2025-08-12 08:29:36.383 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@88c1ed2
+2025-08-12 08:29:36.383 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@7d68d80a
+2025-08-12 08:29:36.384 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@74a2f244
+2025-08-12 08:29:36.384 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:36.385 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@61ed0cb3, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:29:36.386 [http-nio-8081-exec-6] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:36.390 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:29:36.390 [http-nio-8081-exec-8] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:29:36.394 [http-nio-8081-exec-8] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.399 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:36.404 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:36.409 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:29:36.409 [http-nio-8081-exec-8] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:29:36.410 [http-nio-8081-exec-8] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:29:36.411 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:29:36.414 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:36.415 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@13b145a4
+2025-08-12 08:29:36.415 [http-nio-8081-exec-9] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:29:36.415 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@17d8bf8d
+2025-08-12 08:29:36.416 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@54fd0250
+2025-08-12 08:29:36.416 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2a293cc5
+2025-08-12 08:29:36.416 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@332cd041
+2025-08-12 08:29:36.417 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@615a257e
+2025-08-12 08:29:36.417 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5d094487
+2025-08-12 08:29:36.417 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3e2584f7
+2025-08-12 08:29:36.417 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6bdef5aa
+2025-08-12 08:29:36.418 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5b1f5c7a
+2025-08-12 08:29:36.418 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4ca516e2
+2025-08-12 08:29:36.418 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5eb521bd
+2025-08-12 08:29:36.419 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:36.419 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@425afc64, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:29:36.420 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.420 [http-nio-8081-exec-8] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:36.426 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:36.433 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:36.437 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:36.437 [http-nio-8081-exec-9] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:29:36.438 [http-nio-8081-exec-9] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:29:36.439 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.440 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:29:36.454 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:36.454 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@9f66d73, SHINHAN_PORTAL.REPORT_SIMO.d (truncated)...]
+2025-08-12 08:29:36.456 [http-nio-8081-exec-9] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:36.456 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:36.463 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:36.464 [http-nio-8081-exec-10] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:29:36.468 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.468 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:36.473 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:36.478 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:29:36.479 [http-nio-8081-exec-10] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:29:36.479 [http-nio-8081-exec-10] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:29:36.480 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:29:36.481 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:29:36.497 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:36.498 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@5cd4e1ee, SHINHAN_PORTAL.REPORT_SIMO. (truncated)...]
+2025-08-12 08:29:36.499 [http-nio-8081-exec-10] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:36.500 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:38.021 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z
+2025-08-12 08:29:38.022 [http-nio-8081-exec-1] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:38.027 [http-nio-8081-exec-1] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:38.028 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:38.037 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:38.040 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z
+2025-08-12 08:29:38.040 [http-nio-8081-exec-1] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z", parameters={masked}
+2025-08-12 08:29:38.041 [http-nio-8081-exec-1] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:38.047 [http-nio-8081-exec-1] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:38 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:38.048 [http-nio-8081-exec-1] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:38.008Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:38.008Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:38.055 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:38.055 [http-nio-8081-exec-1] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@1f010d77, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:38.057 [http-nio-8081-exec-1] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:38.058 [http-nio-8081-exec-1] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:29:38.063 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z
+2025-08-12 08:29:38.063 [http-nio-8081-exec-2] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:29:38.067 [http-nio-8081-exec-2] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:29:38.068 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:29:38.072 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:29:38.077 [http-nio-8081-exec-2] DEBUG FilterChainProxy - Secured GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z
+2025-08-12 08:29:38.077 [http-nio-8081-exec-2] DEBUG DispatcherServlet - GET "/api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-12T01:29:38.008Z", parameters={masked}
+2025-08-12 08:29:38.077 [http-nio-8081-exec-2] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.AuditLogController#searchLogs(AuditLogSearchDTO)
+2025-08-12 08:29:38.080 [http-nio-8081-exec-2] DEBUG StringBasedMongoQuery - Created query Document{{timestamp=Document{{$gte=Tue Jul 01 00:00:00 ICT 2025, $lte=Tue Aug 12 08:29:38 ICT 2025}}}} for Document{{}} fields.
+2025-08-12 08:29:38.081 [http-nio-8081-exec-2] DEBUG MongoTemplate - find using query: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:38.008Z"}}} fields: Document{{}} sort: { "timestamp" : { "$gte" : { "$date" : "2025-06-30T17:00:00Z"}, "$lte" : { "$date" : "2025-08-12T01:29:38.008Z"}}} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog in collection: audit_logs
+2025-08-12 08:29:38.088 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:29:38.089 [http-nio-8081-exec-2] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.AuditLog@2467af21, SHINHAN_PORTAL.REPORT_SIMO.domain.entit (truncated)...]
+2025-08-12 08:29:38.090 [http-nio-8081-exec-2] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:29:38.091 [http-nio-8081-exec-2] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:30:00.298 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:30:00.299 [http-nio-8081-exec-3] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:30:00.302 [http-nio-8081-exec-3] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.303 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:30:00.310 [http-nio-8081-exec-3] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:30:00.313 [http-nio-8081-exec-3] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:30:00.314 [http-nio-8081-exec-3] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:30:00.315 [http-nio-8081-exec-3] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:30:00.315 [http-nio-8081-exec-3] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:30:00.319 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@13f1d6bd
+2025-08-12 08:30:00.320 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3c4fcbcb
+2025-08-12 08:30:00.321 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@534f16c6
+2025-08-12 08:30:00.321 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@19e2189a
+2025-08-12 08:30:00.321 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@43b6125
+2025-08-12 08:30:00.322 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@46e8f3fa
+2025-08-12 08:30:00.322 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6d3a24c7
+2025-08-12 08:30:00.322 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6415c732
+2025-08-12 08:30:00.323 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3b78b0dc
+2025-08-12 08:30:00.323 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@3a0ee36a
+2025-08-12 08:30:00.324 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6aee4f0
+2025-08-12 08:30:00.325 [http-nio-8081-exec-3] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4c488f40
+2025-08-12 08:30:00.326 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:30:00.327 [http-nio-8081-exec-3] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@32482845, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:30:00.329 [http-nio-8081-exec-3] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:30:00.333 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:30:00.334 [http-nio-8081-exec-4] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:30:00.338 [http-nio-8081-exec-4] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.339 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:30:00.341 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:30:00.341 [http-nio-8081-exec-5] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:30:00.344 [http-nio-8081-exec-4] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:30:00.349 [http-nio-8081-exec-4] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:30:00.350 [http-nio-8081-exec-4] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:30:00.352 [http-nio-8081-exec-4] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:30:00.353 [http-nio-8081-exec-4] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:30:00.353 [http-nio-8081-exec-5] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.353 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:30:00.356 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6542bc45
+2025-08-12 08:30:00.356 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@15993ef9
+2025-08-12 08:30:00.356 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@af5f306
+2025-08-12 08:30:00.357 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2814a5a7
+2025-08-12 08:30:00.357 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@58449474
+2025-08-12 08:30:00.359 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4761773
+2025-08-12 08:30:00.359 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@21bea938
+2025-08-12 08:30:00.360 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2c0a0935
+2025-08-12 08:30:00.360 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5011cff4
+2025-08-12 08:30:00.360 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@64e8870a
+2025-08-12 08:30:00.361 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@30cb15c6
+2025-08-12 08:30:00.362 [http-nio-8081-exec-4] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4c74e14b
+2025-08-12 08:30:00.363 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:30:00.364 [http-nio-8081-exec-5] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:30:00.364 [http-nio-8081-exec-4] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@12c4e95e, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:30:00.367 [http-nio-8081-exec-4] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:30:00.369 [http-nio-8081-exec-5] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:30:00.369 [http-nio-8081-exec-5] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:30:00.370 [http-nio-8081-exec-5] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:30:00.371 [http-nio-8081-exec-5] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.372 [http-nio-8081-exec-5] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:30:00.382 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:30:00.383 [http-nio-8081-exec-5] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@1e9c6d29, SHINHAN_PORTAL.REPORT_SIMO. (truncated)...]
+2025-08-12 08:30:00.387 [http-nio-8081-exec-5] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:30:00.387 [http-nio-8081-exec-5] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:30:00.393 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:30:00.395 [http-nio-8081-exec-7] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:30:00.401 [http-nio-8081-exec-7] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.403 [http-nio-8081-exec-7] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:30:00.407 [http-nio-8081-exec-7] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:30:00.412 [http-nio-8081-exec-7] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:30:00.412 [http-nio-8081-exec-7] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:30:00.413 [http-nio-8081-exec-7] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:30:00.414 [http-nio-8081-exec-7] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:30:00.415 [http-nio-8081-exec-7] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:30:00.424 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:30:00.425 [http-nio-8081-exec-7] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@762f12af, SHINHAN_PORTAL.REPORT_SIMO. (truncated)...]
+2025-08-12 08:30:00.426 [http-nio-8081-exec-7] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:30:00.427 [http-nio-8081-exec-7] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:33:38.244 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:33:38.244 [http-nio-8081-exec-6] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:33:38.249 [http-nio-8081-exec-6] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.251 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:33:38.258 [http-nio-8081-exec-6] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:33:38.262 [http-nio-8081-exec-6] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:33:38.262 [http-nio-8081-exec-6] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:33:38.263 [http-nio-8081-exec-6] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:33:38.264 [http-nio-8081-exec-6] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:33:38.267 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@7810f963
+2025-08-12 08:33:38.267 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@1b21b3f4
+2025-08-12 08:33:38.267 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2e1a5bac
+2025-08-12 08:33:38.268 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@72191883
+2025-08-12 08:33:38.268 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@dbd2c42
+2025-08-12 08:33:38.268 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@1b958012
+2025-08-12 08:33:38.268 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@67ae6ff7
+2025-08-12 08:33:38.269 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5dc9be81
+2025-08-12 08:33:38.269 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@39f24646
+2025-08-12 08:33:38.270 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@e50c47a
+2025-08-12 08:33:38.270 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@1a95c390
+2025-08-12 08:33:38.270 [http-nio-8081-exec-6] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@a384bf5
+2025-08-12 08:33:38.271 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:33:38.271 [http-nio-8081-exec-6] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@2153ec82, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:33:38.272 [http-nio-8081-exec-6] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:33:38.278 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Securing GET /api/templates
+2025-08-12 08:33:38.279 [http-nio-8081-exec-8] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/templates
+2025-08-12 08:33:38.281 [http-nio-8081-exec-8] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.282 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:33:38.286 [http-nio-8081-exec-8] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:33:38.291 [http-nio-8081-exec-8] DEBUG FilterChainProxy - Secured GET /api/templates
+2025-08-12 08:33:38.291 [http-nio-8081-exec-8] DEBUG DispatcherServlet - GET "/api/templates", parameters={}
+2025-08-12 08:33:38.292 [http-nio-8081-exec-8] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.TemplateController#getAllTemplates()
+2025-08-12 08:33:38.292 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:33:38.293 [http-nio-8081-exec-9] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:33:38.293 [http-nio-8081-exec-8] DEBUG MongoTemplate - find using query: {} fields: Document{{}} sort: null for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template in collection: templates
+2025-08-12 08:33:38.297 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@1367add5
+2025-08-12 08:33:38.297 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@462d2374
+2025-08-12 08:33:38.298 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@5563b153
+2025-08-12 08:33:38.298 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4ca4b080
+2025-08-12 08:33:38.298 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6203b5c4
+2025-08-12 08:33:38.299 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@4d1a1c73
+2025-08-12 08:33:38.300 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@53bc5aa
+2025-08-12 08:33:38.300 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@6c72553d
+2025-08-12 08:33:38.300 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@132060e2
+2025-08-12 08:33:38.301 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@ec40f71
+2025-08-12 08:33:38.300 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.301 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@55099d96
+2025-08-12 08:33:38.301 [http-nio-8081-exec-8] INFO  TemplateServiceImp - Template @@@SHINHAN_PORTAL.REPORT_SIMO.domain.entity.Template@2b2cf1b7
+2025-08-12 08:33:38.301 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:33:38.302 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:33:38.302 [http-nio-8081-exec-8] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.application.dto.TemplateDTO@3b9bb340, SHINHAN_PORTAL.REPORT_SIMO.applica (truncated)...]
+2025-08-12 08:33:38.303 [http-nio-8081-exec-8] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:33:38.312 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:33:38.316 [http-nio-8081-exec-9] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:33:38.317 [http-nio-8081-exec-9] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:33:38.318 [http-nio-8081-exec-9] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:33:38.318 [http-nio-8081-exec-9] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.320 [http-nio-8081-exec-9] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:33:38.329 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:33:38.330 [http-nio-8081-exec-9] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@2e9da419, SHINHAN_PORTAL.REPORT_SIMO. (truncated)...]
+2025-08-12 08:33:38.331 [http-nio-8081-exec-9] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:33:38.332 [http-nio-8081-exec-9] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:33:38.335 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Securing GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:33:38.336 [http-nio-8081-exec-10] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/API_1_6_TTDS_TKTT_DK/getData
+2025-08-12 08:33:38.340 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "username" : "BankerID"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.340 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "username" : "BankerID"} fields: Document{{}} sort: { "username" : "BankerID"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.User in collection: users
+2025-08-12 08:33:38.346 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, description, endpoint, httpMethod, ipAddress, userAgent, timestamp, _class] in collection: audit_logs
+2025-08-12 08:33:38.349 [http-nio-8081-exec-10] DEBUG FilterChainProxy - Secured GET /api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025
+2025-08-12 08:33:38.350 [http-nio-8081-exec-10] DEBUG DispatcherServlet - GET "/api/API_1_6_TTDS_TKTT_DK/getData?templateID=API_1_6_TTDS_TKTT_DK&monthYear=072025", parameters={masked}
+2025-08-12 08:33:38.350 [http-nio-8081-exec-10] DEBUG RequestMappingHandlerMapping - Mapped to SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6.GetDataController#getData(String, String)
+2025-08-12 08:33:38.351 [http-nio-8081-exec-10] DEBUG MongoQueryCreator - Created query Query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"}, Fields: {}, Sort: {}
+2025-08-12 08:33:38.352 [http-nio-8081-exec-10] DEBUG MongoTemplate - find using query: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} fields: Document{{}} sort: { "templateID" : "API_1_6_TTDS_TKTT_DK", "monthYear" : "072025"} for class: class SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky in collection: API_1_6_tktt_dinh_ky
+2025-08-12 08:33:38.362 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-08-12 08:33:38.363 [http-nio-8081-exec-10] DEBUG HttpEntityMethodProcessor - Writing [[SHINHAN_PORTAL.REPORT_SIMO.domain.entity.API_1_6_tktt_dinh_ky@92dbbaa, SHINHAN_PORTAL.REPORT_SIMO.d (truncated)...]
+2025-08-12 08:33:38.364 [http-nio-8081-exec-10] DEBUG DispatcherServlet - Completed 200 OK
+2025-08-12 08:33:38.365 [http-nio-8081-exec-10] DEBUG MongoTemplate - Inserting Document containing fields: [username, userRole, actionType, resourceType, resourceId, description, endpoint, httpMethod, ipAddress, timestamp, responseStatus, _class] in collection: audit_logs
+2025-08-12 08:43:50.117 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T06:03:42.431Z
+2025-08-12 08:43:50.123 [http-nio-8081-exec-1] INFO  ReportSimoApplication - JWT Filter - Request: GET /api/audit-logs/search
+2025-08-12 08:43:50.125 [http-nio-8081-exec-1] DEBUG AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-12 08:43:50.249 [http-nio-8081-exec-1] ERROR [dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: SHINHAN_PORTAL.REPORT_SIMO.domain.entity.ErrorResponse["timestamp"])
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1328) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.impl.UnsupportedTypeSerializer.serialize(UnsupportedTypeSerializer.java:35) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:770) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:184) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:502) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:341) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ObjectMapper._writeValueAndClose(ObjectMapper.java:4811) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at com.fasterxml.jackson.databind.ObjectMapper.writeValue(ObjectMapper.java:4035) ~[jackson-databind-2.18.2.jar:2.18.2]
+	at SHINHAN_PORTAL.REPORT_SIMO.infrastructure.security.JwtAuthenticationEntryPoint.commence(JwtAuthenticationEntryPoint.java:30) ~[classes/:?]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.sendStartAuthentication(ExceptionTranslationFilter.java:219) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.handleAccessDeniedException(ExceptionTranslationFilter.java:197) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.handleSpringSecurityException(ExceptionTranslationFilter.java:178) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:147) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at SHINHAN_PORTAL.REPORT_SIMO.infrastructure.security.authenticationJwtTokenFilter.doFilterInternal(authenticationJwtTokenFilter.java:43) ~[classes/:?]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:842) [?:?]
+2025-08-12 08:43:50.342 [http-nio-8081-exec-1] DEBUG FilterChainProxy - Securing GET /api/audit-logs/search?page=0&size=20&startDate=2025-06-30T17:00:00.000Z&endDate=2025-08-11T06:03:42.431Z
+2025-08-12 08:43:50.343 [http-nio-8081-exec-1] DEBUG AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-12 08:43:50.344 [http-nio-8081-exec-1] ERROR [dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.springframework.security.authorization.AuthorizationDeniedException: Access Denied
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:99) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:91) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:633) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:511) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:454) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:361) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:208) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:285) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:149) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:842) [?:?]
+2025-08-12 08:43:50.359 [http-nio-8081-exec-1] ERROR [localhost] - Exception Processing [ErrorPage[errorCode=0, location=/error]]
+jakarta.servlet.ServletException: Unable to handle the Spring Security Exception because the response is already committed.
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:144) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:91) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.3.jar:6.4.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.2.3.jar:6.2.3]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:633) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:511) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:454) ~[tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:361) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:208) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:285) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:149) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.36.jar:10.1.36]
+	at java.base/java.lang.Thread.run(Thread.java:842) [?:?]
+Caused by: org.springframework.security.authorization.AuthorizationDeniedException: Access Denied
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:99) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.3.jar:6.4.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.4.3.jar:6.4.3]
+	... 67 more
+2025-08-12 08:48:19.369 [SpringApplicationShutdownHook] DEBUG ApplicationAvailabilityBean - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2025-08-12 08:48:19.373 [SpringApplicationShutdownHook] DEBUG AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@62ea3440, started on Mon Aug 11 17:07:09 ICT 2025
+2025-08-12 08:48:19.444 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Stopping beans in phase 2147482623
+2025-08-12 08:48:19.458 [SpringApplicationShutdownHook] INFO  GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-12 08:48:19.747 [tomcat-shutdown] INFO  GracefulShutdown - Graceful shutdown complete
+2025-08-12 08:48:19.748 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Stopping beans in phase 2147481599
+2025-08-12 08:48:19.748 [tomcat-shutdown] DEBUG DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+2025-08-12 08:48:19.753 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+2025-08-12 08:48:19.753 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Stopping beans in phase 1073741823
+2025-08-12 08:48:19.754 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Bean 'applicationTaskExecutor' completed its stop procedure
+2025-08-12 08:48:19.754 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Stopping beans in phase -2147483647
+2025-08-12 08:48:19.758 [SpringApplicationShutdownHook] DEBUG DefaultLifecycleProcessor - Bean 'springBootLoggingLifecycle' completed its stop procedure
+2025-08-12 08:48:19.762 [SpringApplicationShutdownHook] DEBUG ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

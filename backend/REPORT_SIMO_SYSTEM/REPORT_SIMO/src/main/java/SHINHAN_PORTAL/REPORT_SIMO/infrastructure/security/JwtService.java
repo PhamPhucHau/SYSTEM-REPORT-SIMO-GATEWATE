@@ -57,4 +57,11 @@ public class JwtService {
             return null; // Token không hợp lệ
         }
     }
+    public String extractUserRole(String token) {
+        return (String) Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .get("role"); // <-- Lấy đúng claim "role"
+    }
 }

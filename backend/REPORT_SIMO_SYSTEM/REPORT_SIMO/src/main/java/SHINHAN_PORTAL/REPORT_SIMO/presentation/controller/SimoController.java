@@ -85,6 +85,34 @@ public class SimoController {
                         .collect(Collectors.toList());
                 return simoService.api_1_30_updateDVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
+            case "API_1_23_TOCHUC" -> {
+                List<API_1_23_TOCHUC_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_23_TOCHUC)
+                        .collect(Collectors.toList());
+                // TODO: Gọi service xử lý upload cho API_1_23
+                return simoService.api_1_23_uploadToChuc_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_24_TOCHUC_NGGL" -> {
+                List<API_1_24_TOCHUC_NGGL_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_24_TOCHUC_NGGL)
+                        .collect(Collectors.toList());
+                // TODO: Gọi service xử lý upload cho API_1_24
+                return simoService.api_1_24_uploadToChucNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_25_UPDATE_TOCHUC_NGGL" -> {
+                List<API_1_25_UPDATE_TOCHUC_NGGL_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_25_UPDATE_TOCHUC_NGGL)
+                        .collect(Collectors.toList());
+                // TODO: Gọi service xử lý upload cho API_1_25
+                return simoService.api_1_25_update_uploadToChucNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
+            case "API_1_26_UPDATE_TOCHUC" -> {
+                List<API_1_26_UPDATE_TOCHUC_DTO> formattedData = tkttList.stream()
+                        .map(DataMapperUtils::mapTo_API_1_26_UPDATE_TOCHUC)
+                        .collect(Collectors.toList());
+                // TODO: Gọi service xử lý upload cho API_1_26
+                return simoService.api_1_26_update_uploadToChuc_autoToken(maYeuCau, kyBaoCao, formattedData);
+            }
             default -> {
                 TKTTResponseDTO response = new TKTTResponseDTO();
                 response.setCode("400");
