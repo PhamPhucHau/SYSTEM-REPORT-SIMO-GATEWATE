@@ -1,10 +1,14 @@
 package SHINHAN_PORTAL.REPORT_SIMO.presentation.controller.API_1_6;
 
 
+import SHINHAN_PORTAL.REPORT_SIMO.application.dto.TKTTResponseDTO;
+import SHINHAN_PORTAL.REPORT_SIMO.application.service.StatusUpdateService;
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.TemplateDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +25,8 @@ public class GetDataController {
     public GetDataController(Map<String, TemplateDataService<?>> serviceMap) {
         this.serviceMap = serviceMap;
     }
+    @Autowired
+	private StatusUpdateService statusUpdateService;
     // @Autowired
     // private API_1_6_tktt_dinh_ky_service api_1_6_tktt_dinh_ky_service;
 
@@ -86,4 +92,21 @@ public class GetDataController {
 
         return ResponseEntity.ok(data);
     }
+
+
+	@PostMapping("/update-status")
+	public TKTTResponseDTO updateStatus(@RequestHeader("maYeuCau") String maYeuCau,
+	                                   @RequestHeader("kyBaoCao") String kyBaoCao,
+	                                   @RequestParam String templateID,
+	                                   @RequestParam(required = false, defaultValue = "90") String oldStatus,
+	                                   @RequestParam(required = false, defaultValue = "00") String newStatus) {
+		String monthYear = kyBaoCao == null ? "" : kyBaoCao.replace("/", "");
+		long updated = statusUpdateService.updateStatus(templateID, monthYear, oldStatus, newStatus);
+
+		TKTTResponseDTO response = new TKTTResponseDTO();
+		response.setCode("200");
+		response.setSuccess(true);
+		response.setMessage("Updated " + updated + " record(s) for " + templateID + " - " + monthYear);
+		return response;
+	}
 }

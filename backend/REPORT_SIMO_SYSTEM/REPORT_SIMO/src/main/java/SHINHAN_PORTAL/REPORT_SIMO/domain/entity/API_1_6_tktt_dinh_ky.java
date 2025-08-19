@@ -28,6 +28,8 @@ public class API_1_6_tktt_dinh_ky {
     private String templateID;
     private String monthYear;
     private String username;
+    private String status;
+
 
 
     public String getUsername() {
@@ -201,6 +203,14 @@ public class API_1_6_tktt_dinh_ky {
     }
     public void setMonthYear(String monthYear) {
         this.monthYear = monthYear;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 

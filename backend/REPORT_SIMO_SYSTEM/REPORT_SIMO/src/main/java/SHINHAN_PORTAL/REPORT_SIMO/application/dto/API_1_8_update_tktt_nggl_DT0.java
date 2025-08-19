@@ -1,5 +1,6 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -25,6 +26,7 @@ public class API_1_8_update_tktt_nggl_DT0 {
     private String lyDoCapNhat;
     private String templateID;
     private String monthYear;
+    private String status;
 
     // Getters and Setters
 
@@ -98,5 +100,13 @@ public class API_1_8_update_tktt_nggl_DT0 {
 
     public void setLyDoCapNhat(String lyDoCapNhat) {
         this.lyDoCapNhat = lyDoCapNhat;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

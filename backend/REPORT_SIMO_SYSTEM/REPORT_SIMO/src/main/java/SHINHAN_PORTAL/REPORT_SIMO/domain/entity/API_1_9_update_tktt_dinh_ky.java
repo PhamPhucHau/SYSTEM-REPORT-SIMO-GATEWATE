@@ -29,6 +29,7 @@ public class API_1_9_update_tktt_dinh_ky {
     private String templateID;
     private String monthYear;
     private String username;
+    private String status;
 
 
     public String getUsername() {
@@ -211,5 +212,13 @@ public class API_1_9_update_tktt_dinh_ky {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

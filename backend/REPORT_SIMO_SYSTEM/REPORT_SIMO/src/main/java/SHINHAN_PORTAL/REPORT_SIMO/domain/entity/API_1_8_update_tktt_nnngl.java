@@ -7,108 +7,117 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "API_1_6_tktt_dinh_ky")
 public class API_1_8_update_tktt_nnngl {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id;
-    private String cif;
-    private String soTaiKhoan;
-    private String tenKhachHang;
-    private Integer trangThaiHoatDongTaiKhoan;
-    private Integer nghiNgo;
-    private String ghiChu;
-    private String lyDoCapNhat;
-    private String templateID;
-    private String monthYear;
-    private String username ;
+	@Id
+	private String id;
+	private String cif;
+	private String soTaiKhoan;
+	private String tenKhachHang;
+	private Integer trangThaiHoatDongTaiKhoan;
+	private Integer nghiNgo;
+	private String ghiChu;
+	private String lyDoCapNhat;
+	private String templateID;
+	private String monthYear;
+	private String username ;
+	private String status;
 
-    // Getters and Setters
+	// Getters and Setters
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getCif() {
-        return cif;
-    }
+	public String getCif() {
+		return cif;
+	}
 
-    public void setCif(String cif) {
-        this.cif = cif;
-    }
+	public void setCif(String cif) {
+		this.cif = cif;
+	}
 
-    public String getSoTaiKhoan() {
-        return soTaiKhoan;
-    }
+	public String getSoTaiKhoan() {
+		return soTaiKhoan;
+	}
 
-    public void setSoTaiKhoan(String soTaiKhoan) {
-        this.soTaiKhoan = soTaiKhoan;
-    }
+	public void setSoTaiKhoan(String soTaiKhoan) {
+		this.soTaiKhoan = soTaiKhoan;
+	}
 
-    public String getTenKhachHang() {
-        return tenKhachHang;
-    }
+	public String getTenKhachHang() {
+		return tenKhachHang;
+	}
 
-    public void setTenKhachHang(String tenKhachHang) {
-        this.tenKhachHang = tenKhachHang;
-    }
+	public void setTenKhachHang(String tenKhachHang) {
+		this.tenKhachHang = tenKhachHang;
+	}
 
-    public Integer getTrangThaiHoatDongTaiKhoan() {
-        return trangThaiHoatDongTaiKhoan;
-    }
+	public Integer getTrangThaiHoatDongTaiKhoan() {
+		return trangThaiHoatDongTaiKhoan;
+	}
 
-    public void setTrangThaiHoatDongTaiKhoan(Integer trangThaiHoatDongTaiKhoan) {
-        this.trangThaiHoatDongTaiKhoan = trangThaiHoatDongTaiKhoan;
-    }
+	public void setTrangThaiHoatDongTaiKhoan(Integer trangThaiHoatDongTaiKhoan) {
+		this.trangThaiHoatDongTaiKhoan = trangThaiHoatDongTaiKhoan;
+	}
 
-    public Integer getNghiNgo() {
-        return nghiNgo;
-    }
+	public Integer getNghiNgo() {
+		return nghiNgo;
+	}
 
-    public void setNghiNgo(Integer nghiNgo) {
-        this.nghiNgo = nghiNgo;
-    }
+	public void setNghiNgo(Integer nghiNgo) {
+		this.nghiNgo = nghiNgo;
+	}
 
-    public String getGhiChu() {
-        return ghiChu;
-    }
+	public String getGhiChu() {
+		return ghiChu;
+	}
 
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
+	public void setGhiChu(String ghiChu) {
+		this.ghiChu = ghiChu;
+	}
 
-    public String getTemplateID() {
-        return templateID;
-    }
+	public String getTemplateID() {
+		return templateID;
+	}
 
-    public void setTemplateID(String templateID) {
-        this.templateID = templateID;
-    }
+	public void setTemplateID(String templateID) {
+		this.templateID = templateID;
+	}
 
-    public String getMonthYear() {
-        return monthYear;
-    }
+	public String getMonthYear() {
+		return monthYear;
+	}
 
-    public void setMonthYear(String monthYear) {
-        this.monthYear = monthYear;
-    }
+	public void setMonthYear(String monthYear) {
+		this.monthYear = monthYear;
+	}
 
-    public String getLyDoCapNhat() {
-        return lyDoCapNhat;
-    }
+	public String getLyDoCapNhat() {
+		return lyDoCapNhat;
+	}
 
-    public void setLyDoCapNhat(String lyDoCapNhat) {
-        this.lyDoCapNhat = lyDoCapNhat;
-    }
+	public void setLyDoCapNhat(String lyDoCapNhat) {
+		this.lyDoCapNhat = lyDoCapNhat;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

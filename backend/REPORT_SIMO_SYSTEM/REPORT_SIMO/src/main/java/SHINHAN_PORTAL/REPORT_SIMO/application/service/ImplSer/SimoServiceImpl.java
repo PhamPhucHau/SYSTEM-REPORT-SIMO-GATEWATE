@@ -4,9 +4,12 @@ import SHINHAN_PORTAL.REPORT_SIMO.ReportSimoApplication;
 import SHINHAN_PORTAL.REPORT_SIMO.application.dto.*;
 import SHINHAN_PORTAL.REPORT_SIMO.application.exception.FileStorageException;
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.SimoService;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.repository.API_1_6_tktt_dinh_ky_Repository;
+import SHINHAN_PORTAL.REPORT_SIMO.domain.repository.API_1_6_tktt_dinh_ky_Util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.nio.file.*;
+import SHINHAN_PORTAL.REPORT_SIMO.infrastructure.util.API_const;
 @Service
 public class SimoServiceImpl implements SimoService {
 
@@ -80,7 +84,8 @@ public class SimoServiceImpl implements SimoService {
     public SimoServiceImpl() {
         this.restTemplate = new RestTemplate();
     }
-
+    @Autowired
+    private API_1_6_tktt_dinh_ky_Util api_1_6_tktt_dinh_ky_Util;
     @Override
     public TokenResponseDTO getToken(String username, String password, String consumerKey, String consumerSecret) {
         HttpHeaders headers = new HttpHeaders();
@@ -176,6 +181,9 @@ public class SimoServiceImpl implements SimoService {
             ResponseEntity<?> response = restTemplate.postForEntity(tkttUploadUrl, request, TKTTResponseDTO.class);
             logger.info("Response" + response.getBody().toString());
             if (response.getStatusCode() == HttpStatus.OK) {
+                // Update Row status that listData at database with status 90
+                logger.info("Updating status for API_1_6_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_6_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
                 logger.info("Response API 1.6: " + response.getBody().toString());
                 return (TKTTResponseDTO) response.getBody();
             } else {
@@ -234,6 +242,8 @@ public class SimoServiceImpl implements SimoService {
         try {
             ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(tkttUploadUrl_api_1_7, request, TKTTResponseDTO.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+                logger.info("Updating status for API_1_7_TTDS_TKTT_NNGL with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_7_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
                 return response.getBody();
             } else {
                 throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
@@ -292,6 +302,8 @@ public class SimoServiceImpl implements SimoService {
         try {
             ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_8_update_nggl_Url, request, TKTTResponseDTO.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+                logger.info("Updating status for API_1_8_update_tktt_nggl_DT0 with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_8_UPDATE_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
                 return response.getBody();
             } else {
                 throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
@@ -350,6 +362,8 @@ public class SimoServiceImpl implements SimoService {
         try {
             ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_9_update_tktt_Url, request, TKTTResponseDTO.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+                logger.info("Updating status for API_1_9_UPDATE_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_9_UPDATE_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
                 logger.info("Response:" + response.toString());
                 return response.getBody();
             } else {
@@ -387,22 +401,22 @@ public class SimoServiceImpl implements SimoService {
 
 @Override
 public TKTTResponseDTO api_1_27_uploadDVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_27_TT_DVCNTT_DTO> dvcnttList) {
-    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_27_upload_dvcntt_Url, "API1_27_");
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_27_upload_dvcntt_Url, "API_1_27_TT_DVCNTT");
 }
 
 @Override
 public TKTTResponseDTO api_1_28_uploadNGGL_DVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_28_TT_DVCNTT_NGGL_DTO> dvcnttList) {
-    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_28_upload_nggl_dvcntt_Url, "API1_28_");
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_28_upload_nggl_dvcntt_Url, "API_1_28_TT_DVCNTT_NGGL");
 }
 
 @Override
 public TKTTResponseDTO api_1_29_updateNGGL_DVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_29_UPDATE_DVCNTT_NGGL_DTO> dvcnttList) {
-    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_29_update_nggl_dvcntt_Url, "API1_29_");
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_29_update_nggl_dvcntt_Url, "API_1_29_UPDATE_DVCNTT_NGGL");
 }
 
 @Override
 public TKTTResponseDTO api_1_30_updateDVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_30_UPDATE_DVCNTT_DTO> dvcnttList) {
-    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_30_update_dvcntt_Url, "API1_30_");
+    return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_30_update_dvcntt_Url, "API_1_30_UPDATE_DVCNTT");
 }
 
 @Override
@@ -427,19 +441,19 @@ public TKTTResponseDTO api_1_30_updateDVCNTT_autoToken(String maYeuCau, String k
 
 @Override
 public TKTTResponseDTO api_1_23_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_23_TOCHUC_DTO> dataList) {
-    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_23_upload_tochuc_Url, "API1_23_");
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_23_upload_tochuc_Url, "API_1_23_TTDS_TKTT_TC_DK");
 }
 @Override
 public TKTTResponseDTO api_1_24_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_24_TOCHUC_NGGL_DTO> dataList) {
-    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_24_upload_tochuc_nggl_Url, "API1_24_");
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_24_upload_tochuc_nggl_Url, "API_1_24_TTDS_TKTT_TC_NGGL");
 }
 @Override
 public TKTTResponseDTO api_1_25_update_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_25_UPDATE_TOCHUC_NGGL_DTO> dataList) {
-    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_25_update_upload_tochuc_nggl_Url, "API1_25_");
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_25_update_upload_tochuc_nggl_Url, "API_1_25_UPDATE_TTDS_TKTT_TC_NGGL");
 }
 @Override
 public TKTTResponseDTO api_1_26_update_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_26_UPDATE_TOCHUC_DTO> dataList) {
-    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_26_update_upload_tochuc_Url, "API1_26_");
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_26_update_upload_tochuc_Url, "API_1_26_UPDATE_TTDS_TKTT_TC_NGGL");
 }
 
 // --- Đoạn này bạn nên đặt trong private method chung ---
@@ -450,6 +464,9 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
     headers.set("Authorization", "Bearer " + token);
     headers.set("maYeuCau", maYeuCau);
     headers.set("kyBaoCao", kyBaoCao);
+
+
+
 
     ObjectMapper objectMapper = new ObjectMapper();
     try {
@@ -465,6 +482,9 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
         ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(url, request, TKTTResponseDTO.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
+            // Update Row status that listData at database with status 90
+            api_1_6_tktt_dinh_ky_Util.updateStatus( prefixFileName, kyBaoCao, API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+            // Update Row status that listData at database with status 90
             return response.getBody();
         } else {
             throw new RuntimeException("Failed to upload report: " + response.getStatusCode());

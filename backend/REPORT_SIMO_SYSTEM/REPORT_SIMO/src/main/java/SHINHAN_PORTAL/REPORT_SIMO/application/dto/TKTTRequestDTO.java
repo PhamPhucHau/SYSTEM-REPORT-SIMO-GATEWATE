@@ -2,6 +2,7 @@ package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TKTTRequestDTO {
     @JsonProperty("Cif")
@@ -57,6 +58,8 @@ public class TKTTRequestDTO {
 
     @JsonProperty("QuocTich")
     private String quocTich;
+    @JsonIgnore
+    private String status = "00"; // Giá trị mặc định
     // Getters and Setters
     public String getCif() {
         return cif;
@@ -201,4 +204,13 @@ public class TKTTRequestDTO {
     public void setQuocTich(String quocTich) {
         this.quocTich = quocTich;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

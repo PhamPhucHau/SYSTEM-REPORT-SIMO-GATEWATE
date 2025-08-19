@@ -23,6 +23,7 @@ const Header = () => {
         <Link to="/template">Template Manager</Link>
         <Link to="/upload">Upload Data</Link>
         <Link to="/users">User Management</Link>
+        <Link to="/data_management">Data Management</Link>
         <Link to="/history">History</Link>
         <Link to="/file_upload">File Upload History</Link>
         <span className="username">

@@ -1,6 +1,6 @@
 /* General container styling with Apple-inspired aesthetic */
 .apple-home {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
   background-color: #f5f5f7;
   min-height: 100vh;
   padding: clamp(1rem, 2vw, 1.5rem);
@@ -17,14 +17,14 @@
 }
 
 .hero-section h1 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  /* font-size: clamp(1.5rem, 5vw, 2.5rem); */
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
   color: #fff;
 }
 
 .hero-section p {
-  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  /* font-size: clamp(0.875rem, 2.5vw, 1.125rem); */
   opacity: 0.9;
   color: #d2d2d7;
 }
@@ -45,19 +45,19 @@
 
 .nav-card .card-title {
   color: #1d1d1f;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  /* font-size: clamp(1rem, 2.5vw, 1.25rem); */
   margin-bottom: 0.5rem;
 }
 
 .nav-card .card-text {
-  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 2vw, 0.875rem); */
   color: #6e6e73;
 }
 
 /* Footer section */
 .footer-section {
   border-top: 1px solid #d2d2d7;
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
   color: #6e6e73;
   padding: clamp(0.75rem, 2vw, 1rem) 0;
   text-align: center;
@@ -71,7 +71,7 @@
 }
 
 .data-display-container h2 {
-  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  /* font-size: clamp(1.25rem, 3.5vw, 1.75rem); */
   font-weight: bold;
   text-align: center;
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
@@ -102,7 +102,7 @@ label {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #333;
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
 }
 
 /* Select styling */
@@ -110,7 +110,7 @@ select {
   padding: clamp(0.4rem, 1.2vw, 0.5rem);
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
   background: white;
   cursor: pointer;
   transition: border-color 0.3s ease;
@@ -127,7 +127,7 @@ select:hover {
   padding: clamp(0.4rem, 1.2vw, 0.5rem);
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
   background: white;
   cursor: pointer;
   transition: border-color 0.3s ease;
@@ -148,7 +148,7 @@ select:hover {
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+  /* font-size: clamp(0.7rem, 1.8vw, 0.85rem); */
 }
 
 .table th,
@@ -175,7 +175,7 @@ select:hover {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
   min-width: clamp(100px, 30vw, 120px);
 }
 
@@ -191,7 +191,7 @@ select:hover {
 
 /* Status messages */
 .alert {
-  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  /* font-size: clamp(0.75rem, 1.8vw, 0.875rem); */
   margin: clamp(0.5rem, 1.5vw, 0.75rem) 0;
 }
 
@@ -206,11 +206,11 @@ select:hover {
   }
 
   .hero-section h1 {
-    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    /* font-size: clamp(1.25rem, 4vw, 1.75rem); */
   }
 
   .hero-section p {
-    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    /* font-size: clamp(0.75rem, 2vw, 0.875rem); */
   }
 
   .data-display-container {
@@ -218,7 +218,7 @@ select:hover {
   }
 
   .data-display-container h2 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    /* font-size: clamp(1rem, 3vw, 1.5rem); */
   }
 
   .filter-container {
@@ -234,7 +234,7 @@ select:hover {
   .table th,
   .table td {
     padding: clamp(0.3rem, 1vw, 0.5rem);
-    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    /* font-size: clamp(0.65rem, 1.5vw, 0.75rem); */
   }
 
   .submit-btn {
@@ -253,15 +253,15 @@ select:hover {
   }
 
   .hero-section h1 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    /* font-size: clamp(1rem, 3vw, 1.5rem); */
   }
 
   .hero-section p {
-    font-size: clamp(0.625rem, 1.8vw, 0.75rem);
+    /* font-size: clamp(0.625rem, 1.8vw, 0.75rem); */
   }
 
   .data-display-container h2 {
-    font-size: clamp(0.875rem, 2.5vw, 1.25rem);
+    /* font-size: clamp(0.875rem, 2.5vw, 1.25rem); */
   }
 
   .filter-group {
@@ -271,16 +271,16 @@ select:hover {
   .table th,
   .table td {
     padding: clamp(0.2rem, 0.8vw, 0.4rem);
-    font-size: clamp(0.6rem, 1.3vw, 0.7rem);
+    /* font-size: clamp(0.6rem, 1.3vw, 0.7rem); */
   }
 
   .submit-btn {
     padding: clamp(0.3rem, 1vw, 0.5rem);
-    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+    /* font-size: clamp(0.7rem, 1.5vw, 0.8rem); */
   }
 
   .alert {
-    font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+    /* font-size: clamp(0.625rem, 1.5vw, 0.75rem); */
   }
 
   /* Hide non-essential columns on small screens */
@@ -288,4 +288,15 @@ select:hover {
   .table td:nth-child(n+4) {
     display: none;
   }
+}
+
+.disabled-row {
+  text-decoration: line-through;
+  opacity: 0.6;
+  background-color: #f8f9fa;
+}
+
+.disabled-row td {
+  text-decoration: line-through;
+  color: #6c757d;
 }

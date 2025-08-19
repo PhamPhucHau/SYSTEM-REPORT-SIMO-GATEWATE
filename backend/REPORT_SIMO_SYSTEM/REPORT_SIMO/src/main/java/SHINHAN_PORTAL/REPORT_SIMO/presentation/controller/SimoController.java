@@ -2,6 +2,7 @@ package SHINHAN_PORTAL.REPORT_SIMO.presentation.controller;
 
 import SHINHAN_PORTAL.REPORT_SIMO.application.dto.*;
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.SimoService;
+import SHINHAN_PORTAL.REPORT_SIMO.application.service.StatusUpdateService;
 import SHINHAN_PORTAL.REPORT_SIMO.common.DataMapperUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class SimoController {
     private SimoService simoService;
     //@Autowired
     //private final SimoMapper simoMapper;
+    @Autowired
+	private StatusUpdateService statusUpdateService;
 
     @PostMapping("/token")
     public TokenResponseDTO getToken(@RequestParam String username,
@@ -36,6 +39,7 @@ public class SimoController {
 
         String templateIdUpper = templateID.toUpperCase();
         System.out.println("@@@@"+templateIdUpper);
+
         switch (templateIdUpper) {
             case "API_1_6_TTDS_TKTT_DK" -> {
                 List<TKTTRequestDTO>  formattedData = tkttList.stream()

@@ -33,8 +33,9 @@ public class FileUploadMapper {
             entity.setDiaChiMAC(DataMapperUtils.safeString(dataMap.get("DiaChiMAC")));
             entity.setSoImei(DataMapperUtils.safeString(dataMap.get("SO_IMEI")));
             entity.setTemplateID(templateID);
-            entity.setMonthYear(monthYear);
+          entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_23_TOCHUC: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -52,8 +53,9 @@ public class FileUploadMapper {
             entity.setTrangThaiTaiKhoan(DataMapperUtils.safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
             entity.setNghiNgo(DataMapperUtils.safeInteger(dataMap.get("NghiNgo"), null));
             entity.setTemplateID(templateID);
-            entity.setMonthYear(monthYear);
+          entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_24_TOCHUC_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -72,8 +74,9 @@ public class FileUploadMapper {
             entity.setNghiNgo(DataMapperUtils.safeInteger(dataMap.get("NghiNgo"), null));
             entity.setLyDoCapNhat(DataMapperUtils.safeString(dataMap.get("LyDoCapNhat")));
             entity.setTemplateID(templateID);
-            entity.setMonthYear(monthYear);
+          entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_25_UPDATE_TOCHUC_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -103,8 +106,9 @@ public class FileUploadMapper {
             entity.setDiaChiMAC(DataMapperUtils.safeString(dataMap.get("DiaChiMAC")));
             entity.setSoImei(DataMapperUtils.safeString(dataMap.get("SO_IMEI")));
             entity.setTemplateID(templateID);
-            entity.setMonthYear(monthYear);
+          entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_26_UPDATE_TOCHUC: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }

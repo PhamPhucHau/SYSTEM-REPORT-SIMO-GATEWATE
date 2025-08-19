@@ -2,6 +2,7 @@ package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class API_1_25_UPDATE_TOCHUC_NGGL_DTO {
@@ -19,6 +20,15 @@ public class API_1_25_UPDATE_TOCHUC_NGGL_DTO {
     private Integer nghiNgo;
     @JsonProperty("LyDoCapNhat")
     private String lyDoCapNhat;
+      @JsonIgnore
+    private String status = "00"; // Giá trị mặc định
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     // Getters and Setters
     public String getCif() { return cif; }
     public void setCif(String cif) { this.cif = cif; }

@@ -48,6 +48,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_6_tktt_dinh_ky: CIF: [" + DataMapperUtils.safeString(dataMap.get("Cif")) + "]", e);
         }
@@ -66,6 +67,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_7_tktt_nnngl: CIF: [" + DataMapperUtils.safeString(dataMap.get("Cif")) + "]", e);
         }
@@ -84,6 +86,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_8_update_tktt_nnngl: CIF: [" + DataMapperUtils.safeString(dataMap.get("Cif")) + "]", e);
         }
@@ -115,6 +118,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_9_update_tktt_dinh_ky: CIF: [" + DataMapperUtils.safeString(dataMap.get("Cif")) + "]", e);
         }
@@ -145,6 +149,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_23_TOCHUC: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -164,6 +169,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_24_TOCHUC_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -184,6 +190,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_25_UPDATE_TOCHUC_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -215,6 +222,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_26_UPDATE_TOCHUC: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -248,6 +256,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_27_TT_DVCNTT: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -268,6 +277,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_28_TT_DVCNTT_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -289,6 +299,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_29_UPDATE_DVCNTT_NGGL: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }
@@ -323,6 +334,7 @@ public class FileUploadMapper {
             entity.setTemplateID(templateID);
             entity.setMonthYear(monthYear);
             entity.setUsername(username);
+            entity.setStatus(DataMapperUtils.safeString(dataMap.get("Status"), "00"));
         } catch (Exception e) {
             throw new IllegalArgumentException("Error mapping to API_1_30_UPDATE_DVCNTT: Key: [" + DataMapperUtils.safeString(dataMap.get("Key")) + "]", e);
         }

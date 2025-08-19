@@ -2,6 +2,7 @@ package SHINHAN_PORTAL.REPORT_SIMO.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class API_1_30_UPDATE_DVCNTT_DTO {
@@ -71,7 +72,15 @@ public class API_1_30_UPDATE_DVCNTT_DTO {
 
     @JsonProperty("GhiChu")
     private String ghiChu;
+      @JsonIgnore
+    private String status = "00"; // Giá trị mặc định
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public String getKey() {
         return key;
     }
