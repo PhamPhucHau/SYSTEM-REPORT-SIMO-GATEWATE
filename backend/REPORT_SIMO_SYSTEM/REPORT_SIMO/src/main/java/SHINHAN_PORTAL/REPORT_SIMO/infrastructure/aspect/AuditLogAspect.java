@@ -1,10 +1,14 @@
 package SHINHAN_PORTAL.REPORT_SIMO.infrastructure.aspect;
 
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.AuditLogService;
+import SHINHAN_PORTAL.REPORT_SIMO.infrastructure.security.JwtService;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -17,7 +21,8 @@ public class AuditLogAspect {
     
     @Autowired
     private AuditLogService auditLogService;
-    
+    @Autowired
+    private  JwtService jwtService;
     @Around("@annotation(org.springframework.web.bind.annotation.PostMapping) || " +
             "@annotation(org.springframework.web.bind.annotation.PutMapping) || " +
             "@annotation(org.springframework.web.bind.annotation.DeleteMapping)")
@@ -30,7 +35,22 @@ public class AuditLogAspect {
         String resourceId = null;
         String description = "Action executed";
         String userRole = "UNKNOWN";
+                // Get HttpServletRequest
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String requestURI = request.getRequestURI();
+        String httpMethod = request.getMethod();
+
+        // Extract user information (if available)
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            userRole = authentication.getAuthorities().toString();
+        }
+        String authHeader = request.getHeader("Authorization");
         
+
+        String token = authHeader.substring(7);
+        String username = jwtService.extractUsername(token);
+        userRole = jwtService.extractUserRole(token);
         try {
             // Xác định action type dựa trên method name
             String methodName = joinPoint.getSignature().getName();
@@ -56,7 +76,7 @@ public class AuditLogAspect {
             
             // Thực thi method
             result = joinPoint.proceed();
-            
+            description = result != null ? result.toString() : "No result";
             // Ghi log thành công
             auditLogService.logAction(actionType, userRole, resourceType, resourceId, 
                                    description + " - Success");

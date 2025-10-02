@@ -83,6 +83,7 @@ const UploadData = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + user?.token,
+          'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
         },
       }
     );
@@ -526,6 +527,7 @@ const mapDataForAPI18 = (data) => {
             headers: {
               "Content-Type": "application/json",
               "Authorization": "Bearer " + user?.token,
+              'FileName': selectedTemplate?.id + '_' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
             },
           }
         );

@@ -127,7 +127,6 @@ public class FileUploadMapper {
     public API_1_23_TOCHUC mapToAPI_1_23_TOCHUC(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
         API_1_23_TOCHUC entity = new API_1_23_TOCHUC();
         try {
-            entity.setId(DataMapperUtils.safeString(dataMap.get("Key")));
             entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
             entity.setTenToChuc(DataMapperUtils.safeString(dataMap.get("TenToChuc")));
             entity.setSoGiayPhepThanhLap(DataMapperUtils.safeString(dataMap.get("SoGiayPhepThanhLap")));
@@ -159,7 +158,6 @@ public class FileUploadMapper {
     public API_1_24_TOCHUC_NGGL mapToAPI_1_24_TOCHUC_NGGL(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
         API_1_24_TOCHUC_NGGL entity = new API_1_24_TOCHUC_NGGL();
         try {
-            entity.setId(DataMapperUtils.safeString(dataMap.get("Key")));
             entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
             entity.setTenToChuc(DataMapperUtils.safeString(dataMap.get("TenToChuc")));
             entity.setSoGiayPhepThanhLap(DataMapperUtils.safeString(dataMap.get("SoGiayPhepThanhLap")));
@@ -179,7 +177,6 @@ public class FileUploadMapper {
     public API_1_25_UPDATE_TOCHUC_NGGL mapToAPI_1_25_UPDATE_TOCHUC_NGGL(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
         API_1_25_UPDATE_TOCHUC_NGGL entity = new API_1_25_UPDATE_TOCHUC_NGGL();
         try {
-            entity.setId(DataMapperUtils.safeString(dataMap.get("Key")));
             entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
             entity.setTenToChuc(DataMapperUtils.safeString(dataMap.get("TenToChuc")));
             entity.setSoGiayPhepThanhLap(DataMapperUtils.safeString(dataMap.get("SoGiayPhepThanhLap")));
@@ -200,7 +197,6 @@ public class FileUploadMapper {
     public API_1_26_UPDATE_TOCHUC mapToAPI_1_26_UPDATE_TOCHUC(Map<String, Object> dataMap, String templateID, String monthYear, String username) {
         API_1_26_UPDATE_TOCHUC entity = new API_1_26_UPDATE_TOCHUC();
         try {
-            entity.setId(DataMapperUtils.safeString(dataMap.get("Key")));
             entity.setCif(DataMapperUtils.safeString(dataMap.get("Cif")));
             entity.setTenToChuc(DataMapperUtils.safeString(dataMap.get("TenToChuc")));
             entity.setSoGiayPhepThanhLap(DataMapperUtils.safeString(dataMap.get("SoGiayPhepThanhLap")));

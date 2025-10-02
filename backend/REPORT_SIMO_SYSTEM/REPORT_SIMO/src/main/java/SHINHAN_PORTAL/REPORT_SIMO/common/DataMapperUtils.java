@@ -128,70 +128,71 @@ public class DataMapperUtils {
 
     public static API_1_23_TOCHUC_DTO mapTo_API_1_23_TOCHUC(Map<String, Object> dataMap) {
         API_1_23_TOCHUC_DTO dto = new API_1_23_TOCHUC_DTO();
-        dto.setCif(safeString(dataMap.get("Cif")));
-        dto.setTenToChuc(safeString(dataMap.get("TenToChuc")));
-        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("SoGiayPhepThanhLap")));
-        dto.setLoaiGiayToThanhLapToChuc(safeInteger(dataMap.get("LoaiGiayToThanhLapToChuc"), null));
-        dto.setNgayThanhLap(safeString(dataMap.get("NgayThanhLap")));
-        dto.setDiaChiToChuc(safeString(dataMap.get("DiaChiToChuc")));
-        dto.setHoTenNguoiDaiDien(safeString(dataMap.get("HoTenNguoiDaiDien")));
-        dto.setSoGiayToTuyThan(safeString(dataMap.get("SoGiayToTuyThan")));
-        dto.setLoaiGiayToTuyThan(safeInteger(dataMap.get("LoaiGiayToTuyThan"), null));
-        dto.setNgaySinh(safeString(dataMap.get("NgaySinh")));
-        dto.setGioiTinh(safeInteger(dataMap.get("GioiTinh"), null));
-        dto.setQuocTich(safeString(dataMap.get("QuocTich")));
-        dto.setDienThoai(safeString(dataMap.get("DienThoai")));
-        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("SoTaiKhoanToChuc")));
-        dto.setNgayMoTaiKhoan(safeString(dataMap.get("NgayMoTaiKhoan")));
-        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
-        dto.setDiaChiMAC(safeString(dataMap.get("DiaChiMAC")));
-        dto.setSoImei(safeString(dataMap.get("SO_IMEI")));
+        dto.setCif(safeString(dataMap.get("cif")));
+        dto.setTenToChuc(safeString(dataMap.get("tenToChuc")));
+        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("soGiayPhepThanhLap")));
+        dto.setLoaiGiayToThanhLapToChuc(safeInteger(dataMap.get("loaiGiayToThanhLapToChuc"), null));
+        dto.setNgayThanhLap(safeString(dataMap.get("ngayThanhLap")));
+        dto.setDiaChiToChuc(safeString(dataMap.get("diaChiToChuc")));
+        dto.setHoTenNguoiDaiDien(safeString(dataMap.get("hoTenNguoiDaiDien")));
+        dto.setSoGiayToTuyThan(safeString(dataMap.get("soGiayToTuyThan")));
+        dto.setLoaiGiayToTuyThan(safeInteger(dataMap.get("loaiGiayToTuyThan"), null));
+        dto.setNgaySinh(safeString(dataMap.get("ngaySinh")));
+        dto.setGioiTinh(safeInteger(dataMap.get("gioiTinh"), null));
+        dto.setQuocTich(safeString(dataMap.get("quocTich")));
+        dto.setDienThoai(safeString(dataMap.get("dienThoai")));
+        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("soTaiKhoanToChuc")));
+        dto.setNgayMoTaiKhoan(safeString(dataMap.get("ngayMoTaiKhoan")));
+        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("trangThaiTaiKhoan"), null));
+        dto.setDiaChiMAC(safeString(dataMap.get("diaChiMAC")));
+        dto.setSoImei(safeString(dataMap.get("soImei")));
         return dto;
     }
-
+    
     public static API_1_24_TOCHUC_NGGL_DTO mapTo_API_1_24_TOCHUC_NGGL(Map<String, Object> dataMap) {
         API_1_24_TOCHUC_NGGL_DTO dto = new API_1_24_TOCHUC_NGGL_DTO();
-        dto.setCif(safeString(dataMap.get("Cif")));
-        dto.setTenToChuc(safeString(dataMap.get("TenToChuc")));
-        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("SoGiayPhepThanhLap")));
-        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("SoTaiKhoanToChuc")));
-        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
-        dto.setNghiNgo(safeInteger(dataMap.get("NghiNgo"), null));
+        dto.setCif(safeString(dataMap.get("cif")));
+        dto.setTenToChuc(safeString(dataMap.get("tenToChuc")));
+        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("soGiayPhepThanhLap")));
+        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("soTaiKhoanToChuc")));
+        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("trangThaiTaiKhoan"), null));
+        dto.setNghiNgo(safeInteger(dataMap.get("nghiNgo"), null));
         return dto;
     }
-
+    
     public static API_1_25_UPDATE_TOCHUC_NGGL_DTO mapTo_API_1_25_UPDATE_TOCHUC_NGGL(Map<String, Object> dataMap) {
         API_1_25_UPDATE_TOCHUC_NGGL_DTO dto = new API_1_25_UPDATE_TOCHUC_NGGL_DTO();
-        dto.setCif(safeString(dataMap.get("Cif")));
-        dto.setTenToChuc(safeString(dataMap.get("TenToChuc")));
-        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("SoGiayPhepThanhLap")));
-        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("SoTaiKhoanToChuc")));
-        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
-        dto.setNghiNgo(safeInteger(dataMap.get("NghiNgo"), null));
-        dto.setLyDoCapNhat(safeString(dataMap.get("LyDoCapNhat")));
+        dto.setCif(safeString(dataMap.get("cif")));
+        dto.setTenToChuc(safeString(dataMap.get("tenToChuc")));
+        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("soGiayPhepThanhLap")));
+        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("soTaiKhoanToChuc")));
+        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("trangThaiTaiKhoan"), null));
+        dto.setNghiNgo(safeInteger(dataMap.get("nghiNgo"), null));
+        dto.setLyDoCapNhat(safeString(dataMap.get("lyDoCapNhat")));
         return dto;
     }
-
+    
     public static API_1_26_UPDATE_TOCHUC_DTO mapTo_API_1_26_UPDATE_TOCHUC(Map<String, Object> dataMap) {
         API_1_26_UPDATE_TOCHUC_DTO dto = new API_1_26_UPDATE_TOCHUC_DTO();
-        dto.setCif(safeString(dataMap.get("Cif")));
-        dto.setTenToChuc(safeString(dataMap.get("TenToChuc")));
-        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("SoGiayPhepThanhLap")));
-        dto.setLoaiGiayToThanhLapToChuc(safeInteger(dataMap.get("LoaiGiayToThanhLapToChuc"), null));
-        dto.setNgayThanhLap(safeString(dataMap.get("NgayThanhLap")));
-        dto.setDiaChiToChuc(safeString(dataMap.get("DiaChiToChuc")));
-        dto.setHoTenNguoiDaiDien(safeString(dataMap.get("HoTenNguoiDaiDien")));
-        dto.setSoGiayToTuyThan(safeString(dataMap.get("SoGiayToTuyThan")));
-        dto.setLoaiGiayToTuyThan(safeInteger(dataMap.get("LoaiGiayToTuyThan"), null));
-        dto.setNgaySinh(safeString(dataMap.get("NgaySinh")));
-        dto.setGioiTinh(safeInteger(dataMap.get("GioiTinh"), null));
-        dto.setQuocTich(safeString(dataMap.get("QuocTich")));
-        dto.setDienThoai(safeString(dataMap.get("DienThoai")));
-        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("SoTaiKhoanToChuc")));
-        dto.setNgayMoTaiKhoan(safeString(dataMap.get("NgayMoTaiKhoan")));
-        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("TrangThaiTaiKhoan"), null));
-        dto.setDiaChiMAC(safeString(dataMap.get("DiaChiMAC")));
-        dto.setSoImei(safeString(dataMap.get("SO_IMEI")));
+        dto.setCif(safeString(dataMap.get("cif")));
+        dto.setTenToChuc(safeString(dataMap.get("tenToChuc")));
+        dto.setSoGiayPhepThanhLap(safeString(dataMap.get("soGiayPhepThanhLap")));
+        dto.setLoaiGiayToThanhLapToChuc(safeInteger(dataMap.get("loaiGiayToThanhLapToChuc"), null));
+        dto.setNgayThanhLap(safeString(dataMap.get("ngayThanhLap")));
+        dto.setDiaChiToChuc(safeString(dataMap.get("diaChiToChuc")));
+        dto.setHoTenNguoiDaiDien(safeString(dataMap.get("hoTenNguoiDaiDien")));
+        dto.setSoGiayToTuyThan(safeString(dataMap.get("soGiayToTuyThan")));
+        dto.setLoaiGiayToTuyThan(safeInteger(dataMap.get("loaiGiayToTuyThan"), null));
+        dto.setNgaySinh(safeString(dataMap.get("ngaySinh")));
+        dto.setGioiTinh(safeInteger(dataMap.get("gioiTinh"), null));
+        dto.setQuocTich(safeString(dataMap.get("quocTich")));
+        dto.setDienThoai(safeString(dataMap.get("dienThoai")));
+        dto.setSoTaiKhoanToChuc(safeString(dataMap.get("soTaiKhoanToChuc")));
+        dto.setNgayMoTaiKhoan(safeString(dataMap.get("ngayMoTaiKhoan")));
+        dto.setTrangThaiTaiKhoan(safeInteger(dataMap.get("trangThaiTaiKhoan"), null));
+        dto.setDiaChiMAC(safeString(dataMap.get("diaChiMAC")));
+        dto.setSoImei(safeString(dataMap.get("soImei")));
         return dto;
     }
+    
 }

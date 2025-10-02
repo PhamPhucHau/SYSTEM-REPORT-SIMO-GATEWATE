@@ -39,7 +39,7 @@ public class SimoController {
 
         String templateIdUpper = templateID.toUpperCase();
         System.out.println("@@@@"+templateIdUpper);
-
+                                                
         switch (templateIdUpper) {
             case "API_1_6_TTDS_TKTT_DK" -> {
                 List<TKTTRequestDTO>  formattedData = tkttList.stream()
@@ -89,28 +89,28 @@ public class SimoController {
                         .collect(Collectors.toList());
                 return simoService.api_1_30_updateDVCNTT_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
-            case "API_1_23_TOCHUC" -> {
+            case "API_1_23_TTDS_TKTT_TC_DK" -> {
                 List<API_1_23_TOCHUC_DTO> formattedData = tkttList.stream()
                         .map(DataMapperUtils::mapTo_API_1_23_TOCHUC)
                         .collect(Collectors.toList());
                 // TODO: Gọi service xử lý upload cho API_1_23
                 return simoService.api_1_23_uploadToChuc_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
-            case "API_1_24_TOCHUC_NGGL" -> {
+            case "API_1_24_TTDS_TKTT_TC_NGGL" -> {
                 List<API_1_24_TOCHUC_NGGL_DTO> formattedData = tkttList.stream()
                         .map(DataMapperUtils::mapTo_API_1_24_TOCHUC_NGGL)
                         .collect(Collectors.toList());
                 // TODO: Gọi service xử lý upload cho API_1_24
                 return simoService.api_1_24_uploadToChucNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
-            case "API_1_25_UPDATE_TOCHUC_NGGL" -> {
+            case "API_1_25_UPDATE_TTDS_TKTT_TC_NGGL" -> {
                 List<API_1_25_UPDATE_TOCHUC_NGGL_DTO> formattedData = tkttList.stream()
                         .map(DataMapperUtils::mapTo_API_1_25_UPDATE_TOCHUC_NGGL)
                         .collect(Collectors.toList());
                 // TODO: Gọi service xử lý upload cho API_1_25
                 return simoService.api_1_25_update_uploadToChucNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
-            case "API_1_26_UPDATE_TOCHUC" -> {
+            case "API_1_26_UPDATE_TTDS_TKTT_TC_NGGL" -> {
                 List<API_1_26_UPDATE_TOCHUC_DTO> formattedData = tkttList.stream()
                         .map(DataMapperUtils::mapTo_API_1_26_UPDATE_TOCHUC)
                         .collect(Collectors.toList());

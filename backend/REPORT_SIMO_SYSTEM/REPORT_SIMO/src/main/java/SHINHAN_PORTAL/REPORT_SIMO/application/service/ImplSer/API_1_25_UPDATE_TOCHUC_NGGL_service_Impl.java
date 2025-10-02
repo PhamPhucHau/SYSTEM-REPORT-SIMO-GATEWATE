@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("API_1_25_UPDATE_TOCHUC_NGGL")
+@Service("API_1_25_UPDATE_TTDS_TKTT_TC_NGGL")
 public class API_1_25_UPDATE_TOCHUC_NGGL_service_Impl implements TemplateDataService<API_1_25_UPDATE_TOCHUC_NGGL>, API_1_25_UPDATE_TOCHUC_NGGL_service {
     @Autowired
     private API_1_25_UPDATE_TOCHUC_NGGL_Repository repository;

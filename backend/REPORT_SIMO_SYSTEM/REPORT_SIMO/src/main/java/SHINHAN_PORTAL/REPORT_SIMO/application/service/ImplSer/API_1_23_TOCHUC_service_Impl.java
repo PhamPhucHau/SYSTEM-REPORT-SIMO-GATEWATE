@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("API_1_23_TOCHUC")
+@Service("API_1_23_TTDS_TKTT_TC_DK")
 public class API_1_23_TOCHUC_service_Impl implements TemplateDataService<API_1_23_TOCHUC>, API_1_23_TOCHUC_service {
     @Autowired
     private API_1_23_TOCHUC_Repository repository;

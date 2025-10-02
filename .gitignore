@@ -6,3 +6,4 @@ launch.json
 .prod_env
 template.json
 raw.txt
+backend/REPORT_SIMO_SYSTEM/REPORT_SIMO/simo_log/*

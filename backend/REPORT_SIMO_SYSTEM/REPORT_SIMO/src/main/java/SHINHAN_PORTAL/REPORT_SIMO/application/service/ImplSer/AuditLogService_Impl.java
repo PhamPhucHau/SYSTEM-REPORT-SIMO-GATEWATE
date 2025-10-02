@@ -16,6 +16,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -94,13 +95,25 @@ public class AuditLogService_Impl implements AuditLogService {
     
     @Override
     public AuditLog logFileUpload(String filename, String fileSize, String ipAddress,String userRole) {
-        return logActionWithDetails("UPLOAD",userRole, "FILE", filename, 
-                                  "File uploaded: " + filename + " (" + fileSize + ")", 
-                                  "/api/upload", "POST", ipAddress, null, null);
+        HttpServletRequest request = getCurrentRequest();
+        String actionType = "UPLOAD";
+        String resourceType = "FILE";
+        String resourceId = filename;
+        String description = "File uploaded: " + filename + " (" + fileSize + ")";
+        String endpoint = getEndpoint(request); // Lấy endpoint từ request
+        String httpMethod = getHttpMethod(request); // Lấy HTTP method từ request
+        String userAgent = getUserAgent(request); // Lấy User-Agent từ request
+
+        return logActionWithDetails(actionType, userRole, resourceType, resourceId, description, 
+                                 endpoint, httpMethod, ipAddress, userAgent, null);
+        // return logActionWithDetails("UPLOAD",userRole, "FILE", filename, 
+        //                           "File uploaded: " + filename + " (" + fileSize + ")", 
+        //                           "/api/upload", "POST", ipAddress, null, null);
     }
     
     @Override
     public AuditLog logApiCall(String apiEndpoint,String userRole, String method, String requestBody, String ipAddress, String responseStatus) {
+        HttpServletRequest request = getCurrentRequest();
         return logActionWithDetails("API_CALL", userRole, "API", apiEndpoint, "API called: " + method + " " + apiEndpoint, apiEndpoint, method, ipAddress, null, responseStatus);
     }
     

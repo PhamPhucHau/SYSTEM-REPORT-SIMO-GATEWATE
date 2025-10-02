@@ -78,12 +78,15 @@ public class authenticationJwtTokenFilter extends OncePerRequestFilter {
      * Ghi log cho các hành động của user dựa trên endpoint và method
      */
     private void logUserAction(HttpServletRequest request, String username, String userRole, HttpServletResponse response) {
-        String requestURI = request.getRequestURI();
+            String requestURI = request.getRequestURI();
         String httpMethod = request.getMethod();
         String ipAddress = getIpAddress(request);
         String userAgent = getUserAgent(request);
         int Response = response.getStatus();
-        
+        String fileName = request.getHeader("FileName");
+        if (fileName == null || fileName.isEmpty()) {
+            fileName = "UNKNOWN_FILE";
+        }
         // Phân loại hành động dựa trên endpoint
         if (requestURI.startsWith("/api/users")) {
             // if (httpMethod.equals("GET")) {
@@ -101,9 +104,9 @@ public class authenticationJwtTokenFilter extends OncePerRequestFilter {
             //     auditLogService.logFileManagementAction("VIEW", "file_list", username, ipAddress, userAgent,String.valueOf(Response));
             // } else 
             if (httpMethod.equals("POST")) {
-                auditLogService.logFileManagementAction("UPLOAD", "file", username, userRole, ipAddress, userAgent,String.valueOf(Response));
+                auditLogService.logFileManagementAction("UPLOAD", fileName, username, userRole, ipAddress, userAgent,String.valueOf(Response));
             } else if (httpMethod.equals("DELETE")) {
-                auditLogService.logFileManagementAction("DELETE", "file", username, userRole, ipAddress, userAgent,String.valueOf(Response));
+                auditLogService.logFileManagementAction("DELETE", fileName, username, userRole, ipAddress, userAgent,String.valueOf(Response));
             }
         } else if (requestURI.startsWith("/api/templates")) {
             // if (httpMethod.equals("GET")) {

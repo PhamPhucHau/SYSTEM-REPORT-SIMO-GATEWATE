@@ -41,6 +41,10 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
         API_1_7_Processor api_1_7_processor,
         API_1_8_Processor api_1_8_processor,
         API_1_9_Processor api_1_9_processor,
+        API_1_23_Processor api_1_23_processor,
+        API_1_24_Processor api_1_24_processor,
+        API_1_25_Processor api_1_25_processor,
+        API_1_26_Processor api_1_26_processor,
         API_1_27_Processor api_1_27_processor,
         API_1_28_Processor api_1_28_processor,
         API_1_29_Processor api_1_29_processor,
@@ -53,6 +57,10 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
         this.templateProcessors.put(TemplateID.API_1_7_TTDS_TKTT_NNGL, api_1_7_processor);
         this.templateProcessors.put(TemplateID.API_1_8_UPDATE_TTDS_TKTT_NNGL, api_1_8_processor);
         this.templateProcessors.put(TemplateID.API_1_9_UPDATE_TTDS_TKTT_DK, api_1_9_processor);
+        this.templateProcessors.put(TemplateID.API_1_23_TTDS_TKTT_TC_DK, api_1_23_processor);
+        this.templateProcessors.put(TemplateID.API_1_24_TTDS_TKTT_TC_NGGL, api_1_24_processor);
+        this.templateProcessors.put(TemplateID.API_1_25_UPDATE_TTDS_TKTT_TC_NGGL, api_1_25_processor);
+        this.templateProcessors.put(TemplateID.API_1_26_UPDATE_TTDS_TKTT_TC, api_1_26_processor);
     
         // New mappings
         this.templateProcessors.put(TemplateID.API_1_27_TT_DVCNTT, api_1_27_processor);
