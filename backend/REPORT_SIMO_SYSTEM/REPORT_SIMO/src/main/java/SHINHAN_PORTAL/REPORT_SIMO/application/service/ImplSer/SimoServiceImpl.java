@@ -453,7 +453,7 @@ public TKTTResponseDTO api_1_25_update_uploadToChucNGGL_autoToken(String maYeuCa
 }
 @Override
 public TKTTResponseDTO api_1_26_update_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_26_UPDATE_TOCHUC_DTO> dataList) {
-    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_26_update_upload_tochuc_Url, "API_1_26_UPDATE_TTDS_TKTT_TC_NGGL");
+    return postToSimoApi(getValidToken(), maYeuCau, kyBaoCao, dataList, api_1_26_update_upload_tochuc_Url, "API_1_26_UPDATE_TTDS_TKTT_TC");
 }
 
 // --- Đoạn này bạn nên đặt trong private method chung ---

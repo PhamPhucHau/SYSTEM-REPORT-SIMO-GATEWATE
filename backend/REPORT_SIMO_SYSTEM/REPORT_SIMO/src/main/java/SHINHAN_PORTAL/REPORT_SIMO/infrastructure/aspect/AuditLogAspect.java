@@ -35,22 +35,33 @@ public class AuditLogAspect {
         String resourceId = null;
         String description = "Action executed";
         String userRole = "UNKNOWN";
-                // Get HttpServletRequest
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
         String requestURI = request.getRequestURI();
         String httpMethod = request.getMethod();
 
-        // Extract user information (if available)
+        // Extract user information
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             userRole = authentication.getAuthorities().toString();
         }
-        String authHeader = request.getHeader("Authorization");
-        
 
-        String token = authHeader.substring(7);
-        String username = jwtService.extractUsername(token);
-        userRole = jwtService.extractUserRole(token);
+        // ---- 🔑 Handle Authorization Header ----
+        String authHeader = request.getHeader("Authorization");
+        String username = "ANONYMOUS";
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            try {
+                String token = authHeader.substring(7);
+                username = jwtService.extractUsername(token);
+                userRole = jwtService.extractUserRole(token);
+            } catch (Exception e) {
+                // Nếu token lỗi thì gán là INVALID
+                username = "INVALID_TOKEN";
+                userRole = "UNKNOWN";
+            }
+        }
+
         try {
             // Xác định action type dựa trên method name
             String methodName = joinPoint.getSignature().getName();
@@ -63,7 +74,7 @@ public class AuditLogAspect {
             } else if (methodName.contains("upload")) {
                 actionType = "UPLOAD";
             }
-            
+
             // Xác định resource type dựa trên class name
             String className = joinPoint.getTarget().getClass().getSimpleName();
             if (className.contains("User")) {
@@ -73,21 +84,22 @@ public class AuditLogAspect {
             } else if (className.contains("File")) {
                 resourceType = "FILE";
             }
-            
+
             // Thực thi method
             result = joinPoint.proceed();
             description = result != null ? result.toString() : "No result";
+
             // Ghi log thành công
-            auditLogService.logAction(actionType, userRole, resourceType, resourceId, 
-                                   description + " - Success");
-            
+            auditLogService.logAction(actionType, userRole, resourceType, resourceId,
+                    description + " - Success");
+
         } catch (Exception e) {
             // Ghi log lỗi
-            auditLogService.logAction(actionType, userRole, resourceType, resourceId, 
-                                   description + " - Error: " + e.getMessage());
+            auditLogService.logAction(actionType, userRole, resourceType, resourceId,
+                    description + " - Error: " + e.getMessage());
             throw e;
         }
-        
+
         return result;
     }
 } 
