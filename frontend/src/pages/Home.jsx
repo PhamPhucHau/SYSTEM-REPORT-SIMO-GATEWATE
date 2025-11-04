@@ -52,10 +52,10 @@ const DataDisplay = () => {
       setTemplates(response.data);
       
       // Nếu có dữ liệu, tự động chọn template đầu tiên
-      if (response.data.length > 0) {
-        const defaultTemplate = response.data[0];
-        setSelectedTemplate(defaultTemplate);
-      }
+      // if (response.data.length > 0) {
+      //   const defaultTemplate = response.data[0];
+      //   setSelectedTemplate(defaultTemplate);
+      // }
     } catch (err) {
       console.error("Error fetching templates", err);
         if(err.response?.status === 401) { 

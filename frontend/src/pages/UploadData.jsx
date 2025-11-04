@@ -83,7 +83,7 @@ const UploadData = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + user?.token,
-          'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
+          // 'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
         },
       }
     );
@@ -280,7 +280,7 @@ const mapDataForAPI18 = (data) => {
   
           // 2. Kiểm tra độ dài
           if (rules.maxLength && valueAsString.length > rules.maxLength) {
-            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}. `);
+            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" có value ${valueAsString} dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}. `);
           }
   
           if (rules.minLength && valueAsString.length < rules.minLength) {
@@ -527,7 +527,7 @@ const mapDataForAPI18 = (data) => {
             headers: {
               "Content-Type": "application/json",
               "Authorization": "Bearer " + user?.token,
-              'FileName': selectedTemplate?.id + '_' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
+              //'FileName': selectedTemplate?.id + '_' + (requestData?.fileName || 'unknown') // Thêm tiền tố templateID vào tên file
             },
           }
         );
