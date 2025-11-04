@@ -110,7 +110,7 @@ public class SimoController {
                 // TODO: Gọi service xử lý upload cho API_1_25
                 return simoService.api_1_25_update_uploadToChucNGGL_autoToken(maYeuCau, kyBaoCao, formattedData);
             }
-            case "API_1_26_UPDATE_TTDS_TKTT_TC_NGGL" -> {
+            case "API_1_26_UPDATE_TTDS_TKTT_TC" -> {
                 List<API_1_26_UPDATE_TOCHUC_DTO> formattedData = tkttList.stream()
                         .map(DataMapperUtils::mapTo_API_1_26_UPDATE_TOCHUC)
                         .collect(Collectors.toList());
