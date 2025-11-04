@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=Test vite build",
+    "build": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=PROD vite build",
     "lint": "eslint .",
-    "preview": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=Test vite preview"
+    "preview": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=PROD vite preview"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
