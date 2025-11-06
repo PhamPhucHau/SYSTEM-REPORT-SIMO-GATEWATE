@@ -21,8 +21,8 @@ public class API_1_7_tktt_nnngl_service_Impl implements TemplateDataService<API_
     }
 
     @Override
-    public List<API_1_7_tktt_nnngl> getData(String templateID, String monthYear) {
-        return repository.findByTemplateIDAndMonthYear(templateID, monthYear);
+    public List<API_1_7_tktt_nnngl> getData(String templateID, String monthYear, String status) {
+        return repository.findByTemplateIDAndMonthYearAndStatus(templateID, monthYear, status);
     }
     @Override
     public void deleteByTemplateIDAndMonthYearAndUsername(String templateId, String monthYear, String username) {

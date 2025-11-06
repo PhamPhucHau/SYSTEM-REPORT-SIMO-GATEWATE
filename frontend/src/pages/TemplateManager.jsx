@@ -102,6 +102,49 @@ const TemplateManager = () => {
     }
   };
 
+  // Clean code: small, focused helper to download a blob with a given filename
+  const downloadBlob = (blob, filename) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  };
+
+  // SOLID - SRP: this function only handles the download flow
+  // Assumes backend endpoint returns an Excel file for a template
+  const handleDownload = async (template) => {
+    setError(null);
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SIMO_APP_API_URL}/api/templates/download`,
+        {
+          params: {
+            templateID: template.templateID,
+          },
+          headers: {
+            Authorization: "Bearer " + user?.token,
+          },
+          responseType: "blob",
+        }
+      );
+
+      const blob = new Blob(
+        [response.data],
+        { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+      );
+      downloadBlob(blob, `${template.templateID}.xlsx`);
+    } catch (err) {
+      setError("Tải xuống thất bại");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Add new field to schema
   const handleAddField = () => {
     if (!newField.name.trim()) {
@@ -170,6 +213,7 @@ const TemplateManager = () => {
         onClick={() => setAddModalOpen(true)}
         aria-label="Thêm template mới"
         aria-haspopup="dialog"
+        disabled={user?.role !== "ADMIN"}
       >
         Thêm Template
       </button>
@@ -182,6 +226,7 @@ const TemplateManager = () => {
           <tr>
             <th>Template ID</th>
             <th>Template Name</th>
+            <th>File</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -191,10 +236,19 @@ const TemplateManager = () => {
               <td>{template.templateID}</td>
               <td>{template.name}</td>
               <td>
-                <button onClick={() => handleEdit(template)}>Sửa</button>
+                {/* Accessibility: clear label; Clean code: call dedicated handler */}
+                <button
+                  onClick={() => handleDownload(template)}
+                  aria-label={`Tải xuống ${template.templateID}.xlsx`}
+                >
+                  Tải xuống
+                </button>
+              </td>
+              <td>
+                <button onClick={() => handleEdit(template)} className="edit-button" disabled={user?.role !== "ADMIN"}>Sửa</button>
                 <button 
                   onClick={() => handleDelete(template.id)}
-                  className="delete-button"
+                  className="delete-button"  disabled={user?.role !== "ADMIN"}
                 >
                   Xóa
                 </button>

@@ -90,13 +90,13 @@ public class AuditLogAspect {
             description = result != null ? result.toString() : "No result";
 
             // Ghi log thành công
-            auditLogService.logAction(actionType, userRole, resourceType, resourceId,
-                    description + " - Success");
+            // auditLogService.logAction(actionType, userRole, resourceType, resourceId,
+            //         description + " - Success");
 
         } catch (Exception e) {
             // Ghi log lỗi
-            auditLogService.logAction(actionType, userRole, resourceType, resourceId,
-                    description + " - Error: " + e.getMessage());
+            // auditLogService.logAction(actionType, userRole, resourceType, resourceId,
+            //         description + " - Error: " + e.getMessage());
             throw e;
         }
 

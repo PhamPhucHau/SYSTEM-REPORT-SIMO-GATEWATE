@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface API_1_30_UPDATE_DVCNTT_Repository extends MongoRepository<API_1_30_UPDATE_DVCNTT, String> {
-    List<API_1_30_UPDATE_DVCNTT> findByTemplateIDAndMonthYear(String templateID, String monthYear);
+    List<API_1_30_UPDATE_DVCNTT> findByTemplateIDAndMonthYearAndStatus(String templateID, String monthYear, String status);
     void deleteByTemplateIDAndMonthYearAndUsername(String templateID, String monthYear, String username);
 }

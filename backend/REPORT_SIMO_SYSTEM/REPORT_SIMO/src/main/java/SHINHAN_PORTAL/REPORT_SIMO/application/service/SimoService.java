@@ -37,4 +37,17 @@ public interface SimoService {
     TKTTResponseDTO api_1_24_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_24_TOCHUC_NGGL_DTO> dataList);
     TKTTResponseDTO api_1_25_update_uploadToChucNGGL_autoToken(String maYeuCau, String kyBaoCao, List<API_1_25_UPDATE_TOCHUC_NGGL_DTO> dataList);
     TKTTResponseDTO api_1_26_update_uploadToChuc_autoToken(String maYeuCau, String kyBaoCao, List<API_1_26_UPDATE_TOCHUC_DTO> dataList);
+
+    // API 1.31–1.34 Thẻ ngân hàng (TNH)
+    TKTTResponseDTO api_1_31_tt_tnh(String token, String maYeuCau, String kyBaoCao, List<API_1_31_TT_TNH_DTO> dataList);
+    TKTTResponseDTO api_1_31_tt_tnh_autoToken(String maYeuCau, String kyBaoCao, List<API_1_31_TT_TNH_DTO> dataList);
+
+    TKTTResponseDTO api_1_32_tt_tnh_nggl(String token, String maYeuCau, String kyBaoCao, List<API_1_32_TT_TNH_NGGL_DTO> dataList);
+    TKTTResponseDTO api_1_32_tt_tnh_nggl_autoToken(String maYeuCau, String kyBaoCao, List<API_1_32_TT_TNH_NGGL_DTO> dataList);
+
+    TKTTResponseDTO api_1_33_update_tnh_nggl(String token, String maYeuCau, String kyBaoCao, List<API_1_33_UPDATE_TNH_NGGL_DTO> dataList);
+    TKTTResponseDTO api_1_33_update_tnh_nggl_autoToken(String maYeuCau, String kyBaoCao, List<API_1_33_UPDATE_TNH_NGGL_DTO> dataList);
+
+    TKTTResponseDTO api_1_34_update_tnh(String token, String maYeuCau, String kyBaoCao, List<API_1_34_UPDATE_TNH_DTO> dataList);
+    TKTTResponseDTO api_1_34_update_tnh_autoToken(String maYeuCau, String kyBaoCao, List<API_1_34_UPDATE_TNH_DTO> dataList);
 }

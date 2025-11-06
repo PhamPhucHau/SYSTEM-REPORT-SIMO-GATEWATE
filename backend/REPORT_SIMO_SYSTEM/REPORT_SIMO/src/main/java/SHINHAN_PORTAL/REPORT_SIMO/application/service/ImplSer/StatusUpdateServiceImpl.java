@@ -14,11 +14,5 @@ public class StatusUpdateServiceImpl implements StatusUpdateService {
 	public long updateStatus(String templateID, String monthYear, String oldStatus, String newStatus) {
 		String template = templateID == null ? "" : templateID.toUpperCase();
 		return api16Util.updateStatus(template, monthYear, oldStatus, newStatus);
-		// switch (template) {
-		// 	case "API_1_6_TTDS_TKTT_DK":
-		// 		return api16Util.updateStatus(template, monthYear, oldStatus, newStatus);
-		// 	default:
-		// 		throw new IllegalArgumentException("Unsupported templateID: " + templateID);
-		// }
 	}
 } 

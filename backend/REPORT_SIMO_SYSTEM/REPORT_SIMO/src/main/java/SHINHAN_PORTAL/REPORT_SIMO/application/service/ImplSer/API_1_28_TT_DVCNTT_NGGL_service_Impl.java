@@ -20,8 +20,8 @@ public class API_1_28_TT_DVCNTT_NGGL_service_Impl implements TemplateDataService
     }
 
     @Override
-    public List<API_1_28_TT_DVCNTT_NGGL> getData(String templateID, String monthYear) {
-        return repository.findByTemplateIDAndMonthYear(templateID, monthYear);
+    public List<API_1_28_TT_DVCNTT_NGGL> getData(String templateID, String monthYear, String status) {
+        return repository.findByTemplateIDAndMonthYearAndStatus(templateID, monthYear, status);
     }
 
     @Override

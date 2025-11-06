@@ -36,7 +36,7 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
     // Thêm các processor khác
     private final Map<TemplateID, TemplateProcessor> templateProcessors;
     
-    public FileUploadProcessorImpl(
+	public FileUploadProcessorImpl(
         API_1_6_Processor api_1_6_processor,
         API_1_7_Processor api_1_7_processor,
         API_1_8_Processor api_1_8_processor,
@@ -48,7 +48,11 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
         API_1_27_Processor api_1_27_processor,
         API_1_28_Processor api_1_28_processor,
         API_1_29_Processor api_1_29_processor,
-        API_1_30_Processor api_1_30_processor
+		API_1_30_Processor api_1_30_processor,
+		API_1_31_Processor api_1_31_processor,
+		API_1_32_Processor api_1_32_processor,
+		API_1_33_Processor api_1_33_processor,
+		API_1_34_Processor api_1_34_processor
     ) {
         this.templateProcessors = new HashMap<>();
     
@@ -62,11 +66,15 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
         this.templateProcessors.put(TemplateID.API_1_25_UPDATE_TTDS_TKTT_TC_NGGL, api_1_25_processor);
         this.templateProcessors.put(TemplateID.API_1_26_UPDATE_TTDS_TKTT_TC, api_1_26_processor);
     
-        // New mappings
+		// New mappings
         this.templateProcessors.put(TemplateID.API_1_27_TT_DVCNTT, api_1_27_processor);
         this.templateProcessors.put(TemplateID.API_1_28_TT_DVCNTT_NGGL, api_1_28_processor);
         this.templateProcessors.put(TemplateID.API_1_29_UPDATE_DVCNTT_NGGL, api_1_29_processor);
         this.templateProcessors.put(TemplateID.API_1_30_UPDATE_DVCNTT, api_1_30_processor);
+		this.templateProcessors.put(TemplateID.API_1_31_TT_TNH, api_1_31_processor);
+		this.templateProcessors.put(TemplateID.API_1_32_TT_TNH_NGGL, api_1_32_processor);
+		this.templateProcessors.put(TemplateID.API_1_33_UPDATE_TNH_NGGL, api_1_33_processor);
+		this.templateProcessors.put(TemplateID.API_1_34_UPDATE_TNH, api_1_34_processor);
     }
     @Override
     public LIST_FILE_UPLOAD processUpload(FileUploadRequestDTO request) {

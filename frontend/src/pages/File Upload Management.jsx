@@ -163,6 +163,12 @@ const FileManagement = () => {
               headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${user?.token}`,
+                'X-Username': user?.name,
+                'X-User-Role': user?.role,
+                'X-Template-ID': selectedTemplate.templateID,
+                'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
+                'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+                'X-Correlation-Id': Date.now().toString(), 
               },
             }
           );

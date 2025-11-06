@@ -20,8 +20,8 @@ public class API_1_25_UPDATE_TOCHUC_NGGL_service_Impl implements TemplateDataSer
     }
 
     @Override
-    public List<API_1_25_UPDATE_TOCHUC_NGGL> getData(String templateID, String monthYear) {
-        return repository.findByTemplateIDAndMonthYear(templateID, monthYear);
+    public List<API_1_25_UPDATE_TOCHUC_NGGL> getData(String templateID, String monthYear, String status) {
+        return repository.findByTemplateIDAndMonthYearAndStatus(templateID, monthYear, status);
     }
 
     @Override

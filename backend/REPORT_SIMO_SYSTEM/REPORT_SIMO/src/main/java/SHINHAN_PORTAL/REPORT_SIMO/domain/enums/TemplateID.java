@@ -12,7 +12,11 @@ public enum TemplateID {
     API_1_27_TT_DVCNTT,
     API_1_28_TT_DVCNTT_NGGL,
     API_1_29_UPDATE_DVCNTT_NGGL,
-    API_1_30_UPDATE_DVCNTT;
+    API_1_30_UPDATE_DVCNTT,
+    API_1_31_TT_TNH,
+    API_1_32_TT_TNH_NGGL,
+    API_1_33_UPDATE_TNH_NGGL,
+    API_1_34_UPDATE_TNH;
     public static TemplateID fromString(String templateId) {
         try {
             return valueOf(templateId.toUpperCase());
