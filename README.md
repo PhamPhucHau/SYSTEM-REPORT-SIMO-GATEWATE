@@ -356,3 +356,6 @@ For support and questions:
 ---
 
 **Note**: This application is designed for internal use at Shinhan Bank and integrates with the SIMO gateway system operated by the State Bank of Vietnam.
+
+
+docker build -t "simo_backend_img:2.0" .

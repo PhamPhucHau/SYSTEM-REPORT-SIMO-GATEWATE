@@ -9,3 +9,6 @@ docker push phamphuchau28/simo_backend_img:latest
 docker push phamphuchau28/simo_frontend_img:latest
 
 docker inspect --format='{{index .RepoDigests 0}}' push phamphuchau28/simo_backend_img:v0
+cd SYSTEM-REPORT-SIMO-GATEWATE/backend/REPORT_SIMO_SYSTEM/REPORT_SIMO/
+
+docker save -o 'D:\GitHubShinhan\pharse2\Deploy\Deploy_Production1\simo_backend_img_v2_1.tar' simo_backend_img:2.1
