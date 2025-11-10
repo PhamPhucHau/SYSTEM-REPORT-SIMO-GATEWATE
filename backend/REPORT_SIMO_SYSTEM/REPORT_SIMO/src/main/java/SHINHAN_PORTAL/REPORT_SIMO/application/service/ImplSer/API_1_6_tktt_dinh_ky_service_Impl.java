@@ -18,8 +18,8 @@ public class API_1_6_tktt_dinh_ky_service_Impl implements TemplateDataService<AP
     }
 
     @Override
-    public List<API_1_6_tktt_dinh_ky> getData(String template_id, String period) {
-        return listFileUploadRepository.findByTemplateIDAndMonthYear(template_id, period);
+    public List<API_1_6_tktt_dinh_ky> getData(String template_id, String period,String status) {
+        return listFileUploadRepository.findByTemplateIDAndMonthYearAndStatus(template_id, period, status);
     }
     @Override
     public void deleteByTemplateIDAndMonthYearAndUsername(String templateId, String monthYear, String username) {

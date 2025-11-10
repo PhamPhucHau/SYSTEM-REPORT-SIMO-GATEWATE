@@ -20,8 +20,8 @@ public class API_1_23_TOCHUC_service_Impl implements TemplateDataService<API_1_2
     }
 
     @Override
-    public List<API_1_23_TOCHUC> getData(String templateID, String monthYear) {
-        return repository.findByTemplateIDAndMonthYear(templateID, monthYear);
+    public List<API_1_23_TOCHUC> getData(String templateID, String monthYear, String status) {
+        return repository.findByTemplateIDAndMonthYearAndStatus(templateID, monthYear, status);
     }
 
     @Override

@@ -42,7 +42,8 @@ public class GetDataController {
     @GetMapping("/getData")
     public ResponseEntity<?> getData(
             @RequestParam String templateID,
-            @RequestParam String monthYear
+            @RequestParam String monthYear,
+            @RequestParam String status
     ) {
         //String templateIdUpper = templateID.toUpperCase();
 
@@ -85,7 +86,7 @@ public class GetDataController {
             return ResponseEntity.badRequest().body("Unsupported templateID: " + templateID);
         }
 
-        List<?> data = service.getData(templateID, monthYear);
+        List<?> data = service.getData(templateID, monthYear,status);
         if (data.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

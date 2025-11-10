@@ -4,6 +4,7 @@ import SHINHAN_PORTAL.REPORT_SIMO.ReportSimoApplication;
 import SHINHAN_PORTAL.REPORT_SIMO.application.dto.*;
 import SHINHAN_PORTAL.REPORT_SIMO.application.exception.FileStorageException;
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.SimoService;
+import SHINHAN_PORTAL.REPORT_SIMO.common.UploadLogHelper;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.repository.API_1_6_tktt_dinh_ky_Repository;
 import SHINHAN_PORTAL.REPORT_SIMO.domain.repository.API_1_6_tktt_dinh_ky_Util;
 
@@ -63,6 +64,18 @@ public class SimoServiceImpl implements SimoService {
     
     @Value("${simo.api_1_30_update_dvcntt.url}")
     private String api_1_30_update_dvcntt_Url;
+    @Value("${simo.api_1_31_tt_tnh.url}")
+    private String api_1_31_tt_tnh_Url;
+
+    @Value("${simo.api_1_32_tt_tnh_nggl.url}")
+    private String api_1_32_tt_tnh_nggl_Url;
+
+    @Value("${simo.api_1_33_update_tnh_nggl.url}")
+    private String api_1_33_update_tnh_nggl_Url;
+
+    @Value("${simo.api_1_34_update_tnh.url}")
+    private String api_1_34_update_tnh_Url;
+    
     @Value("${simo.username}")
     private String username;
 
@@ -86,6 +99,8 @@ public class SimoServiceImpl implements SimoService {
     }
     @Autowired
     private API_1_6_tktt_dinh_ky_Util api_1_6_tktt_dinh_ky_Util;
+    @Autowired
+    private UploadLogHelper uploadLogHelper;
     @Override
     public TokenResponseDTO getToken(String username, String password, String consumerKey, String consumerSecret) {
         HttpHeaders headers = new HttpHeaders();
@@ -135,250 +150,255 @@ public class SimoServiceImpl implements SimoService {
 
     @Override
     public TKTTResponseDTO uploadTKTTReport(String token, String maYeuCau, String kyBaoCao, List<TKTTRequestDTO> tkttList) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + token);
-        headers.set("maYeuCau", maYeuCau);
-        headers.set("kyBaoCao", kyBaoCao);
-        System.out.println(">>> Sending TKTT Report:");
-        System.out.println(" - kyBaoCao = " + kyBaoCao);
-        System.out.println(" - maYeuCau = " + maYeuCau);
-        System.out.println(" - token = Bearer " + token);
-        System.out.println(" - Headers = " + headers.toString());
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonContent = "";
-        try {
-            jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-        } catch (JsonProcessingException e) {
-            // Xử lý lỗi nếu có
-            logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
-            throw new RuntimeException(e);  // hoặc xử lý tùy bạn
-        }
-        try {
-            // Tạo thư mục nếu chưa tồn tại
-            Files.createDirectories(Paths.get(uploadDir));
+       return postToSimoApi(token, maYeuCau, kyBaoCao, tkttList, tkttUploadUrl, "API_1_6_TTDS_TKTT_DK");
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+        // headers.set("Authorization", "Bearer " + token);
+        // headers.set("maYeuCau", maYeuCau);
+        // headers.set("kyBaoCao", kyBaoCao);
+        // System.out.println(">>> Sending TKTT Report:");
+        // System.out.println(" - kyBaoCao = " + kyBaoCao);
+        // System.out.println(" - maYeuCau = " + maYeuCau);
+        // System.out.println(" - token = Bearer " + token);
+        // System.out.println(" - Headers = " + headers.toString());
+        // ObjectMapper objectMapper = new ObjectMapper();
+        // String jsonContent = "";
+        // try {
+        //     jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        // } catch (JsonProcessingException e) {
+        //     // Xử lý lỗi nếu có
+        //     logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
+        //     throw new RuntimeException(e);  // hoặc xử lý tùy bạn
+        // }
+        // try {
+        //     // Tạo thư mục nếu chưa tồn tại
+        //     Files.createDirectories(Paths.get(uploadDir));
 
-            // Tạo đường dẫn đích, ví dụ: report-tktt.json
-            String fileName = "API1_6_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
-            Path filePath = Paths.get(uploadDir, fileName);
+        //     // Tạo đường dẫn đích, ví dụ: report-tktt.json
+        //     String fileName = "API1_6_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
+        //     Path filePath = Paths.get(uploadDir, fileName);
 
-            // Ghi nội dung JSON vào file
-            Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
+        //     // Ghi nội dung JSON vào file
+        //     Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
 
-            logger.info(">>> JSON saved to file: " + filePath.toString());
-        } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file JSON", e);
-        }
-        try {
-            String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-            logger.info(">>> Request Body (JSON):");
-            logger.info(jsonBody);
-        } catch (JsonProcessingException e) {
-            logger.info("Error while converting request body to JSON: " + e.getMessage());
-        }
-        HttpEntity<List<TKTTRequestDTO>> request = new HttpEntity<>(tkttList, headers);
-        try {
-            ResponseEntity<?> response = restTemplate.postForEntity(tkttUploadUrl, request, TKTTResponseDTO.class);
-            logger.info("Response" + response.getBody().toString());
-            if (response.getStatusCode() == HttpStatus.OK) {
-                // Update Row status that listData at database with status 90
-                logger.info("Updating status for API_1_6_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
-                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_6_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
-                logger.info("Response API 1.6: " + response.getBody().toString());
-                return (TKTTResponseDTO) response.getBody();
-            } else {
-                throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
-            }
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-                // Token expired, retry with new token
-                cachedToken = null; // Clear cached token
-                String newToken = getValidToken();
-                return uploadTKTTReport(newToken, maYeuCau, kyBaoCao, tkttList);
-            }
-            throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
-        }
+        //     logger.info(">>> JSON saved to file: " + filePath.toString());
+        // } catch (IOException e) {
+        //     throw new FileStorageException("Không thể lưu file JSON", e);
+        // }
+        // try {
+        //     String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        //     logger.info(">>> Request Body (JSON):");
+        //     logger.info(jsonBody);
+        // } catch (JsonProcessingException e) {
+        //     logger.info("Error while converting request body to JSON: " + e.getMessage());
+        // }
+        // HttpEntity<List<TKTTRequestDTO>> request = new HttpEntity<>(tkttList, headers);
+        // try {
+        //     ResponseEntity<?> response = restTemplate.postForEntity(tkttUploadUrl, request, TKTTResponseDTO.class);
+        //     logger.info("Response" + response.getBody().toString());
+        //     if (response.getStatusCode() == HttpStatus.OK) {
+        //         // Update Row status that listData at database with status 90
+        //         logger.info("Updating status for API_1_6_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+        //         api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_6_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+        //         logger.info("Response API 1.6: " + response.getBody().toString());
+        //         return (TKTTResponseDTO) response.getBody();
+        //     } else {
+        //         throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
+        //     }
+        // } catch (HttpClientErrorException e) {
+        //     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+        //         // Token expired, retry with new token
+        //         cachedToken = null; // Clear cached token
+        //         String newToken = getValidToken();
+        //         return uploadTKTTReport(newToken, maYeuCau, kyBaoCao, tkttList);
+        //     }
+        //     throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
+        // }
     }
     @Override
     public TKTTResponseDTO api_1_7_uploadNGGL(String token, String maYeuCau, String kyBaoCao, List<API_1_7_tktt_nggl_DT0> tkttList) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + token);
-        headers.set("maYeuCau", maYeuCau);
-        headers.set("kyBaoCao", kyBaoCao);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonContent = "";
-        try {
-            jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-        } catch (JsonProcessingException e) {
-            // Xử lý lỗi nếu có
-            logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
-            throw new RuntimeException(e);  // hoặc xử lý tùy bạn
-        }
-        try {
-            // Tạo thư mục nếu chưa tồn tại
-            Files.createDirectories(Paths.get(uploadDir));
+        return postToSimoApi(token, maYeuCau, kyBaoCao, tkttList, tkttUploadUrl_api_1_7, "API_1_7_TTDS_TKTT_NNGL");
+        // HttpHeaders headers = new HttpHeaders();
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+        // headers.set("Authorization", "Bearer " + token);
+        // headers.set("maYeuCau", maYeuCau);
+        // headers.set("kyBaoCao", kyBaoCao);
+        // ObjectMapper objectMapper = new ObjectMapper();
+        // String jsonContent = "";
+        // try {
+        //     jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        // } catch (JsonProcessingException e) {
+        //     // Xử lý lỗi nếu có
+        //     logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
+        //     throw new RuntimeException(e);  // hoặc xử lý tùy bạn
+        // }
+        // try {
+        //     // Tạo thư mục nếu chưa tồn tại
+        //     Files.createDirectories(Paths.get(uploadDir));
 
-            // Tạo đường dẫn đích, ví dụ: report-tktt.json
-            String fileName = "API1_7_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
-            Path filePath = Paths.get(uploadDir, fileName);
+        //     // Tạo đường dẫn đích, ví dụ: report-tktt.json
+        //     String fileName = "API1_7_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
+        //     Path filePath = Paths.get(uploadDir, fileName);
 
-            // Ghi nội dung JSON vào file
-            Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
+        //     // Ghi nội dung JSON vào file
+        //     Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
 
-            logger.info(">>> JSON saved to file: " + filePath.toString());
-        } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file JSON", e);
-        }
-        try {
-            String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-            logger.info(">>> Request Body (JSON):");
-            logger.info(jsonBody);
-        } catch (JsonProcessingException e) {
-            logger.info("Error while converting request body to JSON: " + e.getMessage());
-        }
-        HttpEntity<List<API_1_7_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
+        //     logger.info(">>> JSON saved to file: " + filePath.toString());
+        // } catch (IOException e) {
+        //     throw new FileStorageException("Không thể lưu file JSON", e);
+        // }
+        // try {
+        //     String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        //     logger.info(">>> Request Body (JSON):");
+        //     logger.info(jsonBody);
+        // } catch (JsonProcessingException e) {
+        //     logger.info("Error while converting request body to JSON: " + e.getMessage());
+        // }
+        // HttpEntity<List<API_1_7_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
 
-        try {
-            ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(tkttUploadUrl_api_1_7, request, TKTTResponseDTO.class);
-            if (response.getStatusCode() == HttpStatus.OK) {
-                logger.info("Updating status for API_1_7_TTDS_TKTT_NNGL with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
-                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_7_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
-                return response.getBody();
-            } else {
-                throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
-            }
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-                // Token expired, retry with new token
-                cachedToken = null; // Clear cached token
-                String newToken = getValidToken();
-                return api_1_7_uploadNGGL(newToken, maYeuCau, kyBaoCao, tkttList);
-            }
-            throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
-        }
+        // try {
+        //     ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(tkttUploadUrl_api_1_7, request, TKTTResponseDTO.class);
+        //     if (response.getStatusCode() == HttpStatus.OK) {
+        //         logger.info("Updating status for API_1_7_TTDS_TKTT_NNGL with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+        //         api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_7_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+        //         return response.getBody();
+        //     } else {
+        //         throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
+        //     }
+        // } catch (HttpClientErrorException e) {
+        //     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+        //         // Token expired, retry with new token
+        //         cachedToken = null; // Clear cached token
+        //         String newToken = getValidToken();
+        //         return api_1_7_uploadNGGL(newToken, maYeuCau, kyBaoCao, tkttList);
+        //     }
+        //     throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
+        // }
     }
 
     @Override
     public TKTTResponseDTO api_1_8_update_uploadNGGL(String token, String maYeuCau, String kyBaoCao, List<API_1_8_update_tktt_nggl_DT0> tkttList) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + token);
-        headers.set("maYeuCau", maYeuCau);
-        headers.set("kyBaoCao", kyBaoCao);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonContent = "";
-        try {
-            jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-        } catch (JsonProcessingException e) {
-            // Xử lý lỗi nếu có
-            logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
-            throw new RuntimeException(e);  // hoặc xử lý tùy bạn
-        }
-        try {
-            // Tạo thư mục nếu chưa tồn tại
-            Files.createDirectories(Paths.get(uploadDir));
+        return postToSimoApi(token, maYeuCau, kyBaoCao, tkttList, api_1_8_update_nggl_Url, "API_1_8_UPDATE_TTDS_TKTT_NNGL");
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+        // headers.set("Authorization", "Bearer " + token);
+        // headers.set("maYeuCau", maYeuCau);
+        // headers.set("kyBaoCao", kyBaoCao);
+        // ObjectMapper objectMapper = new ObjectMapper();
+        // String jsonContent = "";
+        // try {
+        //     jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        // } catch (JsonProcessingException e) {
+        //     // Xử lý lỗi nếu có
+        //     logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
+        //     throw new RuntimeException(e);  // hoặc xử lý tùy bạn
+        // }
+        // try {
+        //     // Tạo thư mục nếu chưa tồn tại
+        //     Files.createDirectories(Paths.get(uploadDir));
 
-            // Tạo đường dẫn đích, ví dụ: report-tktt.json
-            String fileName = "API1_8_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
-            Path filePath = Paths.get(uploadDir, fileName);
+        //     // Tạo đường dẫn đích, ví dụ: report-tktt.json
+        //     String fileName = "API1_8_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
+        //     Path filePath = Paths.get(uploadDir, fileName);
 
-            // Ghi nội dung JSON vào file
-            Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
+        //     // Ghi nội dung JSON vào file
+        //     Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
 
-            logger.info(">>> JSON saved to file: " + filePath.toString());
-        } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file JSON", e);
-        }
-        try {
-            String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-            logger.info(">>> Request Body (JSON):");
-            logger.info(jsonBody);
-        } catch (JsonProcessingException e) {
-            logger.info("Error while converting request body to JSON: " + e.getMessage());
-        }
-        HttpEntity<List<API_1_8_update_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
+        //     logger.info(">>> JSON saved to file: " + filePath.toString());
+        // } catch (IOException e) {
+        //     throw new FileStorageException("Không thể lưu file JSON", e);
+        // }
+        // try {
+        //     String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        //     logger.info(">>> Request Body (JSON):");
+        //     logger.info(jsonBody);
+        // } catch (JsonProcessingException e) {
+        //     logger.info("Error while converting request body to JSON: " + e.getMessage());
+        // }
+        // HttpEntity<List<API_1_8_update_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
 
-        try {
-            ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_8_update_nggl_Url, request, TKTTResponseDTO.class);
-            if (response.getStatusCode() == HttpStatus.OK) {
-                logger.info("Updating status for API_1_8_update_tktt_nggl_DT0 with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
-                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_8_UPDATE_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
-                return response.getBody();
-            } else {
-                throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
-            }
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-                // Token expired, retry with new token
-                cachedToken = null; // Clear cached token
-                String newToken = getValidToken();
-                return api_1_8_update_uploadNGGL(newToken, maYeuCau, kyBaoCao, tkttList);
-            }
-            throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
-        }
+        // try {
+        //     ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_8_update_nggl_Url, request, TKTTResponseDTO.class);
+        //     if (response.getStatusCode() == HttpStatus.OK) {
+        //         logger.info("Updating status for API_1_8_update_tktt_nggl_DT0 with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+        //         api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_8_UPDATE_TTDS_TKTT_NNGL", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+        //         return response.getBody();
+        //     } else {
+        //         throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
+        //     }
+        // } catch (HttpClientErrorException e) {
+        //     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+        //         // Token expired, retry with new token
+        //         cachedToken = null; // Clear cached token
+        //         String newToken = getValidToken();
+        //         return api_1_8_update_uploadNGGL(newToken, maYeuCau, kyBaoCao, tkttList);
+        //     }
+        //     throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
+        // }
     }
 
     @Override
     public TKTTResponseDTO api_1_9_update_uploadTKTT(String token, String maYeuCau, String kyBaoCao, List<API_1_9_update_tktt_nggl_DT0> tkttList) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + token);
-        headers.set("maYeuCau", maYeuCau);
-        headers.set("kyBaoCao", kyBaoCao);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonContent = "";
-        try {
-            jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-        } catch (JsonProcessingException e) {
-            // Xử lý lỗi nếu có
-            logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
-            throw new RuntimeException(e);  // hoặc xử lý tùy bạn
-        }
-        try {
-            // Tạo thư mục nếu chưa tồn tại
-            Files.createDirectories(Paths.get(uploadDir));
+        return postToSimoApi(token, maYeuCau, kyBaoCao, tkttList, api_1_9_update_tktt_Url, "API_1_9_UPDATE_TTDS_TKTT_DK");
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+        // headers.set("Authorization", "Bearer " + token);
+        // headers.set("maYeuCau", maYeuCau);
+        // headers.set("kyBaoCao", kyBaoCao);
+        // ObjectMapper objectMapper = new ObjectMapper();
+        // String jsonContent = "";
+        // try {
+        //     jsonContent = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        // } catch (JsonProcessingException e) {
+        //     // Xử lý lỗi nếu có
+        //     logger.error("Lỗi khi chuyển tkttList thành JSON: " + e.getMessage());
+        //     throw new RuntimeException(e);  // hoặc xử lý tùy bạn
+        // }
+        // try {
+        //     // Tạo thư mục nếu chưa tồn tại
+        //     Files.createDirectories(Paths.get(uploadDir));
 
-            // Tạo đường dẫn đích, ví dụ: report-tktt.json
-            String fileName = "API1_9_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
-            Path filePath = Paths.get(uploadDir, fileName);
+        //     // Tạo đường dẫn đích, ví dụ: report-tktt.json
+        //     String fileName = "API1_9_" +kyBaoCao.replace("/","_")+"_"+maYeuCau+".json";
+        //     Path filePath = Paths.get(uploadDir, fileName);
 
-            // Ghi nội dung JSON vào file
-            Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
+        //     // Ghi nội dung JSON vào file
+        //     Files.write(filePath, jsonContent.getBytes(StandardCharsets.UTF_8));
 
-            logger.info(">>> JSON saved to file: " + filePath.toString());
-        } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file JSON", e);
-        }
-        try {
-            String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
-            logger.info(">>> Request Body (JSON):");
-            logger.info(jsonBody);
-        } catch (JsonProcessingException e) {
-            logger.info("Error while converting request body to JSON: " + e.getMessage());
-        }
-        HttpEntity<List<API_1_9_update_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
+        //     logger.info(">>> JSON saved to file: " + filePath.toString());
+        // } catch (IOException e) {
+        //     throw new FileStorageException("Không thể lưu file JSON", e);
+        // }
+        // try {
+        //     String jsonBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tkttList);
+        //     logger.info(">>> Request Body (JSON):");
+        //     logger.info(jsonBody);
+        // } catch (JsonProcessingException e) {
+        //     logger.info("Error while converting request body to JSON: " + e.getMessage());
+        // }
+        // HttpEntity<List<API_1_9_update_tktt_nggl_DT0>> request = new HttpEntity<>(tkttList, headers);
 
-        try {
-            ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_9_update_tktt_Url, request, TKTTResponseDTO.class);
-            if (response.getStatusCode() == HttpStatus.OK) {
-                logger.info("Updating status for API_1_9_UPDATE_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
-                api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_9_UPDATE_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
-                logger.info("Response:" + response.toString());
-                return response.getBody();
-            } else {
-                throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
-            }
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
-                logger.info("UnAuthorization: " + e.getMessage().toString()); 
-                // Token expired, retry with new token
-                cachedToken = null; // Clear cached token
-                String newToken = getValidToken();
-                return api_1_9_update_uploadTKTT(newToken, maYeuCau, kyBaoCao, tkttList);
-            }
-            throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
-        }
+        // try {
+        //     ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(api_1_9_update_tktt_Url, request, TKTTResponseDTO.class);
+        //     if (response.getStatusCode() == HttpStatus.OK) {
+        //         logger.info("Updating status for API_1_9_UPDATE_TTDS_TKTT_DK with kyBaoCao: " + kyBaoCao.replace("/", "") + ", old status: " + API_const.STATUS_NOT_SENT + ", new status: " + API_const.STATUS_SENT);
+        //         api_1_6_tktt_dinh_ky_Util.updateStatus( "API_1_9_UPDATE_TTDS_TKTT_DK", kyBaoCao.replace("/", ""), API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+        //         logger.info("Response:" + response.toString());
+        //         return response.getBody();
+        //     } else {
+        //         throw new RuntimeException("Failed to upload TKTT report: " + response.getStatusCode());
+        //     }
+        // } catch (HttpClientErrorException e) {
+        //     if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+        //         logger.info("UnAuthorization: " + e.getMessage().toString()); 
+        //         // Token expired, retry with new token
+        //         cachedToken = null; // Clear cached token
+        //         String newToken = getValidToken();
+        //         return api_1_9_update_uploadTKTT(newToken, maYeuCau, kyBaoCao, tkttList);
+        //     }
+        //     throw new RuntimeException("Failed to upload TKTT report: " + e.getMessage());
+        // }
     }
 
     public TKTTResponseDTO uploadTKTTReportAutoToken(String maYeuCau, String kyBaoCao, List<TKTTRequestDTO> tkttList) {
@@ -403,6 +423,49 @@ public class SimoServiceImpl implements SimoService {
 public TKTTResponseDTO api_1_27_uploadDVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_27_TT_DVCNTT_DTO> dvcnttList) {
     return postToSimoApi(token, maYeuCau, kyBaoCao, dvcnttList, api_1_27_upload_dvcntt_Url, "API_1_27_TT_DVCNTT");
 }
+
+    // Phần mở rộng cho 4 API mới (1.31 đến 1.34) - TNH
+    @Override
+    public TKTTResponseDTO api_1_31_tt_tnh(String token, String maYeuCau, String kyBaoCao, List<API_1_31_TT_TNH_DTO> dataList) {
+        // SRP: dùng hàm chung postToSimoApi để gửi, tránh lặp code header/file/try-catch
+        return postToSimoApi(token, maYeuCau, kyBaoCao, dataList, api_1_31_tt_tnh_Url, "API_1_31_TT_TNH");
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_31_tt_tnh_autoToken(String maYeuCau, String kyBaoCao, List<API_1_31_TT_TNH_DTO> dataList) {
+        // DIP: token được lấy qua getValidToken, tách biệt logic xác thực
+        return api_1_31_tt_tnh(getValidToken(), maYeuCau, kyBaoCao, dataList);
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_32_tt_tnh_nggl(String token, String maYeuCau, String kyBaoCao, List<API_1_32_TT_TNH_NGGL_DTO> dataList) {
+        return postToSimoApi(token, maYeuCau, kyBaoCao, dataList, api_1_32_tt_tnh_nggl_Url, "API_1_32_TT_TNH_NGGL");
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_32_tt_tnh_nggl_autoToken(String maYeuCau, String kyBaoCao, List<API_1_32_TT_TNH_NGGL_DTO> dataList) {
+        return api_1_32_tt_tnh_nggl(getValidToken(), maYeuCau, kyBaoCao, dataList);
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_33_update_tnh_nggl(String token, String maYeuCau, String kyBaoCao, List<API_1_33_UPDATE_TNH_NGGL_DTO> dataList) {
+        return postToSimoApi(token, maYeuCau, kyBaoCao, dataList, api_1_33_update_tnh_nggl_Url, "API_1_33_UPDATE_TNH_NGGL");
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_33_update_tnh_nggl_autoToken(String maYeuCau, String kyBaoCao, List<API_1_33_UPDATE_TNH_NGGL_DTO> dataList) {
+        return api_1_33_update_tnh_nggl(getValidToken(), maYeuCau, kyBaoCao, dataList);
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_34_update_tnh(String token, String maYeuCau, String kyBaoCao, List<API_1_34_UPDATE_TNH_DTO> dataList) {
+        return postToSimoApi(token, maYeuCau, kyBaoCao, dataList, api_1_34_update_tnh_Url, "API_1_34_UPDATE_TNH");
+    }
+
+    @Override
+    public TKTTResponseDTO api_1_34_update_tnh_autoToken(String maYeuCau, String kyBaoCao, List<API_1_34_UPDATE_TNH_DTO> dataList) {
+        return api_1_34_update_tnh(getValidToken(), maYeuCau, kyBaoCao, dataList);
+    }
 
 @Override
 public TKTTResponseDTO api_1_28_uploadNGGL_DVCNTT(String token, String maYeuCau, String kyBaoCao, List<API_1_28_TT_DVCNTT_NGGL_DTO> dvcnttList) {
@@ -437,6 +500,7 @@ public TKTTResponseDTO api_1_29_updateNGGL_DVCNTT_autoToken(String maYeuCau, Str
 @Override
 public TKTTResponseDTO api_1_30_updateDVCNTT_autoToken(String maYeuCau, String kyBaoCao, List<API_1_30_UPDATE_DVCNTT_DTO> dvcnttList) {
     return api_1_30_updateDVCNTT(getValidToken(), maYeuCau, kyBaoCao, dvcnttList);
+    
 }
 
 @Override
@@ -480,13 +544,18 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
 
         HttpEntity<List<T>> request = new HttpEntity<>(listData, headers);
         ResponseEntity<TKTTResponseDTO> response = restTemplate.postForEntity(url, request, TKTTResponseDTO.class);
-
+        // Log request send 
+        
         if (response.getStatusCode() == HttpStatus.OK) {
+            String monthYear = kyBaoCao == null ? "" : kyBaoCao.replace("/", "");
             // Update Row status that listData at database with status 90
-            api_1_6_tktt_dinh_ky_Util.updateStatus( prefixFileName, kyBaoCao, API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
+            api_1_6_tktt_dinh_ky_Util.updateStatus( prefixFileName, monthYear, API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
             // Update Row status that listData at database with status 90
+            uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "90", "Send to SIMO Success, Response code : " +response.getStatusCode());
             return response.getBody();
         } else {
+            
+            uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "90", "Send to SIMO Failed, Response code : " +response.getStatusCode());
             throw new RuntimeException("Failed to upload report: " + response.getStatusCode());
         }
     } catch (IOException e) {

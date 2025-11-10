@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=Test vite build",
+    "build": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=PROD vite build",
     "lint": "eslint .",
-    "preview": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=Test vite preview"
+    "preview": "cross-env VITE_SIMO_APP_API_URL=/simo VITE_ENVIRONMENT_VERSION=PROD vite preview"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.8.1",
     "bootstrap": "^5.3.3",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-datepicker": "^8.2.0",

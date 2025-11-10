@@ -52,11 +52,11 @@ const DataDisplay = () => {
       setTemplates(response.data);
       
       // Nếu có dữ liệu, tự động chọn template đầu tiên
-      if (response.data.length > 0) {
-        const defaultTemplate = response.data[0];
-        setSelectedTemplate(defaultTemplate);
-      }
-    } catch (err) {
+      // if (response.data.length > 0) {
+      //   const defaultTemplate = response.data[0];
+      //   setSelectedTemplate(defaultTemplate);
+      // } 
+    } catch (err) { 
       console.error("Error fetching templates", err);
         if(err.response?.status === 401) { 
         alert("Token không hợp lệ hoặc đã hết hạn."); 
@@ -74,7 +74,8 @@ const DataDisplay = () => {
       const response = await axios.get(`${import.meta.env.VITE_SIMO_APP_API_URL}/api/API_1_6_TTDS_TKTT_DK/getData`, {
         params: {
           templateID: templateId,
-          monthYear: monthYear
+          monthYear: monthYear,
+          status :"00"
         },
         headers: {
           "Content-Type": "application/json",
@@ -162,7 +163,7 @@ const DataDisplay = () => {
     // }));
     const tkttData = selectedData ; 
     // Tạo maYeuCau (ví dụ: dùng timestamp)
-    const maYeuCau = `REQ_${formatMaYeuCau()}`;
+    const maYeuCau = user.name +"_" + selectedRows.length +  `_${formatMaYeuCau()}`;
 
     // Tạo kyBaoCao từ selectedDate (mm/yyyy)
     const kyBaoCao = `${(selectedDate.getMonth() + 1).toString().padStart(2, "0")}/${selectedDate.getFullYear()}`;
@@ -179,7 +180,13 @@ const DataDisplay = () => {
             "Content-Type": "application/json",
             "maYeuCau": maYeuCau,
             "kyBaoCao": kyBaoCao,
-            "Authorization": "Bearer " + user.token, // Nếu backend yêu cầu token
+            "Authorization": "Bearer " + user.token,
+            'X-Username': user?.name,
+            'X-User-Role': user?.role,
+            'X-Template-ID': selectedTemplate.templateID,
+            'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
+            'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+            'X-Correlation-Id': Date.now().toString(), 
           },
         }
       );

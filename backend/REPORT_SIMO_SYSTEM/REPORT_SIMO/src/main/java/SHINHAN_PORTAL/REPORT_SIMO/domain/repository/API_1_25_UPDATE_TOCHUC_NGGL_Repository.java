@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface API_1_25_UPDATE_TOCHUC_NGGL_Repository extends MongoRepository<API_1_25_UPDATE_TOCHUC_NGGL, String> {
-    List<API_1_25_UPDATE_TOCHUC_NGGL> findByTemplateIDAndMonthYear(String templateID, String monthYear);
+    List<API_1_25_UPDATE_TOCHUC_NGGL> findByTemplateIDAndMonthYearAndStatus(String templateID, String monthYear, String status);
     void deleteByTemplateIDAndMonthYearAndUsername(String templateID, String monthYear, String username);
 } 

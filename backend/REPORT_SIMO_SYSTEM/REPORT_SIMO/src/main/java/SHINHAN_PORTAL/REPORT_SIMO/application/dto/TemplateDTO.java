@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
+@Data
 public class TemplateDTO {
     private String  id;
     private String templateID;

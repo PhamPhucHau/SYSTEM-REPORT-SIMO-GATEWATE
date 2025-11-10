@@ -83,12 +83,20 @@ const UploadData = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + user?.token,
-          'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
+          'X-Username': user?.name,
+          'X-User-Role': user?.role,
+          'X-Template-ID': selectedTemplate.templateID,
+          'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
+          'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+          'X-Correlation-Id': Date.now().toString(), 
+
+
+          // 'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
         },
       }
     );
     console.log("Upload file Excel thành công:", response.data);
-  } catch (error) {
+  } catch (error) { 
     console.error("Lỗi khi upload file Excel:", error);
     alert("Không thể upload file Excel. Vui lòng thử lại.");
   }
@@ -107,101 +115,78 @@ const UploadData = () => {
     setSubmitSuccess(null);
   };
 
-  // Hàm mapping dữ liệu từ file Excel sang cấu trúc của API 1.6
-  // Giữ nguyên hàm này nếu cấu trúc mapping vẫn đúng 
-  // const mapDataForAPI16 = (data) => { 
-  //     console.log(data);
-  //     return data.map((row, rowIndex) => ({
-  //       Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-  //       SoID: row["Số ID"] || row["SoID"] || "",
-  //       LoaiID: row["Loại ID"] || row["LoaiID"] || "",
-  //       TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-  //       NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-  //       GioiTinh: row["Giới tính"] || row["GioiTinh"] || "",
-  //       MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
-  //       SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
-  //       DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
-  //       SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-  //       LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
-  //       TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-  //       NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
-  //       PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
-  //       QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
-  //       DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-  //     }));
-  //   };
-  const mapDataForAPI16 = (data) => {
-    return data.map((row, rowIndex) => {
-      if (rowIndex === 7) {
-        console.log("🔍 Debug row 7:", row);
-        var GioiTinh1 = row["Giới tính"] || row["GioiTinh"] || "" ; 
-        console.log(row["GioiTinh"]);
-        console.log(GioiTinh1);
-      }
+//   const mapDataForAPI16 = (data) => {
+//     return data.map((row, rowIndex) => {
+//       if (rowIndex === 7) {
+//         console.log("🔍 Debug row 7:", row);
+//         var GioiTinh1 = row["Giới tính"] || row["GioiTinh"] || "" ; 
+//         console.log(row["GioiTinh"]);
+//         console.log(GioiTinh1);
+//       }
   
-      return {
-        Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-        SoID: row["Số ID"] || row["SoID"] || "",
-        LoaiID: row["Loại ID"] || row["LoaiID"] || "",
-        TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-        NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-        GioiTinh: row["Giới tính"] ?? row["GioiTinh"] ?? "",
-        MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
-        SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
-        DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
-        SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-        LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
-        TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-        NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
-        PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
-        QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
-        DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-      };
-    });
-  };
-      const mapDataForAPI19 = (data) => { 
-      return data.map((row, rowIndex) => ({
-        Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-        SoID: row["Số ID"] || row["SoID"] || "",
-        LoaiID: row["Loại ID"] || row["LoaiID"] || "",
-        TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-        NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-        GioiTinh:  row["Giới tính"] ?? row["GioiTinh"] ?? "",
-        MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
-        SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
-        DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
-        SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-        LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
-        TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-        NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
-        PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
-        QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
-        DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-         GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
-      }));
-    };
-const mapDataForAPI17 = (data) => {
-  return data.map((row, rowIndex) => ({
-    Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-    SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-    TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-    TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-    NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
-    GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
-  }));
-};
-const mapDataForAPI18 = (data) => {
-  return data.map((row, rowIndex) => ({
-    Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-    SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-    TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-    TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-    NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
-    GhiChu: row["Ghi chú"] || row["GhiChu"] || "",
-    LyDoCapNhat: row["Lý do cập nhật"] || row["LyDoCapNhat"] || ""
+//       return {
+//         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
+//         SoID: row["Số ID"] || row["SoID"] || "",
+//         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
+//         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
+//         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
+//         GioiTinh: row["Giới tính"] ?? row["GioiTinh"] ?? "",
+//         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
+//         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
+//         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
+//         SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
+//         LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
+//         TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
+//         NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
+//         PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
+//         QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
+//         DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
+//       };
+//     });
+//   };
+//       const mapDataForAPI19 = (data) => { 
+//       return data.map((row, rowIndex) => ({
+//         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
+//         SoID: row["Số ID"] || row["SoID"] || "",
+//         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
+//         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
+//         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
+//         GioiTinh:  row["Giới tính"] ?? row["GioiTinh"] ?? "",
+//         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
+//         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
+//         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
+//         SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
+//         LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
+//         TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
+//         NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
+//         PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
+//         QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
+//         DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
+//          GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
+//       }));
+//     };
+// const mapDataForAPI17 = (data) => {
+//   return data.map((row, rowIndex) => ({
+//     Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
+//     SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
+//     TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
+//     TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
+//     NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
+//     GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
+//   }));
+// };
+// const mapDataForAPI18 = (data) => {
+//   return data.map((row, rowIndex) => ({
+//     Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
+//     SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
+//     TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
+//     TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
+//     NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
+//     GhiChu: row["Ghi chú"] || row["GhiChu"] || "",
+//     LyDoCapNhat: row["Lý do cập nhật"] || row["LyDoCapNhat"] || ""
     
-  }));
-};
+//   }));
+// };
   // Validate dữ liệu dựa trên schema của template
   function parseSchemaJson(schemaJsonString) {
     try {
@@ -280,7 +265,7 @@ const mapDataForAPI18 = (data) => {
   
           // 2. Kiểm tra độ dài
           if (rules.maxLength && valueAsString.length > rules.maxLength) {
-            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}. `);
+            errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" có value ${valueAsString} dài ${valueAsString.length} ký tự, vượt quá giới hạn ${rules.maxLength}. `);
           }
   
           if (rules.minLength && valueAsString.length < rules.minLength) {
@@ -324,93 +309,7 @@ const mapDataForAPI18 = (data) => {
     return errors;
   };
   
-  // Parse file Excel
-  // const handleFileParse = () => {
-  //   if (!file) return alert("Vui lòng chọn file Excel!");
-  //   if (!selectedTemplate) return alert("Vui lòng chọn template!");
-
-  //   setValidationErrors([]); // Reset lỗi trước khi parse
-  //   setParsedData([]);
-  //   setSubmitError(null);
-  //   setSubmitSuccess(null);
-
-  //   const reader = new FileReader();
-  //   reader.readAsBinaryString(file);
-  //   reader.onload = (e) => {
-  //     try {
-  //       const workbook = XLSX.read(e.target.result, { type: "binary", cellDates: true }); // Thêm cellDates: true để xử lý ngày tháng tốt hơn
-  //       const sheetName = workbook.SheetNames[0];
-  //       const sheet = workbook.Sheets[sheetName];
-
-  //       // Bỏ qua 0 dòng đầu, dùng dòng 1 làm header
-  //       const jsonData = XLSX.utils.sheet_to_json(sheet, { range: 0, defval: "" }); // defval: "" để ô trống thành chuỗi rỗng
-
-  //       console.log("Raw JSON data:", jsonData);
-
-  //       let mappedData = jsonData;
-  //       // --- THAY ĐỔI: Sử dụng templateID từ selectedTemplate ---
-  //       switch(selectedTemplate.templateID)
-  //       {
-  //         case "API_1_6_TTDS_TKTT_DK":
-  //           {
-  //             mappedData = mapDataForAPI16(jsonData);
-  //             break; 
-  //           }
-  //           case  "API_1_7_TTDS_TKTT_NNGL":
-  //           {
-  //             mappedData = mapDataForAPI17(jsonData); 
-  //             break;  
-  //           }
-  //            case "API_1_9_UPDATE_TTDS_TKTT_DK":
-  //           {
-  //             mappedData = mapDataForAPI19(jsonData);
-  //             break; 
-  //           }
-  //           case  "API_1_8_UPDATE_TTDS_TKTT_NNGL":
-  //           {
-  //             mappedData = mapDataForAPI18(jsonData); 
-  //             console.log(mappedData);
-  //             break;  
-  //           }
-          
-  //       };
-  //       // Thêm các điều kiện mapping khác nếu cần
-  //       // else if (selectedTemplate.templateID === "SOME_OTHER_ID") {
-  //       //    mappedData = mapDataForOtherAPI(jsonData);
-  //       // }
-
-  //       console.log("Mapped data:", mappedData);
-
-  //       // --- THAY ĐỔI: Validate dùng schemaJson từ selectedTemplate ---
-  //       // Đảm bảo schemaJson tồn tại trước khi gọi validate
-  //       if (!selectedTemplate.schemaJson) {
-  //           alert("Template được chọn không có thông tin schema để validate.");
-  //           return;
-  //       }
-  //       const errors = validateData(mappedData, selectedTemplate.schemaJson);
-  //       setValidationErrors(errors);
-
-  //       if (errors.length === 0) {
-  //         setParsedData(mappedData);
-  //         console.log("Parsed data (validated):", mappedData);
-  //       } else {
-  //         setParsedData([]);
-  //         console.log("Validation Errors:", errors);
-  //       }
-  //     } catch (error) {
-  //         console.error("Error parsing Excel file:", error);
-  //         alert(`Đã xảy ra lỗi khi đọc file Excel: ${error.message}`);
-  //         setValidationErrors([`Lỗi đọc file: ${error.message}`]);
-  //         setParsedData([]);
-  //     }
-  //   };
-  //   reader.onerror = (error) => {
-  //       console.error("FileReader error:", error);
-  //       alert("Không thể đọc file.");
-  //       setValidationErrors(["Lỗi đọc file."]);
-  //       setParsedData([]);
-  //   }
-  // };
+  
   const handleFileParse = () => {
     if (!file) return alert("Vui lòng chọn file Excel!");
     if (!selectedTemplate) return alert("Vui lòng chọn template!");
@@ -527,7 +426,7 @@ const mapDataForAPI18 = (data) => {
             headers: {
               "Content-Type": "application/json",
               "Authorization": "Bearer " + user?.token,
-              'FileName': selectedTemplate?.id + '_' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
+              //'FileName': selectedTemplate?.id + '_' + (requestData?.fileName || 'unknown') // Thêm tiền tố templateID vào tên file
             },
           }
         );

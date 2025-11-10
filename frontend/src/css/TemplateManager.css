@@ -22,7 +22,14 @@
 .add-button:hover {
   background: #0056b3;
 }
-
+.add-button:disabled {
+  background: #a0cfff;
+  cursor: not-allowed;
+}
+.edit-button:disabled {
+  background: #a0cfff;
+  cursor: not-allowed;
+}
 /* Bảng hiển thị Template */
 .template-table {
   width: 100%;
@@ -60,7 +67,10 @@
 .delete-button:hover {
   background: #c62828;
 }
-
+.delete-button:disabled {
+  background: #f5a9a8;
+  cursor: not-allowed;
+}
 /* Modal */
 .my-modal {
   all: unset;

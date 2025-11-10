@@ -70,7 +70,8 @@ const DataManagement = () => {
       const response = await axios.get(`${import.meta.env.VITE_SIMO_APP_API_URL}/api/API_1_6_TTDS_TKTT_DK/getData`, {
         params: {
           templateID: templateId,
-          monthYear: monthYear
+          monthYear: monthYear,
+          status :"90"
         },
         headers: {
           "Content-Type": "application/json",

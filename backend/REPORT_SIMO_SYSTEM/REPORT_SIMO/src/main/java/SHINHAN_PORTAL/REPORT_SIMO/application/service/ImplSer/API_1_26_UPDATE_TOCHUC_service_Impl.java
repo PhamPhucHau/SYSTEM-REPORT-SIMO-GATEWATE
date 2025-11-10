@@ -20,8 +20,8 @@ public class API_1_26_UPDATE_TOCHUC_service_Impl implements TemplateDataService<
     }
 
     @Override
-    public List<API_1_26_UPDATE_TOCHUC> getData(String templateID, String monthYear) {
-        return repository.findByTemplateIDAndMonthYear(templateID, monthYear);
+    public List<API_1_26_UPDATE_TOCHUC> getData(String templateID, String monthYear, String status) {
+        return repository.findByTemplateIDAndMonthYearAndStatus(templateID, monthYear, status);
     }
 
     @Override
