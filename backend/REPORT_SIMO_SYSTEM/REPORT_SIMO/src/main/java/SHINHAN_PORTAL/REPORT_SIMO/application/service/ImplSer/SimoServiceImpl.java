@@ -551,11 +551,11 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
             // Update Row status that listData at database with status 90
             api_1_6_tktt_dinh_ky_Util.updateStatus( prefixFileName, monthYear, API_const.STATUS_NOT_SENT, API_const.STATUS_SENT);
             // Update Row status that listData at database with status 90
-            uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "90", "Send to SIMO Success, Response code : " +response.getStatusCode());
+            //uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "20", "Send to SIMO Success, Response code : " +response.getStatusCode(),"");
             return response.getBody();
         } else {
             
-            uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "90", "Send to SIMO Failed, Response code : " +response.getStatusCode());
+            //uploadLogHelper.logSendAction(prefixFileName, maYeuCau, kyBaoCao, "Checker", "Checker", "", "", "00", "20", "Send to SIMO Failed, Response code : " +response.getStatusCode(),"");
             throw new RuntimeException("Failed to upload report: " + response.getStatusCode());
         }
     } catch (IOException e) {

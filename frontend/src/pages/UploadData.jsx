@@ -28,7 +28,7 @@ const UploadData = () => {
   const [loadingSubmit, setLoadingSubmit] = useState(false); // State loading khi submit
   const [submitError, setSubmitError] = useState(null); // State lỗi khi submit
   const [submitSuccess, setSubmitSuccess] = useState(null); // State thành công khi submit
-
+  const  [overrideData, setOverrideData] = useState(0); // State để lưu dữ liệu ghi đè cho file 
 
   // --- THÊM useEffect ĐỂ GỌI API TEMPLATES ---
   useEffect(() => {
@@ -89,6 +89,7 @@ const UploadData = () => {
           'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
           'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
           'X-Correlation-Id': Date.now().toString(), 
+          'X-Override-Data': overrideData.toString(),
 
 
           // 'FileName': selectedTemplate?.name + ' - ' + (uploadedFile?.name || 'unknown') // Thêm tiền tố templateID vào tên file
@@ -545,6 +546,37 @@ const UploadData = () => {
         {submitError && <Alert variant="danger" className="d-inline-block mb-0">{submitError}</Alert>}
         {submitSuccess && <Alert variant="success" className="d-inline-block mb-0">{submitSuccess}</Alert>}
       </div>
+      <div className="align-items-start mb-3">
+    {/* <div className="form-check form-check-inline">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="overrideOption"
+        id="overrideYes"
+        value={0}
+        checked={overrideData === 0}
+        onChange={(e) => setOverrideData(Number(e.target.value))}
+      />
+      <label className="form-check-label" htmlFor="overrideYes">
+        Ghi đè
+      </label>
+    </div>
+
+    <div className="form-check form-check-inline">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="overrideOption"
+        id="overrideNo"
+        value={1}
+        checked={overrideData === 1}
+        onChange={(e) => setOverrideData(Number(e.target.value))}
+      />
+      <label className="form-check-label" htmlFor="overrideNo">
+        Không ghi đè
+      </label>
+    </div> */}
+  </div>
       <button
         onClick={handleSubmit}
         className="upload-btn btn btn-primary"
@@ -552,6 +584,7 @@ const UploadData = () => {
       >
         {loadingSubmit ? 'Đang tải lên...' : 'Upload Dữ Liệu'}
       </button>
+      
     </div>
           <div className="table-responsive"> {/* Bọc table để responsive */}
             <table className="data-table table table-striped table-bordered table-hover"> {/* Thêm class Bootstrap */}

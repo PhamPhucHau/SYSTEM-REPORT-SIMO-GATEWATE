@@ -13,7 +13,7 @@ public class UploadLogHelper {
     private UploadManagementService uploadManagementService;
 
     public void logSendAction(String templateID, String maYeuCau, String kyBaoCao,
-                              String username, String userRole, String requestId, String correlationId, String statusBefore, String statusAfter, String description) {
+                              String username, String userRole, String requestId, String correlationId, String statusBefore, String statusAfter, String description, String fileName) {
         try {
             UploadManagementDTO dto = new UploadManagementDTO();
             dto.setUsername(username);
@@ -26,6 +26,7 @@ public class UploadLogHelper {
             dto.setCorrelationId(correlationId);
             dto.setStatusBefore(statusBefore);
             dto.setStatusAfter(statusAfter);
+            dto.setFileName(fileName);
             uploadManagementService.create(dto);
         } catch (Exception ignored) {
             // avoid blocking flow if logging fails

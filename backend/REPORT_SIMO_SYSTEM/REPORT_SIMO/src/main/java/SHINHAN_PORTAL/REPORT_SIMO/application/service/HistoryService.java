@@ -10,4 +10,6 @@ public interface HistoryService {
    public Page<LIST_FILE_UPLOAD> getFiles(String templateID, String monthYear,String username, int page, int size);
    LIST_FILE_UPLOAD updateById(String id, String data_ledg_s );
    LIST_FILE_UPLOAD findById(String id, String data_ledg_s );
+   // Find multiple files by IDs and status for batch processing
+   List<LIST_FILE_UPLOAD> findByIdsAndStatus(List<String> ids, String status);
 }

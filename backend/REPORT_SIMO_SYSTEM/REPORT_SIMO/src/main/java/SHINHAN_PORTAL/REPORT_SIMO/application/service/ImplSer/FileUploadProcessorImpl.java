@@ -1,7 +1,10 @@
 package SHINHAN_PORTAL.REPORT_SIMO.application.service.ImplSer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,8 +95,8 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
         return historyService.saveUploadHistory(fileUpload);
     }
     @Override
-    public LIST_FILE_UPLOAD processConfirm(String id) {
-        LIST_FILE_UPLOAD fileUpload = historyService.findById(id, "00");
+    public LIST_FILE_UPLOAD processConfirm(String id, String status) {
+        LIST_FILE_UPLOAD fileUpload = historyService.findById(id, status);
         TemplateID templateID = TemplateID.fromString(fileUpload.getTemplateID());
         TemplateProcessor processor = templateProcessors.getOrDefault(templateID, (f, data) -> {
             throw new IllegalArgumentException("Unsupported templateID: " + fileUpload.getTemplateID());
@@ -104,5 +107,52 @@ private static final Logger logger = LoggerFactory.getLogger(FileUploadProcessor
     @Override
     public Page<LIST_FILE_UPLOAD> getFiles(String templateID, String monthYear, String username, int page, int size) {
         return historyService.getFiles(templateID, monthYear, username, page, size);
+    }
+
+    /**
+     * Get merged data from multiple files for batch approval
+     * SRP: This method is responsible for aggregating data from multiple files
+     * OCP: Can be extended to add validation or filtering logic without modifying existing code
+     * 
+     * @param fileIds List of file IDs to retrieve
+     * @param fileNames List of file names (for validation/logging)
+     * @param templateID Template ID to validate against
+     * @param monthYear Month/Year to validate against
+     * @return Merged list of all data from the specified files
+     */
+    @Override
+    public List<Map<String, Object>> getFileDetail(List<String> fileIds, List<String> fileNames, String templateID, String monthYear) {
+        logger.info("Getting file details for {} files with templateID: {} and monthYear: {}", 
+                    fileIds.size(), templateID, monthYear);
+        
+        // Query files with status "10" (confirmed/ready to send)
+        List<LIST_FILE_UPLOAD> files = historyService.findByIdsAndStatus(fileIds, "10");
+        
+        // Validate that all files were found
+        if (files.size() != fileIds.size()) {
+            logger.warn("Expected {} files but found {} files with status '10'", fileIds.size(), files.size());
+        }
+        
+        // Validate templateID and monthYear match
+        List<LIST_FILE_UPLOAD> invalidFiles = files.stream()
+            .filter(file -> !file.getTemplateID().equals(templateID) || !file.getMonthYear().equals(monthYear))
+            .collect(Collectors.toList());
+        
+        if (!invalidFiles.isEmpty()) {
+            logger.error("Found {} files with mismatched templateID or monthYear", invalidFiles.size());
+            throw new IllegalArgumentException("Some files have mismatched templateID or monthYear:" + templateID + "-"+monthYear);
+        }
+        
+        // Merge all data from all files into a single list
+        List<Map<String, Object>> mergedData = new ArrayList<>();
+        for (LIST_FILE_UPLOAD file : files) {
+            if (file.getData() != null && !file.getData().isEmpty()) {
+                mergedData.addAll(file.getData());
+                logger.debug("Added {} records from file: {}", file.getData().size(), file.getFileName());
+            }
+        }
+        
+        logger.info("Successfully merged data from {} files, total records: {}", files.size(), mergedData.size());
+        return mergedData;
     }
 }

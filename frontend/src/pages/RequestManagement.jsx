@@ -25,7 +25,7 @@ const RequestManagement = () => {
   const [endDate, setEndDate] = useState(new Date());
 
   // Action types
-  const actionTypes = ["UPLOAD", "CONFIRM", "SEND", "ROLLBACK"];
+  const actionTypes = ["UPLOAD", "CONFIRM", "SEND", "ROLLBACK", "REJECT"];
 
   useEffect(() => {
     if (user?.token) {
