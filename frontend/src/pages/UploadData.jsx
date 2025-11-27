@@ -223,7 +223,7 @@ const UploadData = () => {
     }
   
     data.forEach((row, rowIndex) => {
-      const excelRowNumber = rowIndex + 4;
+      const excelRowNumber = rowIndex +1;
       const CIF = row["Cif"];
   
       Object.entries(schema).forEach(([key, rules]) => {
@@ -291,6 +291,37 @@ const UploadData = () => {
             if (!rules.enum.includes(parsedValue)) {
               errors.push(`Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải là một trong các giá trị sau: ${rules.enum.join(", ")}.`);
             }
+          }
+          // 5 Kiem tra rang buoc giua cac cot 
+          if(rules.constrains && Array.isArray(rules.constrains) ){
+            rules.constrains.forEach((constraintObj) => {
+
+              // constraintObj có dạng:  { LoaiID: [ {enum:1,value:10}, ... ] }
+              Object.entries(constraintObj).forEach(([targetField, conditions]) => {
+      
+                  const targetValue = row[targetField]; // Giá trị của LoaiID trong dòng Excel
+                  const targetValueStr = String(targetValue);
+      
+                  // Nếu targetField không có trong row → bỏ qua
+                  if (targetValue === undefined || targetValue === null || targetValue === "") return;
+      
+                  conditions.forEach((cond) => {
+                      const expectedEnum = cond.enum;
+                      const expectedValue = cond.value;
+      
+                      // Nếu LoaiID == enum
+                      if (String(targetValue) == String(expectedEnum)) {
+      
+                          // Áp ràng buộc: value.length phải bằng expectedValue
+                          if (valueAsString.length !== expectedValue) {
+                              errors.push(
+                                `Dòng ${excelRowNumber}: Trường "${key}" có CIF "${CIF}" phải có độ dài ${expectedValue} ký tự khi "${targetField}" = ${expectedEnum}. (Độ dài hiện tại: ${valueAsString.length})`
+                              );
+                          }
+                      }
+                  });
+              });
+          });
           }
         }
       });

@@ -19,11 +19,11 @@ const Header = () => {
       SHBVN Portal SIMO ({environmentVersion}) {/* Hiển thị phiên bản môi trường */}
     </h1>
       <nav>
-        <Link to="/home">Home</Link>
+        {/* <Link to="/home">Home</Link> */}
         <Link to="/template">Template Manager</Link>
         <Link to="/upload">Upload Data</Link>
         <Link to="/users">User Management</Link>
-        <Link to="/data_management">Data Management</Link>
+        {/* <Link to="/data_management">Data Management</Link> */}
         <Link to="/history">History</Link>
         <Link to="/file_upload">File Upload History</Link>
         <span className="username">

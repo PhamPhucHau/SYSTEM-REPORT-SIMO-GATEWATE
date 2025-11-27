@@ -19,15 +19,15 @@ const AppRoutes  = () => {
   }
   return (
         <Routes>
-        <Route path="/" element={user ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/" element={user ? <Navigate to="/upload" /> : <Login />} />
           
           {/* Wrap all protected pages with Layout */}
           <Route element={<Layout />}>
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/home" element={<Home />} /> */}
             <Route path="/template" element={<ProtectedRoute element={<TemplateManager />} requiredRole={["ADMIN","MAKER"]} />} />
             <Route path="/upload" element={<ProtectedRoute element={<UploadData />} requiredRole={["ADMIN", "MAKER"]}  />} />
             <Route path="/users" element={<ProtectedRoute element={<UserManagement />} requiredRole={["ADMIN"]} />} />
-            <Route path="/data_management" element={<ProtectedRoute element={<DataManagement />} requiredRole={["ADMIN", "CHECKER"]} />} />
+            {/* <Route path="/data_management" element={<ProtectedRoute element={<DataManagement />} requiredRole={["ADMIN", "CHECKER"]} />} /> */}
             <Route path="/history" element={<ProtectedRoute element={<RequestManagement />} requiredRole={["ADMIN", "MAKER", "CHECKER"]}  />} />
             <Route path="/file_upload" element={<ProtectedRoute element={<FileUpload />} requiredRole={["ADMIN", "MAKER", "CHECKER"]} />} />
             <Route path="/file_details/" element={<ProtectedRoute element={<FileDetails />} requiredRole={["ADMIN", "MAKER", "CHECKER"]} />} />
