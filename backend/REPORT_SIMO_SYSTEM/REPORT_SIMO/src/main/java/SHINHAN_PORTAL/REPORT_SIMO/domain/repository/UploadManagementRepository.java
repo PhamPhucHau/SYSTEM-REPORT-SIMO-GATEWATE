@@ -12,7 +12,7 @@ import java.util.List;
 public interface UploadManagementRepository extends MongoRepository<UploadManagement, String> {
 
     // Tìm theo khoảng thời gian
-    @Query("{'timestamp': {$gte: ?0, $lte: ?1}}")
+    @Query(value="{'timestamp': {$gte: ?0, $lte: ?1}}",sort ="{'timestamp': -1}")
     List<UploadManagement> findByTimestampBetween(Date start, Date end);
 
     // Lọc theo các trường phổ biến
@@ -21,16 +21,16 @@ public interface UploadManagementRepository extends MongoRepository<UploadManage
     List<UploadManagement> findByActionTypeOrderByTimestampDesc(String actionType);
 
     // Kết hợp điều kiện: thời gian + các trường (phổ biến)
-    @Query("{'timestamp': {$gte: ?0, $lte: ?1}, 'templateID': ?2}")
+    @Query(value="{'timestamp': {$gte: ?0, $lte: ?1}, 'templateID': ?2}",sort ="{'timestamp': -1}")
     List<UploadManagement> findByTimestampBetweenAndTemplate(Date start, Date end, String templateID);
 
-    @Query("{'timestamp': {$gte: ?0, $lte: ?1}, 'username': ?2}")
+    @Query(value="{'timestamp': {$gte: ?0, $lte: ?1}, 'username': ?2}",sort ="{'timestamp': -1}")
     List<UploadManagement> findByTimestampBetweenAndUsername(Date start, Date end, String username);
 
-    @Query("{'timestamp': {$gte: ?0, $lte: ?1}, 'templateID': ?2, 'actionType': ?3}")
+    @Query(value="{'timestamp': {$gte: ?0, $lte: ?1}, 'templateID': ?2, 'actionType': ?3}",sort ="{'timestamp': -1}")
     List<UploadManagement> searchByTemplateAndAction(Date start, Date end, String templateID, String actionType);
 
-    @Query("{'timestamp': {$gte: ?0, $lte: ?1}, 'actionType': ?2}")
+    @Query(value="{'timestamp': {$gte: ?0, $lte: ?1}, 'actionType': ?2}",sort ="{'timestamp': -1}")
     List<UploadManagement> findByTimestampBetweenAndActionType(Date start, Date end, String actionType);
 }
 
