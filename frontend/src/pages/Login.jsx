@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       await login(username, password); // Gọi login từ AuthContext
-      navigate("/home");
+      navigate("/file_upload");
     } catch (err) {
       setError("Đăng nhập thất bại! Kiểm tra lại thông tin.");
       console.error("Lỗi đăng nhập:", err);

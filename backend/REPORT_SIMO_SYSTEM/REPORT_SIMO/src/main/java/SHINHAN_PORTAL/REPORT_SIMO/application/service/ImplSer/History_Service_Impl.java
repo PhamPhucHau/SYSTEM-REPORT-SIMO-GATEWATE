@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,5 +75,10 @@ public class History_Service_Impl implements HistoryService {
         } else {
             throw new ResourceNotFoundException("Không tìm thấy bản ghi với id: " + id + " và data_ledg_s: " + data_ledg_s);
         }
+    }
+
+    @Override
+    public List<LIST_FILE_UPLOAD> findByIdsAndStatus(List<String> ids, String status) {
+        return listFileUploadRepository.findByIdInAndDataLedgS(ids, status);
     }
 }

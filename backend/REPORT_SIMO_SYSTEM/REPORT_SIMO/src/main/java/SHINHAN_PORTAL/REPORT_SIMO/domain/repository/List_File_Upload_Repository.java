@@ -24,4 +24,8 @@ public interface  List_File_Upload_Repository extends MongoRepository<LIST_FILE_
     @Query("{ '_id': ?0, 'data_ledg_s': ?1 }")
     Optional<LIST_FILE_UPLOAD> findByIdAndDataLedgS(String id, String data_ledg_s);
 
+    // Find multiple files by IDs and status
+    @Query("{ '_id': { $in: ?0 }, 'data_ledg_s': ?1 }")
+    List<LIST_FILE_UPLOAD> findByIdInAndDataLedgS(List<String> ids, String data_ledg_s);
+
 }
