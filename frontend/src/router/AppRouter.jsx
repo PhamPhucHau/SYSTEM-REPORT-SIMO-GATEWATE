@@ -32,7 +32,7 @@ const AppRoutes  = () => {
             <Route path="/file_upload" element={<ProtectedRoute element={<FileUpload />} requiredRole={["ADMIN", "MAKER", "CHECKER"]} />} />
             <Route path="/file_details/" element={<ProtectedRoute element={<FileDetails />} requiredRole={["ADMIN", "MAKER", "CHECKER"]} />} />
           </Route>
-        </Routes>
+        </Routes> 
   );
 };
 const AppRouter = () => (

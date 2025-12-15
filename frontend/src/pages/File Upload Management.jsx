@@ -244,7 +244,7 @@ const sbx_data_s =  [{value: "00", label : "00-Chờ xác nhận"}, {value: "10"
 
     // Tạo kyBaoCao từ selectedDate (mm/yyyy)
     const kyBaoCao = `${(selectedDate.getMonth() + 1).toString().padStart(2, "0")}/${selectedDate.getFullYear()}`;
-    console.log(kyBaoCao);
+    console.log(kyBaoCao); 
   
     Swal.fire({
       title: 'Bạn có chắc chắn muốn duyệt gửi?',

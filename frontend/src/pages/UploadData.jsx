@@ -117,77 +117,7 @@ const UploadData = () => {
     setSubmitSuccess(null);
   };
 
-//   const mapDataForAPI16 = (data) => {
-//     return data.map((row, rowIndex) => {
-//       if (rowIndex === 7) {
-//         console.log("🔍 Debug row 7:", row);
-//         var GioiTinh1 = row["Giới tính"] || row["GioiTinh"] || "" ; 
-//         console.log(row["GioiTinh"]);
-//         console.log(GioiTinh1);
-//       }
-  
-//       return {
-//         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-//         SoID: row["Số ID"] || row["SoID"] || "",
-//         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
-//         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-//         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-//         GioiTinh: row["Giới tính"] ?? row["GioiTinh"] ?? "",
-//         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
-//         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
-//         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
-//         SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-//         LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
-//         TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-//         NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
-//         PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
-//         QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
-//         DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-//       };
-//     });
-//   };
-//       const mapDataForAPI19 = (data) => { 
-//       return data.map((row, rowIndex) => ({
-//         Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-//         SoID: row["Số ID"] || row["SoID"] || "",
-//         LoaiID: row["Loại ID"] || row["LoaiID"] || "",
-//         TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-//         NgaySinh: row["Ngày sinh"] || row["NgaySinh"] || "",
-//         GioiTinh:  row["Giới tính"] ?? row["GioiTinh"] ?? "",
-//         MaSoThue: row["Mã số thuế"] || row["MaSoThue"] || "",
-//         SoDienThoaiDangKyDichVu: row["Số điện thoại đăng ký dịch vụ Mobile banking"] || row["SoDienThoaiDangKyDichVu"] || "",
-//         DiaChi: row["Địa chỉ"] || row["DiaChi"] || "",
-//         SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-//         LoaiTaiKhoan: row["Loại tài khoản"] || row["LoaiTaiKhoan"] || "",
-//         TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-//         NgayMoTaiKhoan: row["Ngày mở TK "] || row["NgayMoTaiKhoan"] || "",
-//         PhuongThucMoTaiKhoan: row["Phương thức mở TKTT"] || row["PhuongThucMoTaiKhoan"] || "",
-//         QuocTich: row["Quốc tịch"] || row["QuocTich"] || "",
-//         DiaChiKiemSoatTruyCap: row["Địa chỉ kiểm soát truy cập phương tiện truyền thông"] || row["DiaChiKiemSoatTruyCap"] || "",
-//          GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
-//       }));
-//     };
-// const mapDataForAPI17 = (data) => {
-//   return data.map((row, rowIndex) => ({
-//     Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-//     SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-//     TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-//     TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-//     NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
-//     GhiChu: row["Ghi chú"] || row["GhiChu"] || ""
-//   }));
-// };
-// const mapDataForAPI18 = (data) => {
-//   return data.map((row, rowIndex) => ({
-//     Cif: row["Số CIF"] || row["CIF"] || row["Cif"] || "",
-//     SoTaiKhoan: row["Số tài khoản"] || row["SoTaiKhoan"] || "",
-//     TenKhachHang: row["Tên khách hàng"] || row["TenKhachHang"] || "",
-//     TrangThaiHoatDongTaiKhoan: row["Trạng thái hoạt động của tài khoản"] || row["TrangThaiHoatDongTaiKhoan"] || "",
-//     NghiNgo: row["Nghi ngờ"] || row["NghiNgo"] || "",
-//     GhiChu: row["Ghi chú"] || row["GhiChu"] || "",
-//     LyDoCapNhat: row["Lý do cập nhật"] || row["LyDoCapNhat"] || ""
-    
-//   }));
+
 // };
   // Validate dữ liệu dựa trên schema của template
   function parseSchemaJson(schemaJsonString) {
@@ -577,7 +507,7 @@ const UploadData = () => {
         {loadingSubmit && <Spinner animation="border" className="me-2" />}
         {submitError && <Alert variant="danger" className="d-inline-block mb-0">{submitError}</Alert>}
         {submitSuccess && <Alert variant="success" className="d-inline-block mb-0">{submitSuccess}</Alert>}
-      </div>
+      </div> 
       <div className="align-items-start mb-3">
     {/* <div className="form-check form-check-inline">
       <input

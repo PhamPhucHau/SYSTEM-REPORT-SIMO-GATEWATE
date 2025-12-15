@@ -269,7 +269,7 @@ const DataDisplay = () => {
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">{success}</Alert>}
       {selectedTemplate && (
-        <div className="table-container">
+        <div className="table-container"> 
           <Table striped bordered hover>
             <thead>
               <tr>
