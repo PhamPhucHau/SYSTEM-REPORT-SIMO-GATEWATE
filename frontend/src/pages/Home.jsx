@@ -8,6 +8,7 @@ import {  useNavigate  } from "react-router-dom";
 import { formatMaYeuCau } from '../util/formatter'; // Import hàm formatMaYeuCau từ file formatter.js
 import Swal from 'sweetalert2';
 import "../css/Home.css";
+import { v4 as uuidv4 } from 'uuid';
 const DataDisplay = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [data, setData] = useState([]);
@@ -185,7 +186,7 @@ const DataDisplay = () => {
             'X-User-Role': user?.role,
             'X-Template-ID': selectedTemplate.templateID,
             'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
-            'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+            'X-Request-Id': uuidv4(),         // Sinh ID ngẫu nhiên
             'X-Correlation-Id': Date.now().toString(), 
           },
         }

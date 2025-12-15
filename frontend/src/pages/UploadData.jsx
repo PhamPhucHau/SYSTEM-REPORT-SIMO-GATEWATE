@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../services/AuthContext";
 import { Spinner, Alert } from "react-bootstrap"; // Thêm Spinner và Alert để hiển thị trạng thái loading/error
+import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 // Cài đặt chế độ: true: dùng mock data, false: dùng API thật
 const USE_MOCK_DATA = false; // Giữ nguyên hoặc thay đổi nếu cần
@@ -87,7 +88,7 @@ const UploadData = () => {
           'X-User-Role': user?.role,
           'X-Template-ID': selectedTemplate.templateID,
           'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
-          'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+          'X-Request-Id': uuidv4(),         // Sinh ID ngẫu nhiên
           'X-Correlation-Id': Date.now().toString(), 
           'X-Override-Data': overrideData.toString(),
 
