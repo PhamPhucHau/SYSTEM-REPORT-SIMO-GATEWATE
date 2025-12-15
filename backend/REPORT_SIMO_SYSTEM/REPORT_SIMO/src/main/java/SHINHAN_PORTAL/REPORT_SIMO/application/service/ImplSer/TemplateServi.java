@@ -81,46 +81,34 @@ public class TemplateServi implements TemplateService {
     }
     @Override
     public ResponseEntity<Resource> downloadTemplate(String templateID) {
+       
+        logger.info("[DownloadTemplate] Request download for templateID={}", templateID);
+
         try {
-            // 🔹 1. Tạo đường dẫn tuyệt đối đến file template Excel dựa trên ID được truyền vào
-            //      - "templateStoragePath" là thư mục gốc chứa file (được cấu hình trong application.yml)
-            //      - "templateID" là mã template mà frontend gửi lên, ví dụ: "TEMPLATE_001"
-            //      - ".xlsx" là phần mở rộng file Excel
             Path filePath = Paths.get(templateFilePath, templateID + ".xlsx");
-    
-            // 🔹 2. Kiểm tra file có tồn tại trong thư mục lưu trữ hay không
-            //      - Nếu không tồn tại, trả về HTTP 404 (Not Found)
+            logger.info("[DownloadTemplate] Full file path resolved: {}", filePath.toAbsolutePath());
+
             if (!Files.exists(filePath)) {
+                logger.warn("[DownloadTemplate] File NOT FOUND for templateID={} at path={}",
+                        templateID, filePath.toAbsolutePath());
                 return ResponseEntity.notFound().build();
             }
-    
-            // 🔹 3. Tạo đối tượng "Resource" trỏ đến file cần tải
-            //      - "UrlResource" cho phép Spring Boot stream dữ liệu từ đường dẫn file (URI)
-            //      - Đây là cách an toàn & hiệu quả để trả file qua HTTP response
+
             Resource resource = new UrlResource(filePath.toUri());
-    
-            // 🔹 4. Lấy tên file thực tế (ví dụ: "TEMPLATE_001.xlsx")
-            //      - Sẽ được dùng trong header Content-Disposition để gợi ý tên khi tải xuống
-            String fileName = filePath.getFileName().toString();
-    
-            // 🔹 5. Trả về ResponseEntity chứa file (Resource)
-            //      - ResponseEntity cho phép tùy chỉnh toàn bộ phần header và body HTTP
-            //      - MediaType: chỉ định kiểu MIME của file (Excel .xlsx)
-            //      - Header Content-Disposition: cho trình duyệt hiểu đây là file tải về, không phải hiển thị trực tiếp
-            //      - Body: chính là file resource
+            logger.info("[DownloadTemplate] File found, preparing response → filename={}", filePath.getFileName());
+
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(
                             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
                     .header(HttpHeaders.CONTENT_DISPOSITION,
-                            "attachment; filename=\"" + fileName + "\"")
+                            "attachment; filename=\"" + filePath.getFileName().toString() + "\"")
                     .body(resource);
-    
+
         } catch (Exception e) {
-            // 🔹 6. Nếu có lỗi bất ngờ (VD: không đọc được file, sai permission, đường dẫn lỗi, v.v.)
-            //      - Trả về HTTP 500 (Internal Server Error)
-            //      - Trong thực tế, bạn có thể log lỗi để tiện debug
-            return ResponseEntity.internalServerError().build();
+            logger.error("[DownloadTemplate] ERROR while processing templateID={}. Message={}",
+                    templateID, e.getMessage(), e);
+
+            return ResponseEntity.internalServerError().build();        }
         }
-    }
 }
     

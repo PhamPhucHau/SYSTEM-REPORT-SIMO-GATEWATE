@@ -228,10 +228,11 @@ public class ListFileUploadController {
                 correlationId
             );
             
-            logger.info("Successfully sent batch data to SIMO. Response code: {}",
-                    simoResponse.getCode());
-            uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "20", "Successfully sent batch data to SIMO. Response code:" + simoResponse.getCode(),request.getFileNames().toString());  
+            logger.info("Successfully sent batch data to SIMO. Response {}",
+                    simoResponse.toString());
+             
             if ("00".equals(simoResponse.getCode())) {
+                uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "20", "Successfully sent batch data to SIMO. Response code:" + simoResponse.getCode(),request.getFileNames().toString()); 
                 // Update status to 20 of list file upload and refresh modification timestamps
                 for (String fileId : request.getFileIds()) {
                     try {
@@ -244,14 +245,26 @@ public class ListFileUploadController {
                 for (String fileName : request.getFileNames()) {
                     try {
                         
-                        uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "20", fileName+" Send To SIMO Success Response code:" + simoResponse.getCode(), fileName);  
+                        uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "20", fileName+" Send To SIMO Success Response code:" + simoResponse.getCode()+ ", Message: " + simoResponse.getMessage(), fileName);  
                     } catch (Exception ex) {
                         logger.error("Failed to update LIST_FILE_UPLOAD status for fileName {}: {}", fileName, ex.getMessage(), ex);
                     }
                 }
+                return ResponseEntity.ok(simoResponse);
+            }
+            else {
+                logger.error("SIMO response indicates failure. Response", simoResponse.toString());
+                for (String fileName : request.getFileNames()) {
+                    try {
+                        uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "10", fileName+" Send To SIMO Failed Response code:" + simoResponse.getCode() + ", Message:" + simoResponse.getMessage() , fileName);  
+                    } catch (Exception ex) {
+                        logger.error("Failed to update LIST_FILE_UPLOAD status for fileName {}: {}", fileName, ex.getMessage(), ex);
+                    }
+                }
+                return ResponseEntity.status(400).body(simoResponse);
             }
 
-            return ResponseEntity.ok(simoResponse);
+            
         } catch (Exception e) {
             logger.error("Error sending data to SIMO: {}", e.getMessage(), e);
             uploadLogHelper.logSendAction(templateID, maYeuCau, kyBaoCao, username, userRole, requestId, correlationId, "10", "20", "Error sending data to SIMO: {}"+ e.getMessage(),request.getFileNames().toString());

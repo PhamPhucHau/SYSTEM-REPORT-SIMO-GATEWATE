@@ -7,15 +7,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
+
 import SHINHAN_PORTAL.REPORT_SIMO.application.dto.UploadManagementDTO;
 import SHINHAN_PORTAL.REPORT_SIMO.application.service.UploadManagementService;
 
 @RestController
 @RequestMapping("/api")
 public class FileUploadController {
-
+    private static final Logger logger = LoggerFactory.getLogger(ListFileUploadController.class);
     @Value("${file.upload-dir}")
     private String uploadDir;
 
@@ -60,8 +63,18 @@ public class FileUploadController {
 
             return "Upload thành công: " + filePath;
             
-        } catch (IOException e) {
-            throw new FileStorageException("Không thể lưu file: " + file.getOriginalFilename(), e);
-        }
+   } catch (IOException e) {
+        logger.error("===== [UPLOAD_FILE] LỖI IO EXCEPTION =====");
+        logger.error("[UPLOAD_FILE] Không thể lưu file {} tại đường dẫn: {}",
+                     file.getOriginalFilename(), uploadDir);
+        logger.error("[UPLOAD_FILE] Nguyên nhân gốc: {}", e.getMessage(), e);
+
+        throw new FileStorageException("Không thể lưu file: " + file.getOriginalFilename(), e);
+
+    } catch (Exception e) {
+        logger.error("===== [UPLOAD_FILE] LỖI KHÁC =====");
+        logger.error("[UPLOAD_FILE] Lỗi không xác định: {}", e.getMessage(), e);
+        throw e;
+    }
     }
 }

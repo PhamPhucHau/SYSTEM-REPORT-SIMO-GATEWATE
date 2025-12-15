@@ -559,6 +559,10 @@ private <T> TKTTResponseDTO postToSimoApi(String token, String maYeuCau, String 
             throw new RuntimeException("Failed to upload report: " + response.getStatusCode());
         }
     } catch (IOException e) {
+        logger.error("===== [UPLOAD_FILE] LỖI IO EXCEPTION =====");
+        logger.error("[UPLOAD_FILE] Không thể lưu file {} tại đường dẫn: {}",
+                      uploadDir);
+        logger.error("[UPLOAD_FILE] Nguyên nhân gốc: {}", e.getMessage(), e);
         throw new FileStorageException("Không thể ghi file JSON", e);
     } catch (HttpClientErrorException e) {
         if (e.getStatusCode() == HttpStatus.UNAUTHORIZED) {
