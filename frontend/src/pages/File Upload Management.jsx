@@ -7,6 +7,7 @@ import "../css/FileManagement.css";
 import { useAuth } from "../services/AuthContext";
 import Swal from 'sweetalert2';
 import { formatMaYeuCau } from '../util/formatter'; // Import hàm formatMaYeuCau từ file formatter.js
+import { v4 as uuidv4 } from 'uuid';
 const FileManagement = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -189,7 +190,7 @@ const sbx_data_s =  [{value: "00", label : "00-Chờ xác nhận"}, {value: "10"
                 "Authorization": `Bearer ${user?.token}`,
                 'X-Username': user?.name,
                 'X-User-Role': user?.role,
-                'X-Request-Id': crypto.randomUUID(),
+                'X-Request-Id': uuidv4(),
                 'X-Correlation-Id': Date.now().toString(),
                 'X-Status':file.data_ledg_s,
               },
@@ -243,7 +244,7 @@ const sbx_data_s =  [{value: "00", label : "00-Chờ xác nhận"}, {value: "10"
 
     // Tạo kyBaoCao từ selectedDate (mm/yyyy)
     const kyBaoCao = `${(selectedDate.getMonth() + 1).toString().padStart(2, "0")}/${selectedDate.getFullYear()}`;
-    console.log(kyBaoCao);
+    console.log(kyBaoCao); 
   
     Swal.fire({
       title: 'Bạn có chắc chắn muốn duyệt gửi?',
@@ -273,7 +274,7 @@ const sbx_data_s =  [{value: "00", label : "00-Chờ xác nhận"}, {value: "10"
                 "kyBaoCao": kyBaoCao,
                 'X-Username': user?.name,
                 'X-User-Role': user?.role,
-                'X-Request-Id': crypto.randomUUID(),
+                'X-Request-Id': uuidv4(),
                 'X-Correlation-Id': Date.now().toString(),
               },
             }
@@ -332,7 +333,7 @@ const sbx_data_s =  [{value: "00", label : "00-Chờ xác nhận"}, {value: "10"
                 'X-User-Role': user?.role,
                 'X-Template-ID': selectedTemplate.templateID,
                 'X-Month-Year': `${selectedDate.getMonth() +1}`.padStart(2, "0") + "" + selectedDate.getFullYear(),
-                'X-Request-Id': crypto.randomUUID(),         // Sinh ID ngẫu nhiên
+                'X-Request-Id': uuidv4(),         // Sinh ID ngẫu nhiên
                 'X-Correlation-Id': Date.now().toString(), 
                 'X-Status':data_ledg_s,
               },
