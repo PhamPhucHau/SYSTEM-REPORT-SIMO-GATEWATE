@@ -19,12 +19,12 @@ const AppRoutes  = () => {
   }
   return (
         <Routes>
-        <Route path="/" element={user ? <Navigate to="/upload" /> : <Login />} />
+        <Route path="/" element={user ? <Navigate to="/file_upload" /> : <Login />} />
           
           {/* Wrap all protected pages with Layout */}
           <Route element={<Layout />}>
             {/* <Route path="/home" element={<Home />} /> */}
-            <Route path="/template" element={<ProtectedRoute element={<TemplateManager />} requiredRole={["ADMIN","MAKER"]} />} />
+            <Route path="/template" element={<ProtectedRoute element={<TemplateManager />} requiredRole={["ADMIN","MAKER","CHECKER"]} />} />
             <Route path="/upload" element={<ProtectedRoute element={<UploadData />} requiredRole={["ADMIN", "MAKER"]}  />} />
             <Route path="/users" element={<ProtectedRoute element={<UserManagement />} requiredRole={["ADMIN"]} />} />
             {/* <Route path="/data_management" element={<ProtectedRoute element={<DataManagement />} requiredRole={["ADMIN", "CHECKER"]} />} /> */}
