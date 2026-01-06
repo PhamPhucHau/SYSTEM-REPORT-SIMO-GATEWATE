@@ -1,0 +1,9 @@
+    API_1_31_TT_TNH,
+    API_1_32_TT_TNH_NGGL,
+    API_1_33_UPDATE_TNH_NGGL,
+    API_1_34_UPDATE_TNH
+frontend/src/pages/File Upload Management.jsx |  7 ++++---
+ frontend/src/pages/Home.jsx                   |  3 ++-
+ frontend/src/pages/UploadData.jsx             |  3 ++-
+ frontend/src/router/AppRouter.jsx             |  4 ++--
+ frontend/src/util/formatter.js  

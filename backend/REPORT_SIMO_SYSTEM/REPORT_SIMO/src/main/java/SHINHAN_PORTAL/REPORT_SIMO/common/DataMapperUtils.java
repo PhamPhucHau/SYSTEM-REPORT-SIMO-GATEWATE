@@ -152,8 +152,9 @@ public class DataMapperUtils {
         dto.setSoTaiKhoanToChuc(safeString(dataMap.getOrDefault("SoTaiKhoanToChuc", dataMap.get("soTaiKhoanToChuc"))));
         dto.setNgayMoTaiKhoan(safeString(dataMap.getOrDefault("NgayMoTaiKhoan", dataMap.get("ngayMoTaiKhoan"))));
         dto.setTrangThaiTaiKhoan(safeInteger(dataMap.getOrDefault("TrangThaiTaiKhoan", dataMap.get("trangThaiTaiKhoan")), null));
+        dto.setDienThoaiNHDT(safeString(dataMap.getOrDefault("DienThoaiNHDT", dataMap.get("dienThoaiNHDT"))));
         dto.setDiaChiMAC(safeString(dataMap.getOrDefault("DiaChiMAC", dataMap.get("diaChiMAC"))));
-        dto.setSoImei(safeString(dataMap.getOrDefault("SoImei", dataMap.get("soImei"))));
+        dto.setSoImei(safeString(dataMap.getOrDefault("SO_IMEI", dataMap.get("sO_IMEI"))));
         return dto;
     }
     
@@ -198,8 +199,9 @@ public class DataMapperUtils {
         dto.setSoTaiKhoanToChuc(safeString(dataMap.getOrDefault("SoTaiKhoanToChuc", dataMap.get("soTaiKhoanToChuc"))));
         dto.setNgayMoTaiKhoan(safeString(dataMap.getOrDefault("NgayMoTaiKhoan", dataMap.get("ngayMoTaiKhoan"))));
         dto.setTrangThaiTaiKhoan(safeInteger(dataMap.getOrDefault("TrangThaiTaiKhoan", dataMap.get("trangThaiTaiKhoan")), null));
+        dto.setDienThoaiNHDT(safeString(dataMap.getOrDefault("DienThoaiNHDT", dataMap.get("dienThoaiNHDT"))));
         dto.setDiaChiMAC(safeString(dataMap.getOrDefault("DiaChiMAC", dataMap.get("diaChiMAC"))));
-        dto.setSoImei(safeString(dataMap.getOrDefault("SoImei", dataMap.get("soImei"))));
+        dto.setSoImei(safeString(dataMap.getOrDefault("SO_IMEI", dataMap.get("sO_IMEI"))));
         return dto;
     }
      // Clean code: tiny helper to avoid duplication and centralize SEND logging

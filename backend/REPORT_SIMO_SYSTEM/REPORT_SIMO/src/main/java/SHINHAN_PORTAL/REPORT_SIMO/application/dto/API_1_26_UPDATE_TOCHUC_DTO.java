@@ -41,6 +41,8 @@ public class API_1_26_UPDATE_TOCHUC_DTO {
     private Integer trangThaiTaiKhoan;
     @JsonProperty("DiaChiMAC")
     private String diaChiMAC;
+    @JsonProperty("DienThoaiNHDT")
+    private String dienThoaiNHDT;
     @JsonProperty("SO_IMEI")
     private String soImei;
       @JsonIgnore
@@ -87,6 +89,8 @@ public class API_1_26_UPDATE_TOCHUC_DTO {
     public void setTrangThaiTaiKhoan(Integer trangThaiTaiKhoan) { this.trangThaiTaiKhoan = trangThaiTaiKhoan; }
     public String getDiaChiMAC() { return diaChiMAC; }
     public void setDiaChiMAC(String diaChiMAC) { this.diaChiMAC = diaChiMAC; }
-    public String getSoImei() { return soImei; }
+    public String getDienThoaiNHDT() { return dienThoaiNHDT; }
+    public void setDienThoaiNHDT(String dienThoaiNHDT) { this.dienThoaiNHDT = dienThoaiNHDT; }
+     public String getSoImei() { return soImei; }
     public void setSoImei(String soImei) { this.soImei = soImei; }
 } 

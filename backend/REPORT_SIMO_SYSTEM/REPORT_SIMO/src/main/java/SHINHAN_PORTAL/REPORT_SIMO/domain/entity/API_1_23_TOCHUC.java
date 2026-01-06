@@ -25,6 +25,7 @@ public class API_1_23_TOCHUC {
     private String soTaiKhoanToChuc;
     private String ngayMoTaiKhoan;
     private Integer trangThaiTaiKhoan;
+    private String dienThoaiNHDT;
     private String diaChiMAC;
     private String soImei;
     private String templateID;
@@ -66,6 +67,8 @@ public class API_1_23_TOCHUC {
     public void setNgayMoTaiKhoan(String ngayMoTaiKhoan) { this.ngayMoTaiKhoan = ngayMoTaiKhoan; }
     public Integer getTrangThaiTaiKhoan() { return trangThaiTaiKhoan; }
     public void setTrangThaiTaiKhoan(Integer trangThaiTaiKhoan) { this.trangThaiTaiKhoan = trangThaiTaiKhoan; }
+    public String getDienThoaiNHDT() { return dienThoaiNHDT; }
+    public void setDienThoaiNHDT(String dienThoaiNHDT) { this.dienThoaiNHDT = dienThoaiNHDT; }
     public String getDiaChiMAC() { return diaChiMAC; }
     public void setDiaChiMAC(String diaChiMAC) { this.diaChiMAC = diaChiMAC; }
     public String getSoImei() { return soImei; }

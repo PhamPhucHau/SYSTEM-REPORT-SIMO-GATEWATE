@@ -1,0 +1,11 @@
+API_1_32_TT_TNH_NGGL - API 1.32 Dịch vụ thu thập danh sách Thẻ ngân hàng nghi ngờ gian lận
+{ "Key":{"type":"string","required":false},
+  "Cif": {"type": "string", "maxLength": 36, "required": true},
+  "TenChuTheHoacNguoiUyQuyen": {"type": "string", "maxLength": 150, "required": true},
+  "SoThe": {"type": "string", "maxLength": 36, "required": true},
+  "LoaiThe": {"type": "integer", "enum": [1,2,3,99], "required": true},
+  "TrangThaiThe": {"type": "integer", "enum": [1,2,3,4,5,99], "required": true},
+  "NghiNgo": {"type": "integer", "enum": [0,1,2,3,4,5,6,7,8,9], "required": true},
+  "GhiChu": {"type": "string", "maxLength": 500, "required": false}
+}
+ROW_ID	Cif	TenChuTheHoacNguoiUyQuyen	SoThe	LoaiThe	TrangThaiThe	NghiNgo	GhiChu

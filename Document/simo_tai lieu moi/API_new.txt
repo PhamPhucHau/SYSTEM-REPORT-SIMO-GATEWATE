@@ -1,0 +1,7 @@
+https://mgsimo.sbv.gov.vn/simo/khdn/1.0/upload-bao-cao-tktt-khdn-nngl-api
+https://mgsimo.sbv.gov.vn/simo/khdn/1.0/upload-bao-cao-cap-nhat-tktt-khdn-nngl-api
+https://mgsimo.sbv.gov.vn/simo/khdn/1.0/upload-bao-cao-cap-nhat-danh-sach-tktt-khdn-api
+https://mgsimo.sbv.gov.vn/simo/dvcntt/1.0/upload-bao-cao-danh-sach-dvcntt-api
+https://mgsimo.sbv.gov.vn/simo/dvcntt/1.0/upload-bao-cao-danh-sach-dvcntt-nngl-api
+https://mgsimo.sbv.gov.vn/simo/dvcntt/1.0/upload-bao-cao-cap-nhat-danh-sach-dvcntt-nngl-api
+https://mgsimo.sbv.gov.vn/simo/dvcntt/1.0/upload-bao-cao-cap-nhat-danh-sach-dvcntt-api

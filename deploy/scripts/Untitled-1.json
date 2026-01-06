@@ -1,0 +1,130 @@
+{
+    "Key": {
+        "type": "string",
+        "required": false
+    },
+    "Cif": {
+        "type": "string",
+        "maxLength": 36,
+        "required": true
+    },
+    "TenToChuc": {
+        "type": "string",
+        "maxLength": 150,
+        "required": true
+    },
+    "SoGiayPhepThanhLap": {
+        "type": "string",
+        "maxLength": 15,
+        "required": true
+    },
+    "LoaiGiayToThanhLapToChuc": {
+        "type": "integer",
+        "enum": [
+            1,
+            2,
+            3,
+            4,
+            99
+        ],
+        "required": true
+    },
+    "NgayThanhLap": {
+        "type": "string",
+        "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+        "maxLength": 10,
+        "required": true
+    },
+    "DiaChiToChuc": {
+        "type": "string",
+        "maxLength": 300,
+        "required": true
+    },
+    "HoTenNguoiDaiDien": {
+        "type": "string",
+        "maxLength": 150,
+        "required": true
+    },
+    "SoGiayToTuyThan": {
+        "type": "string",
+        "maxLength": 15,
+        "required": true
+    },
+    "LoaiGiayToTuyThan": {
+        "type": "integer",
+        "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            99
+        ],
+        "required": true
+    },
+    "NgaySinh": {
+        "type": "string",
+        "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+        "maxLength": 10,
+        "required": true
+    },
+    "GioiTinh": {
+        "type": "integer",
+        "enum": [
+            0,
+            1,
+            2
+        ],
+        "required": true
+    },
+    "QuocTich": {
+        "type": "string",
+        "maxLength": 36,
+        "required": true
+    },
+    "DienThoai": {
+        "type": "string",
+        "maxLength": 15,
+        "required": true
+    },
+    "SoTaiKhoanToChuc": {
+        "type": "string",
+        "maxLength": 36,
+        "required": true
+    },
+    "NgayMoTaiKhoan": {
+        "type": "string",
+        "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+        "maxLength": 10,
+        "required": true
+    },
+    "TrangThaiTaiKhoan": {
+        "type": "integer",
+        "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            99
+        ],
+        "required": true
+    },
+    "DienThoaiNHDT": {
+        "type": "string",
+        "maxLength": 120,
+        "required": true
+    },
+    "DiaChiMAC": {
+        "type": "string",
+        "maxLength": 60,
+        "required": true
+    },
+    "SO_IMEI": {
+        "type": "string",
+        "maxLength": 36,
+        "required": true
+    }
+}
